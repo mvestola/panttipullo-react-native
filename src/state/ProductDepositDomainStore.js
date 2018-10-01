@@ -1,6 +1,5 @@
 import {observable, computed, action} from "mobx"
 import _ from "lodash"
-import {DEPOSIT_EXISTS, NO_DEPOSIT} from "../constants/depositResponseConstants";
 import {ERROR, INITIALIZED, LOADED, LOADING} from "../constants/domainStoreStatusConstants";
 import ProductDepositApi from "../api/ProductDepositApi";
 
@@ -60,15 +59,12 @@ class ProductDepositDomainStore {
         const payload = response.payLoad
 
         if (_.isNil(payload)) {
-            this.depositResponse = {
-                status: NO_DEPOSIT
-            }
+            this.depositResponse = {}
             if (!_.isNil(jsonResponse.message)) {
                 this.depositResponse.message = jsonResponse.message
             }
         } else {
             this.depositResponse = {
-                status: DEPOSIT_EXISTS,
                 message: payload.message,
                 ean: payload.ean,
                 productName: payload.name,
@@ -79,7 +75,7 @@ class ProductDepositDomainStore {
     }
 
     @action.bound
-    onServerErrorResponse(error) {
+    onServerErrorResponse() {
         this._init()
         this.status = ERROR
     }

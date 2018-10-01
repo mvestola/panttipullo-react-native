@@ -1,2 +1,0 @@
-export const DEPOSIT_EXISTS = "DEPOSIT_EXISTS"
-export const NO_DEPOSIT = "NO_DEPOSIT"
