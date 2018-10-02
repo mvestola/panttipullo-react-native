@@ -1,18 +1,16 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {Ionicons} from '@expo/vector-icons';
 import ScanActions from "../actions/ProductDepositActions"
+import { Button } from 'react-native-elements'
 
 const ScanBarcodeButton = () => {
     return (
-        <View  style={{
-            flexDirection: 'column',
-            alignItems: 'center',
-            padding: 20,
-        }}>
-            <Ionicons onPress={() => ScanActions.scanBarcode()} name="md-camera" size={64} color="black"/>
-            <Text>Skannaa viivakoodi kameralla</Text>
-        </View>
+        <Button
+            large
+            raised
+            backgroundColor="#2095F3"
+            onPress={() => ScanActions.scanBarcode()}
+            icon={{name: 'barcode-scan', type: 'material-community'}}
+            title='Skannaa viivakoodi' />
     )
 }
 

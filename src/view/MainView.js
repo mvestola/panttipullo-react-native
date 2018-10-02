@@ -23,15 +23,14 @@ const MainView = observer(() => {
     } else {
         return (
             <View style={{
-                flex: 1,
-                flexDirection: 'column',
-                alignItems: 'center',
                 justifyContent: 'center',
+                alignItems: 'center',
+                alignContent: 'center',
                 margin: 10
             }}>
+                {AppUiState.showProductDepositResult && <ProductDepositView depositResponse={ProductDepositDomainStore.depositResponse} />}
                 {AppUiState.showCameraButton && <ScanBarcodeButton />}
                 {AppUiState.showLoadingSpinner && <ActivityIndicator size="large" color="#0000ff" />}
-                {AppUiState.showProductDepositResult && <ProductDepositView depositResponse={ProductDepositDomainStore.depositResponse} />}
             </View>
         )
     }
