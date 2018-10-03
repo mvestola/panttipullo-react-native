@@ -1,4 +1,4 @@
 {
-  "notification": null,
-  "enabled": true
+  "notification": {text: "tämä on testi", id: "123456"},
+  "enabled": false
 }
