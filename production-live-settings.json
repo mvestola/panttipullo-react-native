@@ -1,4 +1,6 @@
 {
-  "notification": {"text": "tämä on testi", "id": "123456"},
-  "enabled": false
+  "0.0.1": {
+     "disabled": true,
+     "disabledNotification": "Ohjelmasta on uudempi versio. Päivitä ohjelma, tämä versio on poistettu käytöstä.",
+  }
 }
