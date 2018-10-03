@@ -6,6 +6,9 @@ React native application to check drinking bottle / can deposit from Palpa (pant
 
 <img src="screenshots/01_main.png" width="200" alt="Main screen of the application"/> <img src="screenshots/02_has_deposit.png" width="200" alt="When bottle / can has deposit"/> <img src="screenshots/03_no_deposit.png" width="200" alt="When bottle / can has no deposit"/>
 
+## Supported platforms
+
+Main target is Android.
 
 ## Status
 
