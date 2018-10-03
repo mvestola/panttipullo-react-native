@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Button, Text, View, ActivityIndicator} from 'react-native';
+import {StyleSheet, View, ActivityIndicator} from 'react-native';
 import {observer} from "mobx-react"
 import ScanActions from "../actions/ProductDepositActions"
 import AppUiState from "../state/AppUiState";
@@ -7,6 +7,8 @@ import ProductDepositDomainStore from "../state/ProductDepositDomainStore";
 import { BarCodeScanner } from 'expo';
 import ProductDepositView from "./ProductDepositView";
 import ScanBarcodeButton from "./ScanBarcodeButton";
+import AppSettingsDomainStore from "../state/AppSettingsDomainStore";
+import AppNotification from "./AppNotification";
 
 const handleBarCodeScanned = ({ data }) => {
     ScanActions.barcodeScanComplete(data)
@@ -20,6 +22,8 @@ const MainView = observer(() => {
                 style={StyleSheet.absoluteFill}
             />
         )
+    } else if (AppUiState.showLoadingSpinner) {
+        return <ActivityIndicator size="large" color="#0000ff" />
     } else {
         return (
             <View style={{
@@ -28,9 +32,9 @@ const MainView = observer(() => {
                 alignContent: 'center',
                 margin: 10
             }}>
+                {AppUiState.showAppNotification && <AppNotification message={AppUiState.appNotificationText} />}
                 {AppUiState.showProductDepositResult && <ProductDepositView depositResponse={ProductDepositDomainStore.depositResponse} />}
-                {AppUiState.showCameraButton && <ScanBarcodeButton />}
-                {AppUiState.showLoadingSpinner && <ActivityIndicator size="large" color="#0000ff" />}
+                {AppUiState.showCameraButton && <ScanBarcodeButton isDisabled={!AppSettingsDomainStore.isAppEnabled}/>}
             </View>
         )
     }
