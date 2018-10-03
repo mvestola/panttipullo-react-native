@@ -1,4 +1,4 @@
 {
-  "notification": {text: "tämä on testi", id: "123456"},
+  "notification": {"text": "tämä on testi", "id": "123456"},
   "enabled": false
 }
