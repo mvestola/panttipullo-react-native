@@ -1,6 +1,6 @@
 {
   "0.0.1": {
-     "disabled": true,
-     "disabledNotification": "tämä on testi 2"
+     "disabled": false,
+     "disabledNotification": null
   }
 }
