@@ -50,6 +50,10 @@ class ProductDepositDomainStore {
                 .then((response) => response.json())
                 .then((response) => this.onServerSuccessResponse(response))
                 .catch(this.onServerErrorResponse)
+        } else {
+            this._init()
+            console.log("Unable to parse CSRF token from page.")
+            this.status = ERROR
         }
     }
 
@@ -75,8 +79,9 @@ class ProductDepositDomainStore {
     }
 
     @action.bound
-    onServerErrorResponse() {
+    onServerErrorResponse(error) {
         this._init()
+        console.log(error)
         this.status = ERROR
     }
 

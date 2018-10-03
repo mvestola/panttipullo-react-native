@@ -34,7 +34,7 @@ const MainView = observer(() => {
             }}>
                 {AppUiState.showAppNotification && <AppNotification message={AppUiState.appNotificationText} />}
                 {AppUiState.showProductDepositResult && <ProductDepositView depositResponse={ProductDepositDomainStore.depositResponse} />}
-                {AppUiState.showCameraButton && <ScanBarcodeButton isDisabled={!AppSettingsDomainStore.isAppEnabled}/>}
+                {AppUiState.showCameraButton && <ScanBarcodeButton isDisabled={AppSettingsDomainStore.isBarcodeScanDisabled}/>}
             </View>
         )
     }
