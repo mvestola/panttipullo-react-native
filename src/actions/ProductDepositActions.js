@@ -22,6 +22,12 @@ class ProductDepositActions {
         ProductDepositDomainStore.barcode = barcode
         ProductDepositDomainStore.fetchProductDepositInformation()
     }
+
+    @action
+    cancelBarcodeScan() {
+        ProductDepositDomainStore.reset()
+    }
+
 }
 
 export default new ProductDepositActions()

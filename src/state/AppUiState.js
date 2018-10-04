@@ -2,8 +2,20 @@ import {computed} from "mobx"
 import ProductDepositDomainStore from "./ProductDepositDomainStore"
 import {ERROR, INITIALIZED, LOADED, LOADING} from "../constants/domainStoreStatusConstants";
 import AppSettingsDomainStore from "./AppSettingsDomainStore";
+import { BackHandler } from "react-native";
+import ProductDepositActions from "../actions/ProductDepositActions";
 
 class AppUiState {
+    constructor() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            if (this.showBarcodeScanner || this.showProductDepositResult) {
+                ProductDepositActions.cancelBarcodeScan()
+                return true
+            } else {
+                return false
+            }
+        })
+    }
 
     @computed get
     showAppNotification() {
@@ -19,6 +31,11 @@ class AppUiState {
         } else {
             return null
         }
+    }
+
+    @computed get
+    showBarcodeScanner() {
+        return ProductDepositDomainStore.barcodeScanIsInProgress
     }
 
     @computed get

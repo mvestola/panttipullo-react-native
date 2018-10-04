@@ -12,10 +12,10 @@ class ProductDepositDomainStore {
     @observable depositResponse
 
     constructor() {
-        this._init()
+        this.reset()
     }
 
-    _init() {
+    reset() {
         this.barcode = null
         this.barcodeScanIsInProgress = false
         this.status = INITIALIZED
@@ -51,7 +51,7 @@ class ProductDepositDomainStore {
                 .then((response) => this.onServerSuccessResponse(response))
                 .catch(this.onServerErrorResponse)
         } else {
-            this._init()
+            this.reset()
             console.log("Unable to parse CSRF token from page.")
             this.status = ERROR
         }
@@ -80,7 +80,7 @@ class ProductDepositDomainStore {
 
     @action.bound
     onServerErrorResponse(error) {
-        this._init()
+        this.reset()
         console.log(error)
         this.status = ERROR
     }
