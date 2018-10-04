@@ -52,6 +52,7 @@ class ProductDepositDomainStore {
                 .catch(this.onServerErrorResponse)
         } else {
             this.reset()
+            Expo.Amplitude.logEvent("Unable to parse CSRF token from page")
             console.log("Unable to parse CSRF token from page.")
             this.status = ERROR
         }
@@ -63,11 +64,13 @@ class ProductDepositDomainStore {
         const payload = response.payLoad
 
         if (_.isNil(payload)) {
+            Expo.Amplitude.logEvent("Got empty payload response from PALPA")
             this.depositResponse = {}
             if (!_.isNil(jsonResponse.message)) {
                 this.depositResponse.message = jsonResponse.message
             }
         } else {
+            Expo.Amplitude.logEvent("Got OK response from PALPA")
             this.depositResponse = {
                 message: payload.message,
                 ean: payload.ean,
@@ -80,6 +83,7 @@ class ProductDepositDomainStore {
 
     @action.bound
     onServerErrorResponse(error) {
+        Expo.Amplitude.logEvent("Got server error from Palpa")
         this.reset()
         console.log(error)
         this.status = ERROR

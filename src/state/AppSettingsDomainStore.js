@@ -10,6 +10,8 @@ class AppSettingsDomainStore {
     @observable status
 
     constructor() {
+        Expo.Amplitude.initialize("aa669bc10383e87442d83dbfc4522f2d")
+        Expo.Amplitude.logEvent(`App initialized with version ${this.appVersion}`)
         this._init()
     }
 
@@ -29,6 +31,9 @@ class AppSettingsDomainStore {
         const settingsForVersion = response[this.appVersion]
         this.notification = settingsForVersion.disabledNotification
         this.isBarcodeScanDisabled = settingsForVersion.disabled
+        if (this.notification !== null) {
+            this.notification = "Showing notification to user"
+        }
     }
 
     @action.bound
@@ -37,6 +42,7 @@ class AppSettingsDomainStore {
         this.isBarcodeScanDisabled = true
         this.notification = "Ohjelman asetusten lataaminen epäonnistui. Sulje ohjelma ja yritä uudelleen."
         this.status = ERROR
+        Expo.Amplitude.logEvent("Fetching application settings failed")
     }
 
 }
