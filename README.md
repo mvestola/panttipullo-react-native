@@ -8,8 +8,18 @@ React native application to check drinking bottle / can deposit from Palpa (pant
 
 ## Supported platforms
 
-Main target is Android.
+Main target platform is Android. You can download the app from the Google Play Store.
+
+App will not be in Apple Store, for iOS, you can use the expo app: https://expo.io/@mvestola/Panttipullo
 
 ## Status
 
 This is still work in progress project...
+
+## Credits
+
+### Logo
+
+Logo uses creative common licenced images from the [Noun project](https://thenounproject.com):
+* beer bottle by Nikita Kozin from the Noun Project
+* scan barcode by sandra from the Noun Project
