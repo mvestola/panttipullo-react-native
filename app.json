@@ -26,6 +26,9 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "package": "fi.mvestola.panttipullo"
+    },
     "githubUrl": "https://github.com/mvestola/panttipullo-react-native"
   }
 }
