@@ -29,7 +29,7 @@ For iPhone, use Expo app: https://expo.io/@mvestola/Panttipullo
 
 ## Documentation
 
-* [Development](./docs/development.md)
+* [Development](./docs/DEVELOPMENT.md)
 * [Privacy policy](privacy-policy.md)
 * [Release notes](RELEASE-NOTES.md)
 
