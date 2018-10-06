@@ -9,8 +9,7 @@
       "ios",
       "android"
     ],
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "version": "1.0.1",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -27,7 +26,12 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "fi.mvestola.panttipullo"
+      "package": "fi.mvestola.panttipullo",
+      "versionCode": 2,
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo",
+      "permissions": [
+        "CAMERA"
+      ]
     },
     "githubUrl": "https://github.com/mvestola/panttipullo-react-native"
   }

@@ -23,7 +23,7 @@ class ProductDepositApi {
                     'Content-Type': 'application/json',
                     [csrfTokenHeader]: csrfToken
                 },
-                referrer: "https://extra.palpa.fi/pantillisuus",
+                referrer: this.url,
                 referrerPolicy: "no-referrer-when-downgrade",
                 body: JSON.stringify({
                     ean: barcode

@@ -39,8 +39,8 @@ class AppSettingsDomainStore {
     @action.bound
     onServerErrorResponse(error) {
         console.log(error)
-        this.isBarcodeScanDisabled = true
-        this.notification = "Ohjelman asetusten lataaminen epäonnistui. Sulje ohjelma ja yritä uudelleen."
+        this.isBarcodeScanDisabled = false
+        this.notification = null
         this.status = ERROR
         Expo.Amplitude.logEvent("Fetching application settings failed")
     }

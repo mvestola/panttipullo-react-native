@@ -1,20 +1,37 @@
 # Panttipullo
 
-React native application to check drinking bottle / can deposit from Palpa (pantillisuus). Intended to be used in Finland only. App uses same APIs than is used in the following page by PALPA: https://extra.palpa.fi/pantillisuus/
+## Description
 
-**This app is not developed by PALPA**. This app is a private project. In any issues with app, please contact developer in Google Play store.
+Scan barcode from drinking bottle or can to know if you get deposit or not. Intended to be used in Finland only. 
+App fetches deposit information from PALPA api: https://extra.palpa.fi/pantillisuus . This application is a private project, 
+it is not developed by PALPA. Please report any issues to developer, not to PALPA.
 
-<img src="screenshots/01_main.png" width="200" alt="Main screen of the application"/> <img src="screenshots/02_has_deposit.png" width="200" alt="When bottle / can has deposit"/> <img src="screenshots/03_no_deposit.png" width="200" alt="When bottle / can has no deposit"/>
+## Description (Finnish)
+
+Skannaa viivakoodi juomapakkauksesta ja katso saako siitä panttia.
+Ohjelma hakee tiedot PALPAn sivuilta: https://extra.palpa.fi/pantillisuus
+Ohjelma on yksityinen projekti, ei siis PALPAn kehittämä. Ohjelmaan liittyvissä asioissa, ota yhteyttä kehittäjään, ei PALPAan.
+
+<img src="play_store/screenshots/01_main.png" width="200" alt="Main screen of the application"/> <img src="play_store/screenshots/02_has_deposit.png" width="200" alt="When bottle / can has deposit"/> <img src="play_store/screenshots/03_no_deposit.png" width="200" alt="When bottle / can has no deposit"/>
 
 ## Supported platforms
 
-Main target platform is Android. You can download the app from the Google Play Store.
+**Main target platform is Android**. You can download the app from the Google Play Store.
 
 App will not be in Apple Store, for iOS, you can use the expo app: https://expo.io/@mvestola/Panttipullo
 
-## Status
+## Download
 
-This is still work in progress project...
+The latest stable version of this application can be downloaded to an Android phone
+from [the application website in Google Play](https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo).
+
+For iPhone, use Expo app: https://expo.io/@mvestola/Panttipullo
+
+## Documentation
+
+* [Development](./docs/development.md)
+* [Privacy policy](privacy-policy.md)
+* [Release notes](RELEASE-NOTES.md)
 
 ## Credits
 
