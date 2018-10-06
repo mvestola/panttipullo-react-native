@@ -17,7 +17,7 @@ Install following software for development:
 ```
 git clone git@github.com:mvestola/panttipullo-react-native.git
 npm install
-expo start
+npm start
 ```
 
 ## Production release checklist

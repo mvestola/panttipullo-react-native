@@ -8,6 +8,7 @@ class AppSettingsDomainStore {
     @observable notification
     @observable isBarcodeScanDisabled
     @observable status
+    @observable fontsAreLoaded
 
     constructor() {
         Expo.Amplitude.initialize("aa669bc10383e87442d83dbfc4522f2d")
@@ -18,11 +19,25 @@ class AppSettingsDomainStore {
     _init() {
         this.notification = null
         this.isBarcodeScanDisabled = true
+        this.fontsAreLoaded = false
         this.status = LOADING
+        this._loadCustomFonts()
         AppSettingsApi.fetchProductionLiveSettings()
             .then((response) => response.json())
             .then((jsonResponse) => this.onServerSuccessResponse(jsonResponse))
             .catch(this.onServerErrorResponse)
+    }
+
+    _loadCustomFonts() {
+        Expo.Font.loadAsync({
+            'Roboto': require('native-base/Fonts/Roboto.ttf'),
+            'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+        }).then(this.onFontsLoaded)
+    }
+
+    @action.bound
+    onFontsLoaded() {
+        this.fontsAreLoaded = true
     }
 
     @action.bound

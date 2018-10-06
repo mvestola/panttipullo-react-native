@@ -49,6 +49,11 @@ class AppUiState {
     }
 
     @computed get
+    showAppIsInitialising() {
+        return AppSettingsDomainStore.status === LOADING || !AppSettingsDomainStore.fontsAreLoaded
+    }
+
+    @computed get
     showCameraButton() {
         const status = ProductDepositDomainStore.status
         return !this.showLoadingSpinner && (status === LOADED || status === ERROR || status === INITIALIZED)

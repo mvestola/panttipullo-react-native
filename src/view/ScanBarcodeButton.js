@@ -1,19 +1,19 @@
 import React from 'react';
 import ScanActions from "../actions/ProductDepositActions"
-import { Button } from 'react-native-elements'
+import {Button, Icon, Text} from 'native-base';
 
 const ScanBarcodeButton = ({ isDisabled }) => {
     return (
         <Button
-            large
-            raised
+            iconLeft
             disabled={isDisabled}
-            backgroundColor="#2095F3"
             onPress={() => ScanActions.scanBarcode()}
-            icon={{name: 'barcode-scan', type: 'material-community'}}
-            title='Skannaa viivakoodi' />
+            style={{alignSelf: "center"}}
+        >
+            <Icon name='barcode-scan' type='MaterialCommunityIcons' />
+            <Text>Skannaa viivakoodi</Text>
+        </Button>
     )
 }
 
 export default ScanBarcodeButton
-
