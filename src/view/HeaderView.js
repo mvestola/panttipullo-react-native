@@ -6,8 +6,8 @@ import AppUiState from "../state/AppUiState";
 
 const HeaderView = observer(() => {
     return (
-        <Header style={{ backgroundColor: '#005b96' }}
-                androidStatusBarColor="#03396c">
+        <Header style={{ backgroundColor: '#1ebbd7' }}
+                androidStatusBarColor="#189ad3">
             <Left>
                 {
                     AppUiState.showBackButton &&

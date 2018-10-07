@@ -1,5 +1,6 @@
 import {observable, computed, action} from "mobx"
 import _ from "lodash"
+import moment from "moment"
 import {ERROR, INITIALIZED, LOADED, LOADING} from "../constants/domainStoreStatusConstants";
 import ProductDepositApi from "../api/ProductDepositApi";
 
@@ -11,7 +12,16 @@ class ProductDepositDomainStore {
     @observable status
     @observable depositResponse
 
+    @observable totalScanCount
+    @observable totalScanHavingDeposit
+    @observable totalDepositAmount
+    @observable lastScanResults
+
     constructor() {
+        this.totalScanCount = 0
+        this.totalScanHavingDeposit = 0
+        this.totalDepositAmount = 0.0
+        this.lastScanResults = []
         this.reset()
     }
 
@@ -25,6 +35,11 @@ class ProductDepositDomainStore {
     @computed get
     isWaitingResponseForBarCode() {
         return this.barcode !== null && this.depositResponse !== null
+    }
+
+    @computed get
+    totalScanCountNoDeposit() {
+        return this.totalScanCount - this.totalScanHavingDeposit
     }
 
     fetchProductDepositInformation() {
@@ -68,6 +83,12 @@ class ProductDepositDomainStore {
             this.depositResponse = {}
             if (!_.isNil(jsonResponse.message)) {
                 this.depositResponse.message = jsonResponse.message
+                this.lastScanResults.push({
+                    ean: this.barcode,
+                    date: moment().toISOString(),
+                    key: ""+moment().unix()
+                })
+                this.totalScanCount++
             }
         } else {
             Expo.Amplitude.logEvent("Got OK response from PALPA")
@@ -78,6 +99,17 @@ class ProductDepositDomainStore {
                 productType: payload.recycling,
                 deposit: payload.deposit
             }
+            this.lastScanResults.push({
+                ean: payload.ean,
+                productName: payload.name,
+                productType: payload.recycling,
+                deposit: payload.deposit,
+                date: moment().toISOString(),
+                key: ""+moment().unix()
+            })
+            this.totalScanCount++
+            this.totalScanHavingDeposit++
+            this.totalDepositAmount += Number(payload.deposit.replace(/,/g, '.').replace(/[^0-9.-]+/g,""))
         }
     }
 

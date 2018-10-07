@@ -1,8 +1,25 @@
 import React from 'react';
-import {Content, Spinner, Grid, Col, Row, View, Text, Icon} from 'native-base';
+import Modal from "react-native-modal";
+import {
+    Content,
+    Spinner,
+    Grid,
+    Col,
+    Row,
+    View,
+    Text,
+    Icon,
+    List,
+    ListItem,
+    Left,
+    Card,
+    CardItem,
+    Body
+} from 'native-base';
 import {AdMobBanner} from 'expo';
 import {observer} from "mobx-react"
-import {StyleSheet} from 'react-native';
+import {toJS} from "mobx"
+import {FlatList, ScrollView, StyleSheet} from 'react-native';
 import ProductDepositDomainStore from "../state/ProductDepositDomainStore";
 import AppUiState from "../state/AppUiState";
 import AppSettingsDomainStore from "../state/AppSettingsDomainStore";
@@ -13,6 +30,7 @@ import BarcodeScanner from "./BarcodeScanner";
 import HelpView from "./HelpView";
 import SettingsView from "./SettingsView";
 import InfoView from "./InfoView";
+import ScanActions from "../actions/ProductDepositActions";
 
 const getContent = () => {
     if (AppUiState.showBarcodeScanner) {
@@ -22,7 +40,11 @@ const getContent = () => {
     } else if (AppUiState.showSettings) {
         return <SettingsView />
     } else if (AppUiState.showInfo) {
-        return <InfoView />
+        return <Modal isVisible={true}>
+                <View style={{ flex: 1 }}>
+                    <InfoView />
+                </View>
+            </Modal>
     } else if (AppUiState.showHelp) {
         return <HelpView />
     } else if (AppUiState.showAppNotification) {
@@ -30,9 +52,39 @@ const getContent = () => {
     } else if (AppUiState.showProductDepositResult) {
         return <ProductDepositView depositResponse={ProductDepositDomainStore.depositResponse} />
     } else if (AppUiState.showCameraButton) {
-        return <View>
-            <ScanBarcodeButton isDisabled={AppSettingsDomainStore.isBarcodeScanDisabled}/>
-        </View>
+        return <ScrollView>
+            <Grid>
+                <Row style={{backgroundColor: "#E1E1D6", padding: 10}}>
+                    <Text style={{color: "#989898", fontFamily: 'Roboto' }}>PANTIN TARKISTUS</Text>
+                </Row>
+                <Row>
+                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', padding: 20}}>
+                        <Icon name='barcode-scan' type='MaterialCommunityIcons' style={{fontSize: 26, color: '#989898'}} />
+                        <Text onPress={() => ScanActions.scanBarcode()} style={{color: "#989898", fontSize: 12, marginLeft: 10}}>Skannaa uusi viivakoodi juomapakkauksesta</Text>
+                    </View>
+                </Row>
+                <Row style={{backgroundColor: "#E1E1D6", padding: 10}}>
+                    <Text style={{color: "#989898"}}>TILASTOSI</Text>
+                </Row>
+                <Row>
+                    <Grid>
+                        <Row><Text>Skannattu yhteensä: {ProductDepositDomainStore.totalScanCount}</Text></Row>
+                        <Row><Text>Skannattu pantilliset yhteensä: {ProductDepositDomainStore.totalScanHavingDeposit}</Text></Row>
+                        <Row><Text>Skannattu pantittomat yhteensä: {ProductDepositDomainStore.totalScanCountNoDeposit}</Text></Row>
+                        <Row><Text>Skannatut pantit yhteensä: {ProductDepositDomainStore.totalDepositAmount}</Text></Row>
+                    </Grid>
+                </Row>
+                <Row style={{backgroundColor: "#E1E1D6", padding: 10}}>
+                    <Text style={{color: "#989898"}}>VIIMEISIMMÄT SKANNAUKSET</Text>
+                </Row>
+                <Row style={{padding: 10}}>
+                    <FlatList
+                        data={toJS(ProductDepositDomainStore.lastScanResults)}
+                        renderItem={({item}) => <Text>{item.productName} {item.deposit}</Text>}
+                    />
+                </Row>
+            </Grid>
+        </ScrollView>
     } else {
         return null
     }
@@ -48,7 +100,7 @@ const ContentView = observer(() => {
                 adUnitID="ca-app-pub-0260854390576047/9007788100"
                 testDeviceID="EMULATOR"
                 onDidFailToReceiveAdWithError={() => alert("mainosten lataaminen epäonnistui")} />
-            <Grid style={{alignItems: 'flex-start', justifyContent: 'center', padding: 10 }}>
+            <Grid style={{alignItems: 'flex-start', justifyContent: 'center' }}>
                 <Col>
                     {getContent()}
                 </Col>
@@ -60,7 +112,7 @@ const ContentView = observer(() => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#b3cde0',
+        backgroundColor: '#FFFFFF',
         alignItems: 'center',
         justifyContent: 'center',
     },
