@@ -78,6 +78,14 @@ const getContent = () => {
                 <Row style={{padding: 10}}>
                     <FlatList
                         data={toJS(ProductDepositDomainStore.lastScanResults)}
+                        ListHeaderComponent={<Grid style={{padding: 5, backgroundColor: "#EEEEEE"}}>
+                            <Col size={20}>
+                                <Text>Pantti</Text>
+                            </Col>
+                            <Col size={80}>
+                                <Text>Kuvaus</Text>
+                            </Col>
+                        </Grid>}
                         renderItem={({item}) => {
                             return(
                                 <Grid style={{borderBottomColor: "#EEEEEE", borderBottomWidth: 1, padding: 5,
