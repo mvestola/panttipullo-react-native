@@ -14,7 +14,7 @@ import {
     Left,
     Card,
     CardItem,
-    Body
+    Body, Button
 } from 'native-base';
 import {AdMobBanner} from 'expo';
 import {observer} from "mobx-react"
@@ -30,7 +30,7 @@ import BarcodeScanner from "./BarcodeScanner";
 import HelpView from "./HelpView";
 import SettingsView from "./SettingsView";
 import InfoView from "./InfoView";
-import ScanActions from "../actions/ProductDepositActions";
+import ProductDepositActions from "../actions/ProductDepositActions";
 import moment from "moment";
 
 const getContent = () => {
@@ -56,26 +56,42 @@ const getContent = () => {
         return <ScrollView>
             <Grid>
                 <Row style={{backgroundColor: "#E1E1D6", padding: 10}}>
-                    <Text style={{color: "#989898", fontFamily: 'Roboto' }}>PANTIN TARKISTUS</Text>
+                    <Text style={{color: "#989898", fontWeight: "bold", fontSize: 14}}>PANTIN TARKISTUS</Text>
                 </Row>
                 <Row style={{padding: 20}}>
                     <ScanBarcodeButton disabled={AppSettingsDomainStore.isBarcodeScanDisabled} />
                 </Row>
                 <Row style={{backgroundColor: "#E1E1D6", padding: 10}}>
-                    <Text style={{color: "#989898"}}>TILASTOSI</Text>
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                        <Text style={{color: "#989898", fontWeight: "bold", fontSize: 14}}>TILASTOSI</Text>
+                        <Button
+                            small
+                            onPress={() => ProductDepositActions.clearStats()}
+                            style={{backgroundColor: 'red'}}>
+                            <Icon name='delete-forever' type='MaterialCommunityIcons' />
+                        </Button>
+                    </View>
                 </Row>
                 <Row>
                     <Grid style={{padding: 10}}>
-                        <Row><Text>Skannattu yhteensä: {ProductDepositDomainStore.totalScanCount}</Text></Row>
-                        <Row><Text>Skannattu pantilliset yhteensä: {ProductDepositDomainStore.totalScanHavingDeposit}</Text></Row>
-                        <Row><Text>Skannattu pantittomat yhteensä: {ProductDepositDomainStore.totalScanCountNoDeposit}</Text></Row>
-                        <Row><Text>Skannatut pantit yhteensä: {ProductDepositDomainStore.totalDepositAmount}</Text></Row>
+                        <Row><Text style={{color: "#989898", fontSize: 13}}>Skannattu yhteensä: {ProductDepositDomainStore.totalScanCount} kpl</Text></Row>
+                        <Row><Text style={{color: "#989898", fontSize: 13}}>Skannattu pantilliset yhteensä: {ProductDepositDomainStore.totalScanHavingDeposit} kpl</Text></Row>
+                        <Row><Text style={{color: "#989898", fontSize: 13}}>Skannattu pantittomat yhteensä: {ProductDepositDomainStore.totalScanCountNoDeposit} kpl</Text></Row>
+                        <Row><Text style={{color: "#989898", fontSize: 13}}>Skannatut pantit yhteensä: {ProductDepositDomainStore.totalDepositAmount} €</Text></Row>
                     </Grid>
                 </Row>
                 <Row style={{backgroundColor: "#E1E1D6", padding: 10}}>
-                    <Text style={{color: "#989898"}}>VIIMEISIMMÄT SKANNAUKSET</Text>
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                        <Text style={{color: "#989898", fontWeight: "bold", fontSize: 14}}>VIIMEISIMMÄT SKANNAUKSESI</Text>
+                        <Button
+                            small
+                            onPress={() => ProductDepositActions.clearRecentScans()}
+                            style={{backgroundColor: 'red'}}>
+                            <Icon name='delete-forever' type='MaterialCommunityIcons' />
+                        </Button>
+                    </View>
                 </Row>
-                <Row style={{padding: 10}}>
+                <Row>
                     <FlatList
                         data={toJS(ProductDepositDomainStore.lastScanResults)}
                         ListHeaderComponent={<Grid style={{padding: 5, backgroundColor: "#EEEEEE"}}>
@@ -91,12 +107,12 @@ const getContent = () => {
                                 <Grid style={{borderBottomColor: "#EEEEEE", borderBottomWidth: 1, padding: 5,
                                     borderStyle: "solid"}}>
                                     <Col size={20}>
-                                        <Text style={{fontSize: 10}}>{item.deposit || "0 €"}</Text>
+                                        <Text style={{fontSize: 11}}>{item.deposit || "0 €"}</Text>
                                     </Col>
                                     <Col size={80}>
-                                        {item.productName && <Text style={{fontSize: 10}}>{item.productName} ({item.productType})</Text>}
-                                        <Text style={{fontSize: 10}}>{item.ean}</Text>
-                                        <Text style={{fontSize: 10}}>{moment(item.date).format("DD.MM.YYYY HH:mm:ss")}</Text>
+                                        {item.productName && <Text style={{fontSize: 11}}>{item.productName} ({item.productType})</Text>}
+                                        <Text style={{fontSize: 11}}>{item.ean}</Text>
+                                        <Text style={{fontSize: 11}}>{moment(item.date).format("DD.MM.YYYY HH:mm:ss")}</Text>
                                     </Col>
                                 </Grid>
                             )}

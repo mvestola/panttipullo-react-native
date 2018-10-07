@@ -115,7 +115,7 @@ class ProductDepositDomainStore {
                 this.totalDepositAmount += Number(payload.deposit.replace(/,/g, '.').replace(/[^0-9.-]+/g,""))
             }
         }
-        this._savePersistData()
+        this.savePersistData()
     }
 
     @action.bound
@@ -126,7 +126,7 @@ class ProductDepositDomainStore {
         this.status = ERROR
     }
 
-    _savePersistData = async () => {
+    savePersistData = async () => {
         try {
             await AsyncStorage.setItem('totalScanCount', toJS(this.totalScanCount).toString());
             await AsyncStorage.setItem('totalScanHavingDeposit', toJS(this.totalScanHavingDeposit).toString());
