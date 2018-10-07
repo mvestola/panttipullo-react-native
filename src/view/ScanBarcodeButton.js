@@ -8,7 +8,7 @@ const ScanBarcodeButton = ({ isDisabled }) => {
             iconLeft
             disabled={isDisabled}
             onPress={() => ScanActions.scanBarcode()}
-            style={{alignSelf: "center", backgroundColor: '#1ebbd7'}}
+            style={{backgroundColor: '#1ebbd7'}}
         >
             <Icon name='barcode-scan' type='MaterialCommunityIcons' />
             <Text>Skannaa uusi viivakoodi</Text>

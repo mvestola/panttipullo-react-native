@@ -31,6 +31,7 @@ import HelpView from "./HelpView";
 import SettingsView from "./SettingsView";
 import InfoView from "./InfoView";
 import ScanActions from "../actions/ProductDepositActions";
+import moment from "moment";
 
 const getContent = () => {
     if (AppUiState.showBarcodeScanner) {
@@ -57,17 +58,14 @@ const getContent = () => {
                 <Row style={{backgroundColor: "#E1E1D6", padding: 10}}>
                     <Text style={{color: "#989898", fontFamily: 'Roboto' }}>PANTIN TARKISTUS</Text>
                 </Row>
-                <Row>
-                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', padding: 20}}>
-                        <Icon name='barcode-scan' type='MaterialCommunityIcons' style={{fontSize: 26, color: '#989898'}} />
-                        <Text onPress={() => ScanActions.scanBarcode()} style={{color: "#989898", fontSize: 12, marginLeft: 10}}>Skannaa uusi viivakoodi juomapakkauksesta</Text>
-                    </View>
+                <Row style={{padding: 20}}>
+                    <ScanBarcodeButton disabled={AppSettingsDomainStore.isBarcodeScanDisabled} />
                 </Row>
                 <Row style={{backgroundColor: "#E1E1D6", padding: 10}}>
                     <Text style={{color: "#989898"}}>TILASTOSI</Text>
                 </Row>
                 <Row>
-                    <Grid>
+                    <Grid style={{padding: 10}}>
                         <Row><Text>Skannattu yhteensä: {ProductDepositDomainStore.totalScanCount}</Text></Row>
                         <Row><Text>Skannattu pantilliset yhteensä: {ProductDepositDomainStore.totalScanHavingDeposit}</Text></Row>
                         <Row><Text>Skannattu pantittomat yhteensä: {ProductDepositDomainStore.totalScanCountNoDeposit}</Text></Row>
@@ -80,7 +78,21 @@ const getContent = () => {
                 <Row style={{padding: 10}}>
                     <FlatList
                         data={toJS(ProductDepositDomainStore.lastScanResults)}
-                        renderItem={({item}) => <Text>{item.productName} {item.deposit}</Text>}
+                        renderItem={({item}) => {
+                            return(
+                                <Grid style={{borderBottomColor: "#EEEEEE", borderBottomWidth: 1, padding: 5,
+                                    borderStyle: "solid"}}>
+                                    <Col size={20}>
+                                        <Text style={{fontSize: 10}}>{item.deposit || "0 €"}</Text>
+                                    </Col>
+                                    <Col size={80}>
+                                        {item.productName && <Text style={{fontSize: 10}}>{item.productName} ({item.productType})</Text>}
+                                        <Text style={{fontSize: 10}}>{item.ean}</Text>
+                                        <Text style={{fontSize: 10}}>{moment(item.date).format("DD.MM.YYYY HH:mm:ss")}</Text>
+                                    </Col>
+                                </Grid>
+                            )}
+                        }
                     />
                 </Row>
             </Grid>

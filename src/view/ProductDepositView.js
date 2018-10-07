@@ -3,6 +3,7 @@ import _ from "lodash"
 import {StyleSheet} from 'react-native';
 import ProductDepositDomainStore from "../state/ProductDepositDomainStore";
 import {Body, Card, CardItem, Icon, Text, View} from 'native-base';
+import ScanBarcodeButton from "./ScanBarcodeButton";
 
 const ProductDepositView = ({depositResponse}) => {
     if (!_.isNil(depositResponse.deposit)) {
@@ -23,18 +24,34 @@ const ProductDepositView = ({depositResponse}) => {
                         <Text style={[styles.depositExtraInfo, styles.depositExtraDesc]}>Palpan kuvaus: "{depositResponse.message}"</Text>
                     </Body>
                 </CardItem>
+                <CardItem>
+                    <Body>
+                        <ScanBarcodeButton/>
+                    </Body>
+                </CardItem>
             </Card>
         )
     } else {
         return (
-            <View style={styles.card}>
-                <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
-                    <Icon name='alert-circle' type='material-community' style={{fontSize: 20, color: 'red'}} />
-                    <Text style={styles.noDepositTitle}> Tästä ei ehkä saa panttia</Text>
-                </View>
-                <Text style={styles.depositExtraInfo}>Viivakoodi: {ProductDepositDomainStore.barcode}</Text>
-                <Text style={[styles.depositExtraInfo, styles.depositExtraDesc]}>"{depositResponse.message}"</Text>
-            </View>
+            <Card>
+                <CardItem header>
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                        <Icon name='alert-circle' type='MaterialCommunityIcons' style={{fontSize: 26, color: 'red'}} />
+                        <Text style={styles.noDepositTitle}> Tästä ei ehkä saa panttia</Text>
+                    </View>
+                </CardItem>
+                <CardItem>
+                    <Body>
+                    <Text style={styles.depositExtraInfo}>Viivakoodi: {ProductDepositDomainStore.barcode}</Text>
+                    <Text style={[styles.depositExtraInfo, styles.depositExtraDesc]}>Palpan kuvaus: "{depositResponse.message}"</Text>
+                    </Body>
+                </CardItem>
+                <CardItem>
+                    <Body>
+                    <ScanBarcodeButton/>
+                    </Body>
+                </CardItem>
+            </Card>
         )
     }
 }

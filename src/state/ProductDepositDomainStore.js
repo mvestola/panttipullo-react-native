@@ -102,7 +102,7 @@ class ProductDepositDomainStore {
                 deposit: payload.deposit
             }
             this.lastScanResults.push({
-                ean: payload.ean,
+                ean: payload.ean || this.barcode,
                 productName: payload.name,
                 productType: payload.recycling,
                 deposit: payload.deposit,
@@ -110,8 +110,10 @@ class ProductDepositDomainStore {
                 key: ""+moment().unix()
             })
             this.totalScanCount++
-            this.totalScanHavingDeposit++
-            this.totalDepositAmount += Number(payload.deposit.replace(/,/g, '.').replace(/[^0-9.-]+/g,""))
+            if (payload.deposit !== null) {
+                this.totalScanHavingDeposit++
+                this.totalDepositAmount += Number(payload.deposit.replace(/,/g, '.').replace(/[^0-9.-]+/g,""))
+            }
         }
         this._savePersistData()
     }
