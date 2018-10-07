@@ -1,4 +1,5 @@
-import {observable, computed, action} from "mobx"
+import {observable, computed, action, toJS} from "mobx"
+import {AsyncStorage} from "react-native"
 import _ from "lodash"
 import moment from "moment"
 import {ERROR, INITIALIZED, LOADED, LOADING} from "../constants/domainStoreStatusConstants";
@@ -23,6 +24,7 @@ class ProductDepositDomainStore {
         this.totalDepositAmount = 0.0
         this.lastScanResults = []
         this.reset()
+        this._loadPersistData()
     }
 
     reset() {
@@ -111,6 +113,7 @@ class ProductDepositDomainStore {
             this.totalScanHavingDeposit++
             this.totalDepositAmount += Number(payload.deposit.replace(/,/g, '.').replace(/[^0-9.-]+/g,""))
         }
+        this._savePersistData()
     }
 
     @action.bound
@@ -121,6 +124,40 @@ class ProductDepositDomainStore {
         this.status = ERROR
     }
 
+    _savePersistData = async () => {
+        try {
+            await AsyncStorage.setItem('totalScanCount', toJS(this.totalScanCount).toString());
+            await AsyncStorage.setItem('totalScanHavingDeposit', toJS(this.totalScanHavingDeposit).toString());
+            await AsyncStorage.setItem('totalDepositAmount', toJS(this.totalDepositAmount).toString());
+            await AsyncStorage.setItem('lastScanResults', JSON.stringify(toJS(this.lastScanResults)));
+        } catch (error) {
+            console.log("error saving persist data", error)
+        }
+    }
+
+    _loadPersistData = async () => {
+        try {
+            const totalScanCount = await AsyncStorage.getItem('totalScanCount');
+            const totalScanHavingDeposit = await AsyncStorage.getItem('totalScanHavingDeposit');
+            const totalDepositAmount = await AsyncStorage.getItem('totalDepositAmount');
+            const lastScanResults = await AsyncStorage.getItem('lastScanResults');
+
+            if (totalScanCount !== null) {
+                this.totalScanCount = Number(totalScanCount)
+            }
+            if (totalScanHavingDeposit !== null) {
+                this.totalScanHavingDeposit = Number(totalScanHavingDeposit)
+            }
+            if (totalDepositAmount !== null) {
+                this.totalDepositAmount = Number(totalDepositAmount)
+            }
+            if (lastScanResults !== null) {
+                this.lastScanResults = JSON.parse(lastScanResults)
+            }
+        } catch (error) {
+            console.log("error loading persistent data", error)
+        }
+    }
 }
 
 export default new ProductDepositDomainStore()

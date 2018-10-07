@@ -99,7 +99,7 @@ const ContentView = observer(() => {
                 bannerSize="smartBannerPortrait"
                 adUnitID="ca-app-pub-0260854390576047/9007788100"
                 testDeviceID="EMULATOR"
-                onDidFailToReceiveAdWithError={() => alert("mainosten lataaminen epäonnistui")} />
+                onDidFailToReceiveAdWithError={() => console.log("mainosten lataaminen epäonnistui")} />
             <Grid style={{alignItems: 'flex-start', justifyContent: 'center' }}>
                 <Col>
                     {getContent()}
