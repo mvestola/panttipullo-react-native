@@ -11,7 +11,7 @@ const ScanBarcodeButton = ({ isDisabled }) => {
             style={{alignSelf: "center"}}
         >
             <Icon name='barcode-scan' type='MaterialCommunityIcons' />
-            <Text>Skannaa viivakoodi</Text>
+            <Text>Skannaa uusi viivakoodi</Text>
         </Button>
     )
 }

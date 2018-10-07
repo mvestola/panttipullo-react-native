@@ -20,6 +20,12 @@ npm install
 npm start
 ```
 
+## Documentation for external libraries used
+
+* Expo: https://docs.expo.io/versions/latest/react-native/
+* Icons: https://oblador.github.io/react-native-vector-icons/
+* Nativebase: https://docs.nativebase.io/Components.html
+
 ## Production release checklist
 
 Before release
