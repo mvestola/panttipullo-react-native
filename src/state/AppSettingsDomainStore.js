@@ -1,6 +1,8 @@
 import {action, observable} from "mobx"
+import {AsyncStorage} from "react-native"
 import {ERROR, LOADED, LOADING} from "../constants/domainStoreStatusConstants";
 import AppSettingsApi from "../api/AppSettingsApi";
+import {toJS} from "mobx/lib/mobx";
 
 class AppSettingsDomainStore {
 
@@ -10,10 +12,14 @@ class AppSettingsDomainStore {
     @observable status
     @observable fontsAreLoaded
 
+    @observable showAds
+    @observable language
+
     constructor() {
         Expo.Amplitude.initialize("aa669bc10383e87442d83dbfc4522f2d")
         Expo.Amplitude.logEvent(`App initialized with version ${this.appVersion}`)
         this._init()
+        this._loadPersistData()
     }
 
     _init() {
@@ -21,6 +27,8 @@ class AppSettingsDomainStore {
         this.isBarcodeScanDisabled = true
         this.fontsAreLoaded = false
         this.status = LOADING
+        this.showAds = false
+        this.language = "fi"
         this._loadCustomFonts()
         AppSettingsApi.fetchProductionLiveSettings()
             .then((response) => response.json())
@@ -58,6 +66,33 @@ class AppSettingsDomainStore {
         this.notification = null
         this.status = ERROR
         Expo.Amplitude.logEvent("Fetching application settings failed")
+    }
+
+    savePersistData = async () => {
+        try {
+            await AsyncStorage.setItem('showAds', toJS(this.showAds).toString());
+            await AsyncStorage.setItem('language', toJS(this.language));
+        } catch (error) {
+            console.log("error saving persist data", error)
+        }
+    }
+
+    _loadPersistData = async () => {
+        try {
+            const showAds = await AsyncStorage.getItem('showAds');
+            const language = await AsyncStorage.getItem('language');
+
+            if (showAds !== null) {
+                this.showAds = showAds == "true"
+            } else {
+                this.showAds = true
+            }
+            if (language !== null) {
+                this.language = language
+            }
+        } catch (error) {
+            console.log("error loading persistent data", error)
+        }
     }
 
 }

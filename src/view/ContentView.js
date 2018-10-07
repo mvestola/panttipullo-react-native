@@ -93,13 +93,13 @@ const getContent = () => {
 const ContentView = observer(() => {
     return (
         <Content contentContainerStyle={styles.container}>
-            <AdMobBanner
+            {AppSettingsDomainStore.showAds && <AdMobBanner
                 style={{borderBottomColor: "#011f4b", borderBottomWidth: 1, backgroundColor: "#005b96", padding: 0,
                     borderTopColor: "#011f4b", borderStyle: "solid", borderTopWidth: 1}}
                 bannerSize="smartBannerPortrait"
                 adUnitID="ca-app-pub-0260854390576047/9007788100"
                 testDeviceID="EMULATOR"
-                onDidFailToReceiveAdWithError={() => console.log("mainosten lataaminen epäonnistui")} />
+                onDidFailToReceiveAdWithError={() => console.log("mainosten lataaminen epäonnistui")} />}
             <Grid style={{alignItems: 'flex-start', justifyContent: 'center' }}>
                 <Col>
                     {getContent()}
