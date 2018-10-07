@@ -2,6 +2,7 @@ import {action, observable} from "mobx"
 import {AsyncStorage} from "react-native"
 import {ERROR, LOADED, LOADING} from "../constants/domainStoreStatusConstants";
 import AppSettingsApi from "../api/AppSettingsApi";
+import {ToastAndroid} from 'react-native';
 import {toJS} from "mobx/lib/mobx";
 
 class AppSettingsDomainStore {
@@ -72,6 +73,7 @@ class AppSettingsDomainStore {
         try {
             await AsyncStorage.setItem('showAds', toJS(this.showAds).toString());
             await AsyncStorage.setItem('language', toJS(this.language));
+            ToastAndroid.show('Asetukset tallennettu!', ToastAndroid.SHORT);
         } catch (error) {
             console.log("error saving persist data", error)
         }

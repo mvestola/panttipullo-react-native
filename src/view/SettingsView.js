@@ -10,14 +10,12 @@ import AppSettingsActions from "../actions/AppSettingsActions";
 const SettingsView = observer(() => {
     return (
         <List>
-            <ListItem itemHeader>
+            <ListItem itemDivider>
                 <Text>Yleiset asetukset</Text>
             </ListItem>
             <ListItem icon>
                 <Left>
-                    <Button style={{ backgroundColor: "#FF9501" }}>
                         <Icon active name="sign-text" type='MaterialCommunityIcons' />
-                    </Button>
                 </Left>
                 <Body>
                 <Text>Näytä mainoksia</Text>
@@ -26,17 +24,21 @@ const SettingsView = observer(() => {
                     <Switch value={AppSettingsDomainStore.showAds} onValueChange={(val) => AppSettingsActions.saveShowAds(val)} />
                 </Right>
             </ListItem>
-            <ListItem>
-                <Picker
-                    note={false}
-                    mode="dropdown"
-                    placeholder="Kieli"
-                    selectedValue={AppSettingsDomainStore.language}
-                    onValueChange={(val) => AppSettingsActions.saveLanguage(val)}
-                >
-                    <Picker.Item label="Suomi" value="fi" />
-                    <Picker.Item label="Englanti" value="en" />
-                </Picker>
+            <ListItem icon>
+                <Left>
+                        <Icon active name="language" type='FontAwesome' />
+                </Left>
+                <Body>
+                    <Picker
+                        mode="dropdown"
+                        placeholder="Kieli"
+                        selectedValue={AppSettingsDomainStore.language}
+                        onValueChange={(val) => AppSettingsActions.saveLanguage(val)}
+                    >
+                        <Picker.Item label="Kieli: Suomi" value="fi" />
+                        <Picker.Item label="Kieli: Englanti" value="en" />
+                    </Picker>
+                </Body>
             </ListItem>
         </List>
     )
