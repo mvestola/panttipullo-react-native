@@ -14,7 +14,6 @@ class AppUiState {
     @observable showHistory
 
     constructor() {
-        this.reset()
         BackHandler.addEventListener("hardwareBackPress", () => {
             if (this.showBarcodeScanner || this.showProductDepositResult) {
                 ProductDepositActions.cancelBarcodeScan()

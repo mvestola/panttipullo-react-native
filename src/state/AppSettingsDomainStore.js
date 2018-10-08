@@ -1,44 +1,36 @@
-import {action, observable, when} from "mobx"
+import {action, observable, when, configure, runInAction, toJS} from "mobx"
 import {AsyncStorage, ToastAndroid} from "react-native"
-import {toJS} from "mobx/lib/mobx"
 import { Constants } from 'expo'
 import {ERROR, LOADED, LOADING} from "../constants/domainStoreStatusConstants"
 import AppSettingsApi from "../api/AppSettingsApi"
 import NotificationBuilder from "../util/NotificationBuilder"
 
+configure({
+    enforceActions: "always"
+})
+
 class AppSettingsDomainStore {
-    @observable isBarcodeScanDisabled
-    @observable notification
-    @observable notificationsDismissed
-    @observable status
-    @observable fontsAreLoaded
-    @observable showAds
-    @observable language
+    @observable isBarcodeScanDisabled = true
+    @observable notification = null
+    @observable notificationsDismissed = null
+    @observable status = LOADING
+    @observable fontsAreLoaded = false
+    @observable showAds = false
+    @observable language = "fi"
 
     constructor() {
         Expo.Amplitude.initialize("aa669bc10383e87442d83dbfc4522f2d")
         Expo.Amplitude.logEvent(`App initialized with version ${this.getAppVersion()}`)
-        this._init()
-        this._loadPersistData()
-        when(
-            () => this.notification !== null && this.notificationsDismissed !== null && !this.notificationsDismissed.includes(this.notification.id),
-            () => NotificationBuilder.showNotification("Viesti kehittäjältä", this.notification.message, () => this._onNotificationDismissed(this.notification.id))
-        )
-    }
-
-    _init() {
-        this.isBarcodeScanDisabled = true
-        this.notificationsDismissed = null
-        this.notification = null
-        this.fontsAreLoaded = false
-        this.status = LOADING
-        this.showAds = false
-        this.language = "fi"
         this._loadCustomFonts()
         AppSettingsApi.fetchProductionLiveSettings()
             .then(response => response.json())
             .then(jsonResponse => this.onServerSuccessResponse(jsonResponse))
             .catch(this.onServerErrorResponse)
+        this._loadPersistData()
+        when(
+            () => this.notification !== null && this.notificationsDismissed !== null && !this.notificationsDismissed.includes(this.notification.id),
+            () => NotificationBuilder.showNotification("Viesti kehittäjältä", this.notification.message, () => this._onNotificationDismissed(this.notification.id))
+        )
     }
 
     _loadCustomFonts() {
@@ -107,19 +99,21 @@ class AppSettingsDomainStore {
             const language = await AsyncStorage.getItem("language")
             const notificationsShown = await AsyncStorage.getItem("notificationsDismissed")
 
-            if (showAds !== null) {
-                this.showAds = showAds === "true"
-            } else {
-                this.showAds = true
-            }
-            if (language !== null) {
-                this.language = language
-            }
-            if (notificationsShown !== null) {
-                this.notificationsDismissed = JSON.parse(notificationsShown)
-            } else {
-                this.notificationsDismissed = []
-            }
+            runInAction(() => {
+                if (showAds !== null) {
+                    this.showAds = showAds === "true"
+                } else {
+                    this.showAds = true
+                }
+                if (language !== null) {
+                    this.language = language
+                }
+                if (notificationsShown !== null) {
+                    this.notificationsDismissed = JSON.parse(notificationsShown)
+                } else {
+                    this.notificationsDismissed = []
+                }
+            })
         } catch (error) {
             console.log("error loading persistent data", error)
         }

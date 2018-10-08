@@ -4,18 +4,23 @@ import {Alert} from "react-native"
 import ProductDepositDomainStore from "../state/ProductDepositDomainStore"
 
 class ProductDepositActions {
-    @action
+    @action.bound
     async scanBarcode() {
         Expo.Amplitude.logEvent("Barcode scan started")
         ProductDepositDomainStore.barcodeScanIsInProgress = true
         const {status} = await Permissions.askAsync(Permissions.CAMERA)
         if (status === "granted") {
             console.log("camera permission granted")
-            ProductDepositDomainStore.hasCameraPermission = true
+            this.userGrantedCameraPermission()
         } else {
             Expo.Amplitude.logEvent("Camera permission not granted")
             console.log("camera permission not granted!")
         }
+    }
+
+    @action
+    userGrantedCameraPermission() {
+        ProductDepositDomainStore.hasCameraPermission = true
     }
 
     @action

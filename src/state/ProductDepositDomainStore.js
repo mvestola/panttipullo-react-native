@@ -1,5 +1,5 @@
 import {
-    action, computed, observable, toJS,
+    action, computed, observable, runInAction, toJS,
 } from "mobx"
 import {AsyncStorage} from "react-native"
 import _ from "lodash"
@@ -11,22 +11,17 @@ import ProductDepositApi from "../api/ProductDepositApi"
 import NotificationBuilder from "../util/NotificationBuilder"
 
 class ProductDepositDomainStore {
-    @observable barcode
-    @observable barcodeScanIsInProgress
+    @observable barcode = null
+    @observable barcodeScanIsInProgress = false
     @observable hasCameraPermission = false
-    @observable status
-    @observable depositResponse
-    @observable totalScanCount
-    @observable totalScanHavingDeposit
-    @observable totalDepositAmount
-    @observable lastScanResults
+    @observable status = INITIALIZED
+    @observable depositResponse = null
+    @observable totalScanCount = 0
+    @observable totalScanHavingDeposit  = 0
+    @observable totalDepositAmount  = 0.0
+    @observable lastScanResults = []
 
     constructor() {
-        this.totalScanCount = 0
-        this.totalScanHavingDeposit = 0
-        this.totalDepositAmount = 0.0
-        this.lastScanResults = []
-        this.reset()
         this._loadPersistData()
     }
 
@@ -148,18 +143,20 @@ class ProductDepositDomainStore {
             const totalDepositAmount = await AsyncStorage.getItem("totalDepositAmount")
             const lastScanResults = await AsyncStorage.getItem("lastScanResults")
 
-            if (totalScanCount !== null) {
-                this.totalScanCount = Number(totalScanCount)
-            }
-            if (totalScanHavingDeposit !== null) {
-                this.totalScanHavingDeposit = Number(totalScanHavingDeposit)
-            }
-            if (totalDepositAmount !== null) {
-                this.totalDepositAmount = Number(totalDepositAmount)
-            }
-            if (lastScanResults !== null) {
-                this.lastScanResults = JSON.parse(lastScanResults)
-            }
+            runInAction(() => {
+                if (totalScanCount !== null) {
+                    this.totalScanCount = Number(totalScanCount)
+                }
+                if (totalScanHavingDeposit !== null) {
+                    this.totalScanHavingDeposit = Number(totalScanHavingDeposit)
+                }
+                if (totalDepositAmount !== null) {
+                    this.totalDepositAmount = Number(totalDepositAmount)
+                }
+                if (lastScanResults !== null) {
+                    this.lastScanResults = JSON.parse(lastScanResults)
+                }
+            })
         } catch (error) {
             console.log("error loading persistent data", error)
         }
