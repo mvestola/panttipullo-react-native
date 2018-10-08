@@ -1,5 +1,6 @@
 import {action} from "mobx"
 import AppSettingsDomainStore from "../state/AppSettingsDomainStore"
+import {Alert} from "react-native"
 
 class AppSettingsActions {
     @action
@@ -10,6 +11,24 @@ class AppSettingsActions {
 
     @action
     saveShowAds(showAds) {
+        AppSettingsDomainStore.showAds = showAds
+        if (!showAds) {
+            Alert.alert(
+                "Vahvista muutos",
+                "Mainoksia näyttämällä tuet ohjelman kehitystä. Haluatko varmasti poistaa mainokset?",
+                [
+                    {text: "Peruuta", style: "cancel", onPress: () => this._doSaveShowAds(true)},
+                    {text: "OK", onPress: () => this._doSaveShowAds(false)},
+                ],
+                {cancelable: false},
+            )
+        } else {
+            this._doSaveShowAds(showAds)
+        }
+    }
+
+    @action.bound
+    _doSaveShowAds(showAds) {
         AppSettingsDomainStore.showAds = showAds
         AppSettingsDomainStore.savePersistData()
     }

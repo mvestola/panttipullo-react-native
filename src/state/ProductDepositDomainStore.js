@@ -8,6 +8,7 @@ import {
     ERROR, INITIALIZED, LOADED, LOADING,
 } from "../constants/domainStoreStatusConstants"
 import ProductDepositApi from "../api/ProductDepositApi"
+import NotificationBuilder from "../util/NotificationBuilder"
 
 class ProductDepositDomainStore {
     @observable barcode
@@ -73,6 +74,7 @@ class ProductDepositDomainStore {
             Expo.Amplitude.logEvent("Unable to parse CSRF token from page")
             console.log("Unable to parse CSRF token from page.")
             this.status = ERROR
+            NotificationBuilder.showNotification("Virhe", "Virhe parsittaessa tietoja Palpalta. Yritä uudestaan.")
         }
     }
 
@@ -125,6 +127,7 @@ class ProductDepositDomainStore {
         this.reset()
         console.log(error)
         this.status = ERROR
+        NotificationBuilder.showNotification("Yhteysvirhe", "Virhe ladattaessa tietoja Palpalta. Yritä uudestaan.")
     }
 
     savePersistData = async () => {

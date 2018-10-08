@@ -35,21 +35,6 @@ class AppUiState {
         this.showHelp = false
     }
 
-    @computed get showAppNotification() {
-        return !this.showLoadingSpinner
-            && (AppSettingsDomainStore.notification !== null || ProductDepositDomainStore.status === ERROR)
-    }
-
-    @computed get appNotificationText() {
-        if (AppSettingsDomainStore.notification !== null) {
-            return AppSettingsDomainStore.notification
-        }
-        if (ProductDepositDomainStore.status === ERROR) {
-            return "Virhe haettaessa tietoa PALPAn sivuilta."
-        }
-        return null
-    }
-
     @computed get showBarcodeScanner() {
         return ProductDepositDomainStore.barcodeScanIsInProgress && ProductDepositDomainStore.hasCameraPermission
     }
@@ -89,9 +74,6 @@ class AppUiState {
         }
         if (this.showHelp) {
             return "Ohjeet"
-        }
-        if (AppSettingsDomainStore.notification) {
-            return "Viesti kehittäjältä"
         }
         if (this.showBarcodeScanner) {
             return "Viivakoodin skannaus"

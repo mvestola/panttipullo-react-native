@@ -1,13 +1,15 @@
-import {action, observable} from "mobx"
+import {action, observable, when} from "mobx"
 import {AsyncStorage, ToastAndroid} from "react-native"
 import {toJS} from "mobx/lib/mobx"
 import {ERROR, LOADED, LOADING} from "../constants/domainStoreStatusConstants"
 import AppSettingsApi from "../api/AppSettingsApi"
+import NotificationBuilder from "../util/NotificationBuilder"
 
 class AppSettingsDomainStore {
     @observable appVersion = "0.0.1"
-    @observable notification
     @observable isBarcodeScanDisabled
+    @observable notification
+    @observable notificationsDismissed
     @observable status
     @observable fontsAreLoaded
     @observable showAds
@@ -18,11 +20,16 @@ class AppSettingsDomainStore {
         Expo.Amplitude.logEvent(`App initialized with version ${this.appVersion}`)
         this._init()
         this._loadPersistData()
+        when(
+            () => this.notification !== null && this.notificationsDismissed !== null && !this.notificationsDismissed.includes(this.notification.id),
+            () => NotificationBuilder.showNotification("Viesti kehittäjältä", this.notification.message, () => this._onNotificationDismissed(this.notification.id))
+        )
     }
 
     _init() {
-        this.notification = null
         this.isBarcodeScanDisabled = true
+        this.notificationsDismissed = null
+        this.notification = null
         this.fontsAreLoaded = false
         this.status = LOADING
         this.showAds = false
@@ -50,18 +57,16 @@ class AppSettingsDomainStore {
     onServerSuccessResponse(response) {
         this.status = LOADED
         const settingsForVersion = response[this.appVersion]
-        this.notification = settingsForVersion.disabledNotification
-        this.isBarcodeScanDisabled = settingsForVersion.disabled
-        if (this.notification !== null) {
-            this.notification = "Showing notification to user"
+        if (settingsForVersion.notification) {
+            this.notification = settingsForVersion.notification
         }
+        this.isBarcodeScanDisabled = settingsForVersion.disabled
     }
 
     @action.bound
     onServerErrorResponse(error) {
         console.log(error)
         this.isBarcodeScanDisabled = false
-        this.notification = null
         this.status = ERROR
         Expo.Amplitude.logEvent("Fetching application settings failed")
     }
@@ -76,10 +81,25 @@ class AppSettingsDomainStore {
         }
     }
 
+    @action.bound
+    _onNotificationDismissed = (id) => {
+        this.notificationsDismissed.push(id)
+        this._persistDismissedNotifications()
+    }
+
+    _persistDismissedNotifications = async () => {
+        try {
+            await AsyncStorage.setItem("notificationsDismissed", JSON.stringify(toJS(this.notificationsDismissed)))
+        } catch (error) {
+            console.log("error saving persist data", error)
+        }
+    }
+
     _loadPersistData = async () => {
         try {
             const showAds = await AsyncStorage.getItem("showAds")
             const language = await AsyncStorage.getItem("language")
+            const notificationsShown = await AsyncStorage.getItem("notificationsDismissed")
 
             if (showAds !== null) {
                 this.showAds = showAds === "true"
@@ -88,6 +108,11 @@ class AppSettingsDomainStore {
             }
             if (language !== null) {
                 this.language = language
+            }
+            if (notificationsShown !== null) {
+                this.notificationsDismissed = JSON.parse(notificationsShown)
+            } else {
+                this.notificationsDismissed = []
             }
         } catch (error) {
             console.log("error loading persistent data", error)

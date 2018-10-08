@@ -1,5 +1,4 @@
 import React from "react"
-import Modal from "react-native-modal"
 import {
     Button, Col, Content, Grid, Icon, Row, Spinner, Text, View,
 } from "native-base"
@@ -13,12 +12,12 @@ import AppUiState from "../state/AppUiState"
 import AppSettingsDomainStore from "../state/AppSettingsDomainStore"
 import ScanBarcodeButton from "./ScanBarcodeButton"
 import ProductDepositView from "./ProductDepositView"
-import AppNotification from "./AppNotification"
 import BarcodeScanner from "./BarcodeScanner"
 import HelpView from "./HelpView"
 import SettingsView from "./SettingsView"
 import InfoView from "./InfoView"
 import ProductDepositActions from "../actions/ProductDepositActions"
+import NumberFormatter from "../util/NumberFormatter"
 
 const getContent = () => {
     if (AppUiState.showBarcodeScanner) {
@@ -52,18 +51,18 @@ const getContent = () => {
         return (
             <ScrollView>
                 <Grid>
-                    <Row style={{backgroundColor: "#E1E1D6", padding: 10}}>
-                        <Text style={{color: "#989898", fontWeight: "bold", fontSize: 14}}>PANTIN TARKISTUS</Text>
+                    <Row style={{backgroundColor: "#4b86b4", padding: 10}}>
+                        <Text style={{color: "white", fontWeight: "bold", fontSize: 14}}>PANTIN TARKISTUS</Text>
                     </Row>
                     <Row style={{padding: 20}}>
                         <ScanBarcodeButton disabled={AppSettingsDomainStore.isBarcodeScanDisabled}/>
                     </Row>
-                    <Row style={{backgroundColor: "#E1E1D6", padding: 10}}>
+                    <Row style={{backgroundColor: "#4b86b4", padding: 10}}>
                         <View style={{
                             flex: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center",
                         }}
                         >
-                            <Text style={{color: "#989898", fontWeight: "bold", fontSize: 14}}>TILASTOSI</Text>
+                            <Text style={{color: "white", fontWeight: "bold", fontSize: 14}}>TILASTOSI</Text>
                             <Button
                                 small
                                 onPress={() => ProductDepositActions.clearStats()}
@@ -76,45 +75,37 @@ const getContent = () => {
                     <Row>
                         <Grid style={{padding: 10}}>
                             <Row>
-                                <Text style={{color: "#989898", fontSize: 13}}>
-                                    Skannattu yhteensä:
-                                    {ProductDepositDomainStore.totalScanCount}
-                                    {" "}
-                                    kpl
-                                </Text>
+                                <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
+                                    <Text style={{color: "#989898", fontSize: 18}}>{NumberFormatter.formatPieces(ProductDepositDomainStore.totalScanCount)}</Text>
+                                    <Text style={{color: "#989898", fontSize: 14, paddingLeft: 10}}>skannattu yhteensä</Text>
+                                </View>
                             </Row>
                             <Row>
-                                <Text style={{color: "#989898", fontSize: 13}}>
-                                    Skannattu pantilliset yhteensä:
-                                    {ProductDepositDomainStore.totalScanHavingDeposit}
-                                    {" "}
-                                    kpl
-                                </Text>
+                                <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
+                                    <Text style={{color: "#989898", fontSize: 18}}>{NumberFormatter.formatPieces(ProductDepositDomainStore.totalScanHavingDeposit)}</Text>
+                                    <Text style={{color: "#989898", fontSize: 14, paddingLeft: 10}}>skannattu pantillisia yhteensä</Text>
+                                </View>
                             </Row>
                             <Row>
-                                <Text style={{color: "#989898", fontSize: 13}}>
-                                    Skannattu pantittomat yhteensä:
-                                    {ProductDepositDomainStore.totalScanCountNoDeposit}
-                                    {" "}
-                                    kpl
-                                </Text>
+                                <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
+                                    <Text style={{color: "#989898", fontSize: 18}}>{NumberFormatter.formatPieces(ProductDepositDomainStore.totalScanCountNoDeposit)}</Text>
+                                    <Text style={{color: "#989898", fontSize: 14, paddingLeft: 10}}>skannattu pantittomia yhteensä</Text>
+                                </View>
                             </Row>
                             <Row>
-                                <Text style={{color: "#989898", fontSize: 13}}>
-                                    Skannatut pantit yhteensä:
-                                    {ProductDepositDomainStore.totalDepositAmount}
-                                    {" "}
-                                    €
-                                </Text>
+                                <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
+                                    <Text style={{color: "#989898", fontSize: 18}}>{NumberFormatter.formatCurrency(ProductDepositDomainStore.totalDepositAmount)}</Text>
+                                    <Text style={{color: "#989898", fontSize: 14, paddingLeft: 10}}>pantit yhteensä</Text>
+                                </View>
                             </Row>
                         </Grid>
                     </Row>
-                    <Row style={{backgroundColor: "#E1E1D6", padding: 10}}>
+                    <Row style={{backgroundColor: "#4b86b4", padding: 10}}>
                         <View style={{
                             flex: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center",
                         }}
                         >
-                            <Text style={{color: "#989898", fontWeight: "bold", fontSize: 14}}>VIIMEISIMMÄT
+                            <Text style={{color: "white", fontWeight: "bold", fontSize: 14}}>VIIMEISIMMÄT
                                 SKANNAUKSESI</Text>
                             <Button
                                 small
