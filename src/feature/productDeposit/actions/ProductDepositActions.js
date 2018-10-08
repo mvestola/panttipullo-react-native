@@ -11,7 +11,6 @@ class ProductDepositActions {
         ProductDepositDomainStore.barcodeScanIsInProgress = true
         const {status} = await Permissions.askAsync(Permissions.CAMERA)
         if (status === "granted") {
-            console.log("camera permission granted")
             this.userGrantedCameraPermission()
         } else {
             Analytics.logEvent("Camera permission not granted")
@@ -50,7 +49,7 @@ class ProductDepositActions {
         ProductDepositDomainStore.totalScanCount = 0
         ProductDepositDomainStore.totalScanHavingDeposit = 0
         ProductDepositDomainStore.totalDepositAmount = 0.0
-        ProductDepositDomainStore.savePersistData()
+        ProductDepositDomainStore.persistTotalsData()
     }
 
     @action
@@ -69,7 +68,7 @@ class ProductDepositActions {
     @action.bound
     _doClearRecentScans() {
         ProductDepositDomainStore.lastScanResults = []
-        ProductDepositDomainStore.savePersistData()
+        ProductDepositDomainStore.persistTotalsData()
     }
 }
 

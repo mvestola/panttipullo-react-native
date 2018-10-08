@@ -6,7 +6,7 @@ class AppSettingsActions {
     @action
     saveLanguage(language) {
         AppSettingsDomainStore.language = language
-        AppSettingsDomainStore.savePersistData()
+        AppSettingsDomainStore.persistSettingsData()
     }
 
     @action
@@ -30,7 +30,7 @@ class AppSettingsActions {
     @action.bound
     _doSaveShowAds(showAds) {
         AppSettingsDomainStore.showAds = showAds
-        AppSettingsDomainStore.savePersistData()
+        AppSettingsDomainStore.persistSettingsData()
     }
 }
 

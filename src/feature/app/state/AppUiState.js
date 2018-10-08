@@ -7,12 +7,10 @@ class AppUiState {
     @observable showInfo
     @observable showSettings
     @observable showHelp
-    @observable showHistory
 
     reset() {
         this.showInfo = false
         this.showSettings = false
-        this.showHistory = false
         this.showHelp = false
     }
 
@@ -21,11 +19,13 @@ class AppUiState {
     }
 
     @computed get showProductDepositResult() {
-        return !this.showLoadingSpinner && ProductDepositDomainStore.status === LOADED
+        return ProductDepositDomainStore.status === LOADED
     }
 
     @computed get showLoadingSpinner() {
         return ProductDepositDomainStore.status === LOADING
+            || !ProductDepositDomainStore.totalValuesAreLoaded
+            || !AppSettingsDomainStore.settingsAreLoaded
     }
 
     @computed get showAppIsInitialising() {
@@ -33,13 +33,15 @@ class AppUiState {
     }
 
     @computed get showBackButton() {
+        return this.isOtherThanMainView
+    }
+
+    @computed get isOtherThanMainView() {
         return this.showHelp || this.showInfo || this.showSettings || this.showBarcodeScanner || this.showProductDepositResult
     }
 
     @computed get subtitleText() {
-        if (this.showHistory) {
-            return "Historia"
-        } else if (this.showSettings) {
+        if (this.showSettings) {
             return "Asetukset"
         } else if (this.showInfo) {
             return "Tietoa ohjelmasta"

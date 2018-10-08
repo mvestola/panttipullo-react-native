@@ -13,13 +13,15 @@ class ProductDepositDomainStore {
     @observable hasCameraPermission = false
     @observable status = INITIALIZED
     @observable depositResponse = null
+
+    @observable totalValuesAreLoaded = false
     @observable totalScanCount = 0
     @observable totalScanHavingDeposit = 0
     @observable totalDepositAmount = 0.0
     @observable lastScanResults = []
 
     constructor() {
-        this._loadPersistData()
+        this._loadTotalsData()
     }
 
     reset() {
@@ -27,10 +29,6 @@ class ProductDepositDomainStore {
         this.barcodeScanIsInProgress = false
         this.status = INITIALIZED
         this.depositResponse = null
-    }
-
-    @computed get isWaitingResponseForBarCode() {
-        return this.barcode !== null && this.depositResponse !== null
     }
 
     @computed get totalScanCountNoDeposit() {
@@ -84,13 +82,13 @@ class ProductDepositDomainStore {
             this.depositResponse = {}
             if (!_.isNil(response.message)) {
                 this.depositResponse.message = response.message
-                this.lastScanResults.push({
-                    ean: this.barcode,
-                    date: moment().toISOString(),
-                    key: `${moment().unix()}`,
-                })
-                this.totalScanCount++
             }
+            this.lastScanResults.push({
+                ean: this.barcode,
+                date: moment().toISOString(),
+                key: `${moment().unix()}`,
+            })
+            this.totalScanCount++
         } else {
             Analytics.logEvent("Got OK response from PALPA")
             this.depositResponse = {
@@ -114,7 +112,7 @@ class ProductDepositDomainStore {
                 this.totalDepositAmount += Number(payload.deposit.replace(/,/g, ".").replace(/[^0-9.-]+/g, ""))
             }
         }
-        this.savePersistData()
+        this.persistTotalsData()
     }
 
     @action.bound
@@ -126,7 +124,7 @@ class ProductDepositDomainStore {
         NotificationBuilder.showNotification("Yhteysvirhe", "Virhe ladattaessa tietoja Palpalta. Yritä uudestaan.")
     }
 
-    savePersistData = async () => {
+    persistTotalsData = async () => {
         try {
             await AsyncStorage.setItem("totalScanCount", toJS(this.totalScanCount).toString())
             await AsyncStorage.setItem("totalScanHavingDeposit", toJS(this.totalScanHavingDeposit).toString())
@@ -137,7 +135,7 @@ class ProductDepositDomainStore {
         }
     }
 
-    _loadPersistData = async () => {
+    _loadTotalsData = async () => {
         try {
             const totalScanCount = await AsyncStorage.getItem("totalScanCount")
             const totalScanHavingDeposit = await AsyncStorage.getItem("totalScanHavingDeposit")
@@ -157,9 +155,13 @@ class ProductDepositDomainStore {
                 if (lastScanResults !== null) {
                     this.lastScanResults = JSON.parse(lastScanResults)
                 }
+                this.totalValuesAreLoaded = true
             })
         } catch (error) {
             console.log("error loading persistent data", error)
+            runInAction(() => {
+                this.totalValuesAreLoaded = true
+            })
         }
     }
 }

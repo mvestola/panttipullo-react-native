@@ -7,16 +7,16 @@ import AppUiState from "../state/AppUiState"
 import ProductDepositView from "../../productDeposit/view/ProductDepositView"
 import BarcodeScanner from "../../scanner/view/BarcodeScanner"
 import HelpView from "../../support/HelpView"
-import SettingsView from "../../settings/SettingsView"
+import SettingsView from "../../settings/view/SettingsView"
 import InfoView from "../../support/InfoView"
 import Advertisement from "../../common/view/Advertisement"
 import MainView from "../../frontPage/MainView"
 
 const getContent = () => {
-    if (AppUiState.showBarcodeScanner) {
-        return <BarcodeScanner/>
-    } else if (AppUiState.showLoadingSpinner) {
+    if (AppUiState.showLoadingSpinner) {
         return <Spinner color="blue"/>
+    } else if (AppUiState.showBarcodeScanner) {
+        return <BarcodeScanner/>
     } else if (AppUiState.showSettings) {
         return <SettingsView/>
     } else if (AppUiState.showInfo) {
@@ -28,10 +28,9 @@ const getContent = () => {
     } else {
         return <MainView/>
     }
-    return null
 }
 
-const ContentView = observer(() => (
+const AppContentView = observer(() => (
     <Content contentContainerStyle={styles.container}>
         <Advertisement/>
         <Grid style={{alignItems: "flex-start", justifyContent: "center"}}>
@@ -51,4 +50,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default ContentView
+export default AppContentView

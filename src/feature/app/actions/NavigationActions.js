@@ -7,40 +7,40 @@ class NavigationActions {
 
     constructor() {
         BackHandler.addEventListener("hardwareBackPress", () => {
-            if (AppUiState.showInfo || AppUiState.showSettings || AppUiState.showHistory || AppUiState.showHelp
-                || AppUiState.showBarcodeScanner || AppUiState.showProductDepositResult) {
+            if (AppUiState.isOtherThanMainView) {
                 this.showMainPage()
                 return true
+            } else {
+                return false
             }
-            return false
         })
+    }
 
+    _resetNavigation() {
+        ProductDepositDomainStore.reset()
+        AppUiState.reset()
     }
 
     @action
     showMainPage() {
-        ProductDepositDomainStore.reset()
-        AppUiState.reset()
+        this._resetNavigation()
     }
 
     @action
     showInfo() {
-        ProductDepositDomainStore.reset()
-        AppUiState.reset()
+        this._resetNavigation()
         AppUiState.showInfo = true
     }
 
     @action
     showHelp() {
-        ProductDepositDomainStore.reset()
-        AppUiState.reset()
+        this._resetNavigation()
         AppUiState.showHelp = true
     }
 
     @action
     showSettings() {
-        ProductDepositDomainStore.reset()
-        AppUiState.reset()
+        this._resetNavigation()
         AppUiState.showSettings = true
     }
 }

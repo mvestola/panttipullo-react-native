@@ -1,8 +1,8 @@
 import React from "react"
 import {Body, Icon, Left, List, ListItem, Picker, Right, Switch, Text,} from "native-base"
 import {observer} from "mobx-react"
-import AppSettingsDomainStore from "./state/SettingsDomainStore"
-import AppSettingsActions from "./actions/AppSettingsActions"
+import AppSettingsDomainStore from "../state/SettingsDomainStore"
+import AppSettingsActions from "../actions/AppSettingsActions"
 
 const SettingsView = observer(() => (
     <List>

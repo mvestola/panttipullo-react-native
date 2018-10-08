@@ -18,6 +18,7 @@ class SettingsDomainStore {
     @observable fontsAreLoaded = false
     @observable showAds = false
     @observable language = "fi"
+    @observable settingsAreLoaded = false
 
     constructor() {
         this._loadCustomFonts()
@@ -25,7 +26,7 @@ class SettingsDomainStore {
             .then(response => response.json())
             .then(jsonResponse => this.onServerSuccessResponse(jsonResponse))
             .catch(this.onServerErrorResponse)
-        this._loadPersistData()
+        this._loadSettingsData()
         when(
             () => this.notification !== null && this.notificationsDismissed !== null && !this.notificationsDismissed.includes(this.notification.id),
             () => NotificationBuilder.showNotification("Viesti kehittäjältä", this.notification.message, () => this._onNotificationDismissed(this.notification.id))
@@ -64,11 +65,12 @@ class SettingsDomainStore {
     onServerErrorResponse(error) {
         console.log(error)
         this.isBarcodeScanDisabled = false
+        this.notification = null
         this.status = ERROR
         Analytics.logEvent("Fetching application settings failed")
     }
 
-    savePersistData = async () => {
+    persistSettingsData = async () => {
         try {
             await AsyncStorage.setItem("showAds", toJS(this.showAds).toString())
             await AsyncStorage.setItem("language", toJS(this.language))
@@ -92,7 +94,7 @@ class SettingsDomainStore {
         }
     }
 
-    _loadPersistData = async () => {
+    _loadSettingsData = async () => {
         try {
             const showAds = await AsyncStorage.getItem("showAds")
             const language = await AsyncStorage.getItem("language")
@@ -112,9 +114,13 @@ class SettingsDomainStore {
                 } else {
                     this.notificationsDismissed = []
                 }
+                this.settingsAreLoaded = true
             })
         } catch (error) {
             console.log("error loading persistent data", error)
+            runInAction(() => {
+                this.settingsAreLoaded = true
+            })
         }
     }
 }

@@ -4,7 +4,7 @@ import {observer} from "mobx-react"
 import NavigationActions from "../actions/NavigationActions"
 import AppUiState from "../state/AppUiState"
 
-const HeaderView = observer(() => (
+const AppHeaderView = observer(() => (
     <Header
         style={{backgroundColor: "#009A49"}}
         androidStatusBarColor="#004521"
@@ -33,9 +33,8 @@ const HeaderView = observer(() => (
             <Button transparent onPress={() => NavigationActions.showHelp()}>
                 <Icon name="help-circle" type="MaterialCommunityIcons"/>
             </Button>
-
         </Right>
     </Header>
 ))
 
-export default HeaderView
+export default AppHeaderView
