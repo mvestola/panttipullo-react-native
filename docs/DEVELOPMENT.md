@@ -42,8 +42,6 @@ After that, choose "run on emulator" from browser
 
 * Cheat sheet: https://github.com/vhpoet/react-native-styling-cheat-sheet
 
-
-
 ## Production release checklist
 
 Before release
