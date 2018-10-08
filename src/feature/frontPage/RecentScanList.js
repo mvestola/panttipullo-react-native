@@ -68,12 +68,12 @@ const colValues = {
 const styles = StyleSheet.create({
     listHeader: {
         fontSize: 14,
-        color: "white",
+        color: "#848484",
         fontWeight: "bold",
     },
     listHeaderContainer: {
         padding: 5,
-        backgroundColor: "#5d9a53",
+        backgroundColor: "#F0F0F0",
     },
     listItem: {
         borderBottomColor: "#EEEEEE",

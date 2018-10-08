@@ -9,6 +9,11 @@ const Advertisement = observer(() => {
             <AdMobBanner
                 style={{
                     backgroundColor: "#EEEEEE",
+                    borderStyle: "solid",
+                    borderBottomWidth: 1,
+                    borderBottomColor: "#EEEEEE",
+                    borderTopWidth: 1,
+                    borderTopColor: "#EEEEEE",
                 }}
                 bannerSize="smartBannerPortrait"
                 adUnitID="ca-app-pub-0260854390576047/9007788100"

@@ -1,6 +1,6 @@
 import React from "react"
 import {observer} from "mobx-react"
-import {Grid, Row, Text} from "native-base"
+import {Text, View} from "native-base"
 import AppSettingsDomainStore from "../settings/state/SettingsDomainStore"
 import {ScrollView} from "react-native"
 import ScanBarcodeButton from "../common/view/ScanBarcodeButton"
@@ -11,16 +11,14 @@ import MainStyles from "./MainStyles"
 const MainView = observer(() => {
     return (
         <ScrollView>
-            <Grid>
-                <Row style={MainStyles.sectionHeader}>
-                    <Text style={MainStyles.sectionHeaderText}>PANTIN TARKISTUS</Text>
-                </Row>
-                <Row style={{padding: 20}}>
-                    <ScanBarcodeButton disabled={AppSettingsDomainStore.isBarcodeScanDisabled}/>
-                </Row>
-                <TotalsView/>
-                <RecentScansView/>
-            </Grid>
+            <View style={MainStyles.sectionHeader}>
+                <Text style={MainStyles.sectionHeaderText}>PANTIN TARKISTUS</Text>
+            </View>
+            <View style={{padding: 20}}>
+                <ScanBarcodeButton disabled={AppSettingsDomainStore.isBarcodeScanDisabled}/>
+            </View>
+            <TotalsView/>
+            <RecentScansView/>
         </ScrollView>
     )
 })

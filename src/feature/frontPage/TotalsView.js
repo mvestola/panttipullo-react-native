@@ -1,7 +1,7 @@
 import React from "react"
 import {observer} from "mobx-react"
 import {StyleSheet} from "react-native"
-import {Row, Text, View} from "native-base"
+import {Text, View} from "native-base"
 import NumberFormatter from "../common/util/NumberFormatter"
 import ProductDepositDomainStore from "../productDeposit/state/ProductDepositDomainStore"
 import ProductDepositActions from "../productDeposit/actions/ProductDepositActions"
@@ -21,7 +21,7 @@ const TotalsView = observer(() => {
     return (
         [
             <MainViewHeader title="TILASTOSI" onClear={() => ProductDepositActions.clearStats()} key="header"/>,
-            <Row style={MainStyles.sectionContent} key="content">
+            <View style={MainStyles.sectionContent} key="content">
                 <View style={styles.totalsContainer}>
                     <TotalsRow
                         value={NumberFormatter.formatPieces(ProductDepositDomainStore.totalScanCount)}
@@ -40,7 +40,7 @@ const TotalsView = observer(() => {
                         description="pantit yhteensä"
                     />
                 </View>
-            </Row>
+            </View>
         ]
     )
 })
