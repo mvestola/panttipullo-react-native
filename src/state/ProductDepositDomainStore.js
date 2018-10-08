@@ -40,6 +40,10 @@ class ProductDepositDomainStore {
         return this.totalScanCount - this.totalScanHavingDeposit
     }
 
+    @computed get lastScanResultsSorted() {
+        return _.orderBy(this.lastScanResults,  ["date", "name"], ["desc", "asc"])
+    }
+
     fetchProductDepositInformation() {
         this.status = LOADING
         ProductDepositApi.fetchCookieAndCsrfToken()

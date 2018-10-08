@@ -51,7 +51,7 @@ const getContent = () => {
                             <Button
                                 small
                                 onPress={() => ProductDepositActions.clearStats()}
-                                style={{backgroundColor: "red"}}
+                                style={{backgroundColor: "#c30101"}}
                             >
                                 <Icon name="delete-forever" type="MaterialCommunityIcons"/>
                             </Button>
@@ -95,7 +95,7 @@ const getContent = () => {
                             <Button
                                 small
                                 onPress={() => ProductDepositActions.clearRecentScans()}
-                                style={{backgroundColor: "red"}}
+                                style={{backgroundColor: "#c30101"}}
                             >
                                 <Icon name="delete-forever" type="MaterialCommunityIcons"/>
                             </Button>
@@ -103,14 +103,14 @@ const getContent = () => {
                     </Row>
                     <Row>
                         <FlatList
-                            data={toJS(ProductDepositDomainStore.lastScanResults)}
+                            data={toJS(ProductDepositDomainStore.lastScanResultsSorted)}
                             ListHeaderComponent={(
-                                <Grid style={{padding: 5, backgroundColor: "#EEEEEE"}}>
+                                <Grid style={{padding: 5, backgroundColor: "#87aecd"}}>
                                     <Col size={20}>
-                                        <Text>Pantti</Text>
+                                        <Text style={{fontSize: 15, color: "white", fontWeight: "bold"}}>Pantti</Text>
                                     </Col>
                                     <Col size={80}>
-                                        <Text>Kuvaus</Text>
+                                        <Text style={{fontSize: 15, color: "white", fontWeight: "bold"}}>Kuvaus</Text>
                                     </Col>
                                 </Grid>
                             )}
@@ -123,21 +123,21 @@ const getContent = () => {
                                 }}
                                 >
                                     <Col size={20}>
-                                        <Text style={{fontSize: 11}}>{item.deposit || "0 €"}</Text>
+                                        {
+                                            item.deposit ?
+                                            <Text style={{fontSize: 12, color: "green", fontWeight: "bold"}}>{item.deposit}</Text> :
+                                            <Text style={{fontSize: 12, color: "#CCCCCC", fontWeight: "bold"}}>0 €</Text>
+                                        }
                                     </Col>
                                     <Col size={80}>
                                         {item.productName && (
-                                            <Text style={{fontSize: 11}}>
-                                                {item.productName}
-                                                {" "}
-                                                (
-                                                {item.productType}
-                                                )
+                                            <Text style={{fontSize: 12, color: "#989898", fontWeight: "bold"}}>
+                                                {item.productName} ({item.productType})
                                             </Text>
                                         )}
-                                        <Text style={{fontSize: 11}}>{item.ean}</Text>
+                                        <Text style={{fontSize: 11, color: "#989898"}}>EAN: {item.ean}</Text>
                                         <Text
-                                            style={{fontSize: 11}}>{moment(item.date).format("DD.MM.YYYY HH:mm:ss")}</Text>
+                                            style={{fontSize: 11, color: "#989898"}}>{moment(item.date).format("DD.MM.YYYY HH:mm:ss")}</Text>
                                     </Col>
                                 </Grid>
                             )
@@ -156,13 +156,7 @@ const ContentView = observer(() => (
         {AppSettingsDomainStore.showAds && (
             <AdMobBanner
                 style={{
-                    borderBottomColor: "#011f4b",
-                    borderBottomWidth: 1,
-                    backgroundColor: "#005b96",
-                    padding: 0,
-                    borderTopColor: "#011f4b",
-                    borderStyle: "solid",
-                    borderTopWidth: 1,
+                    backgroundColor: "#EEEEEE",
                 }}
                 bannerSize="smartBannerPortrait"
                 adUnitID="ca-app-pub-0260854390576047/9007788100"
