@@ -28,7 +28,7 @@ const InfoView = observer(() => (
                        linkStyle={[styles.hyperlink, styles.appLink]}
                        linkText="Ohjelman kotisivulle">
                 <Text style={styles.appLink}>
-                    https://github.com/mvestola/panttipullo-react-native
+                    https://mvestola.github.io/panttipullo-react-native/
                 </Text>
             </Hyperlink>
             </Body>
@@ -39,7 +39,7 @@ const InfoView = observer(() => (
                        linkStyle={[styles.hyperlink, styles.appLink]}
                        linkText="Tietosuojakäytäntö (englanniksi)">
                 <Text style={styles.appLink}>
-                    https://github.com/mvestola/panttipullo-react-native/blob/master/privacy-policy.md
+                    https://mvestola.github.io/panttipullo-react-native/privacy-policy.html
                 </Text>
             </Hyperlink>
             </Body>
