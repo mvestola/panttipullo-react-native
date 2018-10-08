@@ -1,16 +1,15 @@
 import {action} from "mobx"
-import ProductDepositDomainStore from "../state/ProductDepositDomainStore";
-import {Permissions} from "expo";
+import {Permissions} from "expo"
 import {Alert} from "react-native"
+import ProductDepositDomainStore from "../state/ProductDepositDomainStore"
 
 class ProductDepositActions {
-
     @action
     async scanBarcode() {
         Expo.Amplitude.logEvent("Barcode scan started")
         ProductDepositDomainStore.barcodeScanIsInProgress = true
-        const {status} = await Permissions.askAsync(Permissions.CAMERA);
-        if (status === 'granted') {
+        const {status} = await Permissions.askAsync(Permissions.CAMERA)
+        if (status === "granted") {
             console.log("camera permission granted")
             ProductDepositDomainStore.hasCameraPermission = true
         } else {
@@ -36,13 +35,13 @@ class ProductDepositActions {
     @action
     clearStats() {
         Alert.alert(
-            'Vahvista poisto',
-            'Haluatko varmasti nollata tilastot',
+            "Vahvista poisto",
+            "Haluatko varmasti nollata tilastot",
             [
-                {text: 'Peruuta', style: 'cancel'},
-                {text: 'OK', onPress: () => this._doClearStats()},
+                {text: "Peruuta", style: "cancel"},
+                {text: "OK", onPress: () => this._doClearStats()},
             ],
-            { cancelable: false }
+            {cancelable: false},
         )
     }
 
@@ -57,13 +56,13 @@ class ProductDepositActions {
     @action
     clearRecentScans() {
         Alert.alert(
-            'Vahvista poisto',
-            'Haluatko varmasti poistaa viimeisimmät skannaukset',
+            "Vahvista poisto",
+            "Haluatko varmasti poistaa viimeisimmät skannaukset",
             [
-                {text: 'Peruuta', style: 'cancel'},
-                {text: 'OK', onPress: () => this._doClearRecentScans()},
+                {text: "Peruuta", style: "cancel"},
+                {text: "OK", onPress: () => this._doClearRecentScans()},
             ],
-            { cancelable: false }
+            {cancelable: false},
         )
     }
 
@@ -72,7 +71,6 @@ class ProductDepositActions {
         ProductDepositDomainStore.lastScanResults = []
         ProductDepositDomainStore.savePersistData()
     }
-
 }
 
 export default new ProductDepositActions()

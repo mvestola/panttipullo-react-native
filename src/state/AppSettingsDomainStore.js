@@ -1,18 +1,15 @@
 import {action, observable} from "mobx"
-import {AsyncStorage} from "react-native"
-import {ERROR, LOADED, LOADING} from "../constants/domainStoreStatusConstants";
-import AppSettingsApi from "../api/AppSettingsApi";
-import {ToastAndroid} from 'react-native';
-import {toJS} from "mobx/lib/mobx";
+import {AsyncStorage, ToastAndroid} from "react-native"
+import {toJS} from "mobx/lib/mobx"
+import {ERROR, LOADED, LOADING} from "../constants/domainStoreStatusConstants"
+import AppSettingsApi from "../api/AppSettingsApi"
 
 class AppSettingsDomainStore {
-
     @observable appVersion = "0.0.1"
     @observable notification
     @observable isBarcodeScanDisabled
     @observable status
     @observable fontsAreLoaded
-
     @observable showAds
     @observable language
 
@@ -32,15 +29,15 @@ class AppSettingsDomainStore {
         this.language = "fi"
         this._loadCustomFonts()
         AppSettingsApi.fetchProductionLiveSettings()
-            .then((response) => response.json())
-            .then((jsonResponse) => this.onServerSuccessResponse(jsonResponse))
+            .then(response => response.json())
+            .then(jsonResponse => this.onServerSuccessResponse(jsonResponse))
             .catch(this.onServerErrorResponse)
     }
 
     _loadCustomFonts() {
         Expo.Font.loadAsync({
-            'Roboto': require('native-base/Fonts/Roboto.ttf'),
-            'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
         }).then(this.onFontsLoaded)
     }
 
@@ -71,9 +68,9 @@ class AppSettingsDomainStore {
 
     savePersistData = async () => {
         try {
-            await AsyncStorage.setItem('showAds', toJS(this.showAds).toString());
-            await AsyncStorage.setItem('language', toJS(this.language));
-            ToastAndroid.show('Asetukset tallennettu!', ToastAndroid.SHORT);
+            await AsyncStorage.setItem("showAds", toJS(this.showAds).toString())
+            await AsyncStorage.setItem("language", toJS(this.language))
+            ToastAndroid.show("Asetukset tallennettu!", ToastAndroid.SHORT)
         } catch (error) {
             console.log("error saving persist data", error)
         }
@@ -81,11 +78,11 @@ class AppSettingsDomainStore {
 
     _loadPersistData = async () => {
         try {
-            const showAds = await AsyncStorage.getItem('showAds');
-            const language = await AsyncStorage.getItem('language');
+            const showAds = await AsyncStorage.getItem("showAds")
+            const language = await AsyncStorage.getItem("language")
 
             if (showAds !== null) {
-                this.showAds = showAds == "true"
+                this.showAds = showAds === "true"
             } else {
                 this.showAds = true
             }
@@ -96,7 +93,6 @@ class AppSettingsDomainStore {
             console.log("error loading persistent data", error)
         }
     }
-
 }
 
 export default new AppSettingsDomainStore()

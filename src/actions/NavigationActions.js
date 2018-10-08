@@ -1,10 +1,8 @@
 import {action} from "mobx"
-import ProductDepositDomainStore from "../state/ProductDepositDomainStore";
-import {Permissions} from "expo";
-import AppUiState from "../state/AppUiState";
+import ProductDepositDomainStore from "../state/ProductDepositDomainStore"
+import AppUiState from "../state/AppUiState"
 
 class NavigationActions {
-
     @action
     goBack() {
         ProductDepositDomainStore.reset()

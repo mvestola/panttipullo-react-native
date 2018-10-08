@@ -1,18 +1,20 @@
-import {observable, computed, action, toJS} from "mobx"
+import {
+    action, computed, observable, toJS,
+} from "mobx"
 import {AsyncStorage} from "react-native"
 import _ from "lodash"
 import moment from "moment"
-import {ERROR, INITIALIZED, LOADED, LOADING} from "../constants/domainStoreStatusConstants";
-import ProductDepositApi from "../api/ProductDepositApi";
+import {
+    ERROR, INITIALIZED, LOADED, LOADING,
+} from "../constants/domainStoreStatusConstants"
+import ProductDepositApi from "../api/ProductDepositApi"
 
 class ProductDepositDomainStore {
-
     @observable barcode
     @observable barcodeScanIsInProgress
     @observable hasCameraPermission = false
     @observable status
     @observable depositResponse
-
     @observable totalScanCount
     @observable totalScanHavingDeposit
     @observable totalDepositAmount
@@ -34,38 +36,37 @@ class ProductDepositDomainStore {
         this.depositResponse = null
     }
 
-    @computed get
-    isWaitingResponseForBarCode() {
+    @computed get isWaitingResponseForBarCode() {
         return this.barcode !== null && this.depositResponse !== null
     }
 
-    @computed get
-    totalScanCountNoDeposit() {
+    @computed get totalScanCountNoDeposit() {
         return this.totalScanCount - this.totalScanHavingDeposit
     }
 
     fetchProductDepositInformation() {
         this.status = LOADING
         ProductDepositApi.fetchCookieAndCsrfToken()
-            .then((response) => response.text())
-            .then((htmlResponse) => this.fetchProductDepositWithCsrfToken(htmlResponse))
+            .then(response => response.text())
+            .then(htmlResponse => this.fetchProductDepositWithCsrfToken(htmlResponse))
             .catch(this.onServerErrorResponse)
     }
 
     @action.bound
     fetchProductDepositWithCsrfToken(htmlResponse) {
-        const csrfValueRegExp = /data-essi-csrf-token\=\"([A-Za-z0-9_\-]+)\"/
-        const csrfHeaderRegExp = /data-essi-csrf-header\=\"([A-Za-z0-9_\-]+)\"/
+        const csrfValueRegExp = /data-essi-csrf-token="([A-Za-z0-9_-]+)"/
+        const csrfHeaderRegExp = /data-essi-csrf-header="([A-Za-z0-9_-]+)"/
 
         const csrfHeaderRegExpMatch = csrfHeaderRegExp.exec(htmlResponse)
         const csrfValueRegExpMatch = csrfValueRegExp.exec(htmlResponse)
 
-        if (csrfHeaderRegExpMatch !== null && csrfHeaderRegExpMatch.length > 0 && csrfValueRegExpMatch !== null && csrfValueRegExpMatch.length > 0) {
+        if (csrfHeaderRegExpMatch !== null && csrfHeaderRegExpMatch.length > 0
+            && csrfValueRegExpMatch !== null && csrfValueRegExpMatch.length > 0) {
             const csrfTokenHeader = csrfHeaderRegExpMatch[1]
             const csrfToken = csrfValueRegExpMatch[1]
             ProductDepositApi.fetchProductDepositInformation(this.barcode, csrfTokenHeader, csrfToken)
-                .then((response) => response.json())
-                .then((response) => this.onServerSuccessResponse(response))
+                .then(response => response.json())
+                .then(response => this.onServerSuccessResponse(response))
                 .catch(this.onServerErrorResponse)
         } else {
             this.reset()
@@ -83,12 +84,12 @@ class ProductDepositDomainStore {
         if (_.isNil(payload)) {
             Expo.Amplitude.logEvent("Got empty payload response from PALPA")
             this.depositResponse = {}
-            if (!_.isNil(jsonResponse.message)) {
-                this.depositResponse.message = jsonResponse.message
+            if (!_.isNil(response.message)) {
+                this.depositResponse.message = response.message
                 this.lastScanResults.push({
                     ean: this.barcode,
                     date: moment().toISOString(),
-                    key: ""+moment().unix()
+                    key: `${moment().unix()}`,
                 })
                 this.totalScanCount++
             }
@@ -99,7 +100,7 @@ class ProductDepositDomainStore {
                 ean: payload.ean,
                 productName: payload.name,
                 productType: payload.recycling,
-                deposit: payload.deposit
+                deposit: payload.deposit,
             }
             this.lastScanResults.push({
                 ean: payload.ean || this.barcode,
@@ -107,12 +108,12 @@ class ProductDepositDomainStore {
                 productType: payload.recycling,
                 deposit: payload.deposit,
                 date: moment().toISOString(),
-                key: ""+moment().unix()
+                key: `${moment().unix()}`,
             })
             this.totalScanCount++
             if (payload.deposit !== null) {
                 this.totalScanHavingDeposit++
-                this.totalDepositAmount += Number(payload.deposit.replace(/,/g, '.').replace(/[^0-9.-]+/g,""))
+                this.totalDepositAmount += Number(payload.deposit.replace(/,/g, ".").replace(/[^0-9.-]+/g, ""))
             }
         }
         this.savePersistData()
@@ -128,10 +129,10 @@ class ProductDepositDomainStore {
 
     savePersistData = async () => {
         try {
-            await AsyncStorage.setItem('totalScanCount', toJS(this.totalScanCount).toString());
-            await AsyncStorage.setItem('totalScanHavingDeposit', toJS(this.totalScanHavingDeposit).toString());
-            await AsyncStorage.setItem('totalDepositAmount', toJS(this.totalDepositAmount).toString());
-            await AsyncStorage.setItem('lastScanResults', JSON.stringify(toJS(this.lastScanResults)));
+            await AsyncStorage.setItem("totalScanCount", toJS(this.totalScanCount).toString())
+            await AsyncStorage.setItem("totalScanHavingDeposit", toJS(this.totalScanHavingDeposit).toString())
+            await AsyncStorage.setItem("totalDepositAmount", toJS(this.totalDepositAmount).toString())
+            await AsyncStorage.setItem("lastScanResults", JSON.stringify(toJS(this.lastScanResults)))
         } catch (error) {
             console.log("error saving persist data", error)
         }
@@ -139,10 +140,10 @@ class ProductDepositDomainStore {
 
     _loadPersistData = async () => {
         try {
-            const totalScanCount = await AsyncStorage.getItem('totalScanCount');
-            const totalScanHavingDeposit = await AsyncStorage.getItem('totalScanHavingDeposit');
-            const totalDepositAmount = await AsyncStorage.getItem('totalDepositAmount');
-            const lastScanResults = await AsyncStorage.getItem('lastScanResults');
+            const totalScanCount = await AsyncStorage.getItem("totalScanCount")
+            const totalScanHavingDeposit = await AsyncStorage.getItem("totalScanHavingDeposit")
+            const totalDepositAmount = await AsyncStorage.getItem("totalDepositAmount")
+            const lastScanResults = await AsyncStorage.getItem("lastScanResults")
 
             if (totalScanCount !== null) {
                 this.totalScanCount = Number(totalScanCount)

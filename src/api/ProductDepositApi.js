@@ -1,16 +1,15 @@
 class ProductDepositApi {
-
     url = "https://extra.palpa.fi/pantillisuus/"
 
     fetchCookieAndCsrfToken() {
         return fetch(this.url,
             {
                 headers: {
-                    Accept: 'text/html',
-                    Host: 'extra.palpa.fi'
+                    Accept: "text/html",
+                    Host: "extra.palpa.fi",
                 },
                 credentials: "include",
-                method: "GET"
+                method: "GET",
             })
     }
 
@@ -19,20 +18,19 @@ class ProductDepositApi {
             {
                 credentials: "include",
                 headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                    [csrfTokenHeader]: csrfToken
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    [csrfTokenHeader]: csrfToken,
                 },
                 referrer: this.url,
                 referrerPolicy: "no-referrer-when-downgrade",
                 body: JSON.stringify({
-                    ean: barcode
+                    ean: barcode,
                 }),
                 method: "POST",
-                mode: "cors"
+                mode: "cors",
             })
     }
-
 }
 
 export default new ProductDepositApi()

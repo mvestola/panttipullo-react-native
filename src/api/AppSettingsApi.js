@@ -1,11 +1,13 @@
 class ProductDepositApi {
+    url = "https://raw.githubusercontent.com/mvestola/panttipullo-react-native/master/production-live-settings.json"
+
     fetchProductionLiveSettings() {
-        return fetch("https://raw.githubusercontent.com/mvestola/panttipullo-react-native/master/production-live-settings.json",
+        return fetch(this.url,
             {
                 headers: {
-                    Accept: 'application/json'
+                    Accept: "application/json",
                 },
-                method: "GET"
+                method: "GET",
             })
     }
 }
