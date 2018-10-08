@@ -13,20 +13,6 @@ class AppUiState {
     @observable showHelp
     @observable showHistory
 
-    constructor() {
-        BackHandler.addEventListener("hardwareBackPress", () => {
-            if (this.showBarcodeScanner || this.showProductDepositResult) {
-                ProductDepositActions.cancelBarcodeScan()
-                return true
-            }
-            if (this.showInfo || this.showSettings || this.showHistory || this.showHelp) {
-                this.reset()
-                return true
-            }
-            return false
-        })
-    }
-
     reset() {
         this.showInfo = false
         this.showSettings = false

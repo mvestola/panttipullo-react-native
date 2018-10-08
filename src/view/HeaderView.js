@@ -8,15 +8,15 @@ import AppUiState from "../state/AppUiState"
 
 const HeaderView = observer(() => (
     <Header
-        style={{backgroundColor: "#1ebbd7"}}
-        androidStatusBarColor="#189ad3"
+        style={{backgroundColor: "#009A49"}}
+        androidStatusBarColor="#004521"
     >
         <Left>
             {
                 AppUiState.showBackButton
                 && (
                     <Button transparent>
-                        <Icon name="arrow-back" onPress={() => NavigationActions.goBack()}/>
+                        <Icon name="arrow-back" onPress={() => NavigationActions.showMainPage()}/>
                     </Button>
                 )
             }

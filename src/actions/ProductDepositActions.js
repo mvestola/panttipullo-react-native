@@ -2,18 +2,19 @@ import {action} from "mobx"
 import {Permissions} from "expo"
 import {Alert} from "react-native"
 import ProductDepositDomainStore from "../state/ProductDepositDomainStore"
+import Analytics from "../util/Analytics"
 
 class ProductDepositActions {
     @action.bound
     async scanBarcode() {
-        Expo.Amplitude.logEvent("Barcode scan started")
+        Analytics.logEvent("Barcode scan started")
         ProductDepositDomainStore.barcodeScanIsInProgress = true
         const {status} = await Permissions.askAsync(Permissions.CAMERA)
         if (status === "granted") {
             console.log("camera permission granted")
             this.userGrantedCameraPermission()
         } else {
-            Expo.Amplitude.logEvent("Camera permission not granted")
+            Analytics.logEvent("Camera permission not granted")
             console.log("camera permission not granted!")
         }
     }
@@ -25,16 +26,10 @@ class ProductDepositActions {
 
     @action
     barcodeScanComplete(barcode) {
-        Expo.Amplitude.logEvent("Barcode scan complete")
+        Analytics.logEvent("Barcode scan complete")
         ProductDepositDomainStore.barcodeScanIsInProgress = false
         ProductDepositDomainStore.barcode = barcode
         ProductDepositDomainStore.fetchProductDepositInformation()
-    }
-
-    @action
-    cancelBarcodeScan() {
-        Expo.Amplitude.logEvent("Barcode scan cancelled")
-        ProductDepositDomainStore.reset()
     }
 
     @action

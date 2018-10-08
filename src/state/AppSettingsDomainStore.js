@@ -4,6 +4,7 @@ import { Constants } from 'expo'
 import {ERROR, LOADED, LOADING} from "../constants/domainStoreStatusConstants"
 import AppSettingsApi from "../api/AppSettingsApi"
 import NotificationBuilder from "../util/NotificationBuilder"
+import Analytics from "../util/Analytics"
 
 configure({
     enforceActions: "always"
@@ -19,8 +20,6 @@ class AppSettingsDomainStore {
     @observable language = "fi"
 
     constructor() {
-        Expo.Amplitude.initialize("aa669bc10383e87442d83dbfc4522f2d")
-        Expo.Amplitude.logEvent(`App initialized with version ${this.getAppVersion()}`)
         this._loadCustomFonts()
         AppSettingsApi.fetchProductionLiveSettings()
             .then(response => response.json())
@@ -66,7 +65,7 @@ class AppSettingsDomainStore {
         console.log(error)
         this.isBarcodeScanDisabled = false
         this.status = ERROR
-        Expo.Amplitude.logEvent("Fetching application settings failed")
+        Analytics.logEvent("Fetching application settings failed")
     }
 
     savePersistData = async () => {

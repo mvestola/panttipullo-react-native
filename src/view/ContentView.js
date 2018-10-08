@@ -18,6 +18,7 @@ import SettingsView from "./SettingsView"
 import InfoView from "./InfoView"
 import ProductDepositActions from "../actions/ProductDepositActions"
 import NumberFormatter from "../util/NumberFormatter"
+import RecentScanList from "./RecentScanList"
 
 const getContent = () => {
     if (AppUiState.showBarcodeScanner) {
@@ -36,13 +37,13 @@ const getContent = () => {
         return (
             <ScrollView>
                 <Grid>
-                    <Row style={{backgroundColor: "#4b86b4", padding: 10}}>
+                    <Row style={{backgroundColor: "#009A49", padding: 10}}>
                         <Text style={{color: "white", fontWeight: "bold", fontSize: 14}}>PANTIN TARKISTUS</Text>
                     </Row>
                     <Row style={{padding: 20}}>
                         <ScanBarcodeButton disabled={AppSettingsDomainStore.isBarcodeScanDisabled}/>
                     </Row>
-                    <Row style={{backgroundColor: "#4b86b4", padding: 10}}>
+                    <Row style={{backgroundColor: "#009A49", padding: 10}}>
                         <View style={{
                             flex: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center",
                         }}
@@ -57,8 +58,8 @@ const getContent = () => {
                             </Button>
                         </View>
                     </Row>
-                    <Row>
-                        <Grid style={{padding: 10}}>
+                    <Row style={{backgroundColor: "white", padding: 10}}>
+                        <Grid>
                             <Row>
                                 <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
                                     <Text style={{color: "#989898", fontSize: 18}}>{NumberFormatter.formatPieces(ProductDepositDomainStore.totalScanCount)}</Text>
@@ -85,7 +86,7 @@ const getContent = () => {
                             </Row>
                         </Grid>
                     </Row>
-                    <Row style={{backgroundColor: "#4b86b4", padding: 10}}>
+                    <Row style={{backgroundColor: "#009A49", padding: 10}}>
                         <View style={{
                             flex: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center",
                         }}
@@ -101,48 +102,8 @@ const getContent = () => {
                             </Button>
                         </View>
                     </Row>
-                    <Row>
-                        <FlatList
-                            data={toJS(ProductDepositDomainStore.lastScanResultsSorted)}
-                            ListHeaderComponent={(
-                                <Grid style={{padding: 5, backgroundColor: "#87aecd"}}>
-                                    <Col size={20}>
-                                        <Text style={{fontSize: 15, color: "white", fontWeight: "bold"}}>Pantti</Text>
-                                    </Col>
-                                    <Col size={80}>
-                                        <Text style={{fontSize: 15, color: "white", fontWeight: "bold"}}>Kuvaus</Text>
-                                    </Col>
-                                </Grid>
-                            )}
-                            renderItem={({item}) => (
-                                <Grid style={{
-                                    borderBottomColor: "#EEEEEE",
-                                    borderBottomWidth: 1,
-                                    padding: 5,
-                                    borderStyle: "solid",
-                                }}
-                                >
-                                    <Col size={20}>
-                                        {
-                                            item.deposit ?
-                                            <Text style={{fontSize: 12, color: "green", fontWeight: "bold"}}>{item.deposit}</Text> :
-                                            <Text style={{fontSize: 12, color: "#CCCCCC", fontWeight: "bold"}}>0 €</Text>
-                                        }
-                                    </Col>
-                                    <Col size={80}>
-                                        {item.productName && (
-                                            <Text style={{fontSize: 12, color: "#989898", fontWeight: "bold"}}>
-                                                {item.productName} ({item.productType})
-                                            </Text>
-                                        )}
-                                        <Text style={{fontSize: 11, color: "#989898"}}>EAN: {item.ean}</Text>
-                                        <Text
-                                            style={{fontSize: 11, color: "#989898"}}>{moment(item.date).format("DD.MM.YYYY HH:mm:ss")}</Text>
-                                    </Col>
-                                </Grid>
-                            )
-                            }
-                        />
+                    <Row style={{backgroundColor: "white", padding: 5}}>
+                        <RecentScanList/>
                     </Row>
                 </Grid>
             </ScrollView>
