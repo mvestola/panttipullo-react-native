@@ -5,9 +5,6 @@
   },
   "1.0.1": {
     "disabled": false,
-    "notification": {
-      "id": "test1",
-      "message": "testiviesti"
-    }
+    "notification": null
   }
 }
