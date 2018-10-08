@@ -2,5 +2,12 @@
   "0.0.1": {
      "disabled": false,
      "disabledNotification": null
+  },
+  "1.0.1": {
+    "disabled": false,
+    "notification": {
+      "id": "test1",
+      "message": "testiviesti"
+    }
   }
 }
