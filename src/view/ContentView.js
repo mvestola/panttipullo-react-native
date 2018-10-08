@@ -22,32 +22,17 @@ import NumberFormatter from "../util/NumberFormatter"
 const getContent = () => {
     if (AppUiState.showBarcodeScanner) {
         return <BarcodeScanner/>
-    }
-    if (AppUiState.showLoadingSpinner) {
+    } else if (AppUiState.showLoadingSpinner) {
         return <Spinner color="blue"/>
-    }
-    if (AppUiState.showSettings) {
+    } else if (AppUiState.showSettings) {
         return <SettingsView/>
-    }
-    if (AppUiState.showInfo) {
-        return (
-            <Modal isVisible>
-                <View style={{flex: 1}}>
-                    <InfoView/>
-                </View>
-            </Modal>
-        )
-    }
-    if (AppUiState.showHelp) {
+    } else if (AppUiState.showInfo) {
+        return <InfoView/>
+    } else if (AppUiState.showHelp) {
         return <HelpView/>
-    }
-    if (AppUiState.showAppNotification) {
-        return <AppNotification message={AppUiState.appNotificationText}/>
-    }
-    if (AppUiState.showProductDepositResult) {
+    } else if (AppUiState.showProductDepositResult) {
         return <ProductDepositView depositResponse={ProductDepositDomainStore.depositResponse}/>
-    }
-    if (AppUiState.showCameraButton) {
+    } else {
         return (
             <ScrollView>
                 <Grid>

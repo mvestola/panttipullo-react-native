@@ -1,23 +1,59 @@
 import React from "react"
-import {
-    Body, Card, CardItem, Text,
-} from "native-base"
+import {Body, Card, CardItem, Text,} from "native-base"
+import {observer} from "mobx-react"
+import AppSettingsDomainStore from "../state/AppSettingsDomainStore"
+import Hyperlink from "react-native-hyperlink"
+import {StyleSheet} from "react-native"
 
-const InfoView = () => (
+const InfoView = observer(() => (
     <Card>
         <CardItem header>
-            <Text>Panttipullo v1.0.1</Text>
+            <Text>Panttipullo v{AppSettingsDomainStore.getAppVersion()}</Text>
         </CardItem>
         <CardItem>
             <Body>
-            <Text>
-                Panttipullo on applikaatio...
-                kotisivulle
-                Privacy policy (tietosuojakäytäntö)
-            </Text>
+            <Hyperlink linkDefault={true} linkStyle={styles.hyperlink}>
+                <Text>
+                    Skannaa viivakoodi juomapakkauksesta ja katso saako siitä panttia.
+                    Ohjelma hakee tiedot Palpan sivuilta: https://extra.palpa.fi/pantillisuus.
+                    Ohjelma on yksityinen projekti, ei siis Palpan kehittämä.
+                    Ohjelmaan liittyvissä asioissa, ota yhteyttä kehittäjään, ei Palpaan.
+                </Text>
+            </Hyperlink>
+            </Body>
+        </CardItem>
+        <CardItem>
+            <Body>
+            <Hyperlink linkDefault={true}
+                       linkStyle={[styles.hyperlink, styles.appLink]}
+                       linkText="Ohjelman kotisivulle">
+                <Text style={styles.appLink}>
+                    https://github.com/mvestola/panttipullo-react-native
+                </Text>
+            </Hyperlink>
+            </Body>
+        </CardItem>
+        <CardItem>
+            <Body>
+            <Hyperlink linkDefault={true}
+                       linkStyle={[styles.hyperlink, styles.appLink]}
+                       linkText="Tietosuojakäytäntö (englanniksi)">
+                <Text style={styles.appLink}>
+                    https://github.com/mvestola/panttipullo-react-native/blob/master/privacy-policy.md
+                </Text>
+            </Hyperlink>
             </Body>
         </CardItem>
     </Card>
-)
+))
+
+const styles = StyleSheet.create({
+    hyperlink: {
+        color: "#2980b9"
+    },
+    appLink: {
+        fontSize: 16,
+    },
+})
 
 export default InfoView

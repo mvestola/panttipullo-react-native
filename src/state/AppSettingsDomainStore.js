@@ -1,12 +1,12 @@
 import {action, observable, when} from "mobx"
 import {AsyncStorage, ToastAndroid} from "react-native"
 import {toJS} from "mobx/lib/mobx"
+import { Constants } from 'expo'
 import {ERROR, LOADED, LOADING} from "../constants/domainStoreStatusConstants"
 import AppSettingsApi from "../api/AppSettingsApi"
 import NotificationBuilder from "../util/NotificationBuilder"
 
 class AppSettingsDomainStore {
-    @observable appVersion = "0.0.1"
     @observable isBarcodeScanDisabled
     @observable notification
     @observable notificationsDismissed
@@ -17,7 +17,7 @@ class AppSettingsDomainStore {
 
     constructor() {
         Expo.Amplitude.initialize("aa669bc10383e87442d83dbfc4522f2d")
-        Expo.Amplitude.logEvent(`App initialized with version ${this.appVersion}`)
+        Expo.Amplitude.logEvent(`App initialized with version ${this.getAppVersion()}`)
         this._init()
         this._loadPersistData()
         when(
@@ -48,6 +48,10 @@ class AppSettingsDomainStore {
         }).then(this.onFontsLoaded)
     }
 
+    getAppVersion() {
+        return Constants.manifest.version
+    }
+
     @action.bound
     onFontsLoaded() {
         this.fontsAreLoaded = true
@@ -56,11 +60,13 @@ class AppSettingsDomainStore {
     @action.bound
     onServerSuccessResponse(response) {
         this.status = LOADED
-        const settingsForVersion = response[this.appVersion]
-        if (settingsForVersion.notification) {
-            this.notification = settingsForVersion.notification
+        const settingsForVersion = response[this.getAppVersion()]
+        if(settingsForVersion) {
+            if (settingsForVersion.notification) {
+                this.notification = settingsForVersion.notification
+            }
+            this.isBarcodeScanDisabled = settingsForVersion.disabled
         }
-        this.isBarcodeScanDisabled = settingsForVersion.disabled
     }
 
     @action.bound

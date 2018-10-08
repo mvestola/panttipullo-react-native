@@ -44,47 +44,35 @@ class AppUiState {
     }
 
     @computed get showLoadingSpinner() {
-        return ProductDepositDomainStore.status === LOADING || AppSettingsDomainStore.status === LOADING
+        return ProductDepositDomainStore.status === LOADING
     }
 
     @computed get showAppIsInitialising() {
         return AppSettingsDomainStore.status === LOADING || !AppSettingsDomainStore.fontsAreLoaded
     }
 
-    @computed get showCameraButton() {
-        const {status} = ProductDepositDomainStore
-        return !this.showLoadingSpinner && (status === LOADED || status === ERROR || status === INITIALIZED)
-            && !this.showSettings && !this.showInfo && !this.showHelp
-            && !this.showBarcodeScanner && !this.showProductDepositResult
-    }
-
     @computed get showBackButton() {
-        return !this.showCameraButton
+        return this.showHelp || this.showInfo || this.showSettings || this.showBarcodeScanner || this.showProductDepositResult
     }
 
     @computed get subtitleText() {
         if (this.showHistory) {
             return "Historia"
-        }
-        if (this.showSettings) {
+        } else if (this.showSettings) {
             return "Asetukset"
-        }
-        if (this.showInfo) {
+        } else if (this.showInfo) {
             return "Tietoa ohjelmasta"
-        }
-        if (this.showHelp) {
+        } else if (this.showHelp) {
             return "Ohjeet"
-        }
-        if (this.showBarcodeScanner) {
+        } else if (this.showBarcodeScanner) {
             return "Viivakoodin skannaus"
-        }
-        if (this.showProductDepositResult) {
+        } else if (this.showProductDepositResult) {
             return "Skannauksen tulos"
-        }
-        if (this.showLoadingSpinner) {
+        } else if (this.showLoadingSpinner) {
             return "Haetaan tietoja..."
+        } else {
+            return "Etusivu"
         }
-        return "Etusivu"
     }
 }
 

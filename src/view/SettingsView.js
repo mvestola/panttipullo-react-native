@@ -34,7 +34,6 @@ const SettingsView = observer(() => (
                 onValueChange={val => AppSettingsActions.saveLanguage(val)}
             >
                 <Picker.Item label="Kieli: Suomi" value="fi"/>
-                <Picker.Item label="Kieli: Englanti" value="en"/>
             </Picker>
             </Body>
         </ListItem>
