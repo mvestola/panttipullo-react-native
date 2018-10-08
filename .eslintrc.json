@@ -17,8 +17,8 @@
     "global-require": ["off"],
     "no-console": ["off"],
     "semi": ["error", "never"],
-    "indent": ["error", 4],
-    "react/jsx-indent": ["error", 4],
+    "indent": ["off"],
+    "react/jsx-indent": ["off"],
     "react/jsx-indent-props": ["error", 4],
     "max-len": ["error", { "code": 120 }]
   },

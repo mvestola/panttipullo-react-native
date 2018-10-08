@@ -50,6 +50,7 @@ class ProductDepositActions {
         ProductDepositDomainStore.totalScanHavingDeposit = 0
         ProductDepositDomainStore.totalDepositAmount = 0.0
         ProductDepositDomainStore.persistTotalsData()
+        Analytics.logEvent("Stats cleared")
     }
 
     @action
@@ -69,6 +70,7 @@ class ProductDepositActions {
     _doClearRecentScans() {
         ProductDepositDomainStore.lastScanResults = []
         ProductDepositDomainStore.persistTotalsData()
+        Analytics.logEvent("Recent scan cleared")
     }
 }
 

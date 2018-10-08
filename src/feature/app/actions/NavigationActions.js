@@ -2,6 +2,7 @@ import {action} from "mobx"
 import ProductDepositDomainStore from "../../productDeposit/state/ProductDepositDomainStore"
 import AppUiState from "../state/AppUiState"
 import {BackHandler} from "react-native"
+import Analytics from "../../common/util/Analytics"
 
 class NavigationActions {
 
@@ -30,18 +31,21 @@ class NavigationActions {
     showInfo() {
         this._resetNavigation()
         AppUiState.showInfo = true
+        Analytics.logEvent("Info page shown")
     }
 
     @action
     showHelp() {
         this._resetNavigation()
         AppUiState.showHelp = true
+        Analytics.logEvent("Help page shown")
     }
 
     @action
     showSettings() {
         this._resetNavigation()
         AppUiState.showSettings = true
+        Analytics.logEvent("Settings page shown")
     }
 }
 

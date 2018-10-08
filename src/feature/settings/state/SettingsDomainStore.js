@@ -28,8 +28,13 @@ class SettingsDomainStore {
             .catch(this.onServerErrorResponse)
         this._loadSettingsData()
         when(
-            () => this.notification !== null && this.notificationsDismissed !== null && !this.notificationsDismissed.includes(this.notification.id),
-            () => NotificationBuilder.showNotification("Viesti kehittäjältä", this.notification.message, () => this._onNotificationDismissed(this.notification.id))
+            () => this.notification !== null
+                && this.notificationsDismissed !== null
+                && !this.notificationsDismissed.includes(this.notification.id),
+            () => {
+                Analytics.logEvent("Showing notification from developer")
+                NotificationBuilder.showNotification("Viesti kehittäjältä", this.notification.message, () => this._onNotificationDismissed(this.notification.id))
+            }
         )
     }
 
