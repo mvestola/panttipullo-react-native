@@ -6,7 +6,12 @@ import AppUiState from "../state/AppUiState"
 
 const AppHeaderView = observer(() => (
     <Header
-        style={{backgroundColor: "#009A49"}}
+        style={{
+            backgroundColor: "#009A49",
+            borderStyle: "solid",
+            borderBottomWidth: 1,
+            borderBottomColor: "#EEEEEE",
+        }}
         androidStatusBarColor="#004521"
     >
         <Left>
