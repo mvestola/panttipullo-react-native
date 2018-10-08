@@ -10,14 +10,9 @@ const AppHeaderView = observer(() => (
         androidStatusBarColor="#004521"
     >
         <Left>
-            {
-                AppUiState.showBackButton
-                && (
-                    <Button transparent>
-                        <Icon name="arrow-back" onPress={() => NavigationActions.showMainPage()}/>
-                    </Button>
-                )
-            }
+            <Button transparent onPress={() => NavigationActions.showMainPage()}>
+                <Icon name="home" type="MaterialCommunityIcons" />
+            </Button>
         </Left>
         <Body>
         <Title>Panttipullo</Title>

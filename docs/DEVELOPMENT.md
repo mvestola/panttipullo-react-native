@@ -19,12 +19,30 @@ git clone git@github.com:mvestola/panttipullo-react-native.git
 npm install
 npm start
 ```
+## Run in Android emulator
+
+Better to run in real phone because barcode scanning is easier. To run in emulator:
+
+```
+/android-sdk-linux_x86/emulator/emulator -list-avds
+/android-sdk-linux_x86/emulator/emulator @Nexus_6_API_27
+```
+
+After that, choose "run on emulator" from browser
 
 ## Documentation for external libraries used
 
 * Expo: https://docs.expo.io/versions/latest/react-native/
 * Icons: https://oblador.github.io/react-native-vector-icons/
 * Nativebase: https://docs.nativebase.io/Components.html
+* "Easy" grid: https://github.com/GeekyAnts/react-native-easy-grid
+* Hyperlinks: https://github.com/obipawan/react-native-hyperlink
+
+## Other useful links
+
+* Cheat sheet: https://github.com/vhpoet/react-native-styling-cheat-sheet
+
+
 
 ## Production release checklist
 

@@ -32,10 +32,6 @@ class AppUiState {
         return AppSettingsDomainStore.status === LOADING || !AppSettingsDomainStore.fontsAreLoaded
     }
 
-    @computed get showBackButton() {
-        return this.isOtherThanMainView
-    }
-
     @computed get isOtherThanMainView() {
         return this.showHelp || this.showInfo || this.showSettings || this.showBarcodeScanner || this.showProductDepositResult
     }
