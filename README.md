@@ -3,7 +3,7 @@
 ## Description
 
 Scan barcode from Finnish beverage package to check if you get deposit or not. 
-Did you know that not all beverage packages sold in Finland not have the deposit mark. 
+Did you know that not all beverage packages sold in Finland have the deposit mark. 
 For example, many wine bottles are lacking the deposit mark but you might still get deposit 
 for those bottles also. With the application, you can easily scan barcode from e.g. 
 wine bottle or soft drink can to check if you get deposit or not in Finland.
