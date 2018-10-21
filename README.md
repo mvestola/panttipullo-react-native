@@ -27,13 +27,13 @@ Sovellus on yksityinen projekti, ei siis Palpan kehittämä.
 ### Main views
 
 <kbd>
-<img src="play_store/screenshots/01_main_screen.png" width="200" alt="Main screen of the application"/> <img src="play_store/screenshots/02_scan.png" width="200" alt="Scanning barcode"/> <img src="play_store/screenshots/03_result_has_deposit.png" width="200" alt="When bottle / can has deposit"/> <img src="play_store/screenshots/04_result_no_deposit.png" width="200" alt="When bottle / can has no deposit"/>
+<img src="play_store/screenshots/01_main_screen.png" width="200" alt="Main screen of the application"/> <img src="play_store/screenshots/02_1_scan.png" width="200" alt="Scanning barcode from wine bottle"/> <img src="play_store/screenshots/03_1_result_has_deposit.png" width="200" alt="When wine bottle has deposit"/> <img src="play_store/screenshots/02_scan.png" width="200" alt="Scanning barcode from plastic bottle"/> <img src="play_store/screenshots/03_result_has_deposit.png" width="200" alt="When plastic bottle has deposit"/> <img src="play_store/screenshots/04_result_no_deposit.png" width="200" alt="When bottle / can has no deposit"/>
 </kbd>
   
 ### Support views
 
 <kbd>
-<img src="play_store/screenshots/05_help.png" width="200" alt="Help view"/> <img src="play_store/screenshots/06_info.png" width="200" alt="Info view"/> <img src="play_store/screenshots/07_settings.png" width="200" alt="Settings view"/>
+<img src="play_store/screenshots/05_help.png" width="200" alt="Help view"/> <img src="play_store/screenshots/06_settings.png" width="200" alt="Settings view"/>
 </kbd>
 
 ## Download
