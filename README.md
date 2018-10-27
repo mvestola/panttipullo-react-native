@@ -45,7 +45,7 @@ from [the application website in Google Play Store](https://play.google.com/stor
 
 In addition to Google Play store release, you can use [Expo app release](https://expo.io/@mvestola/Panttipullo) with Android but Play Store version is preferred.
 
-This application will not be released in Apple Store because it is too expensive. In addition, due to [limitations made by Apple](https://blog.expo.io/upcoming-limitations-to-ios-expo-client-8076d01aee1a), you can not use Expo app release with iOS. So sorry, no easy way to run this application in iOS, thanks to Apple. If you want to use this application with iOS, you have build the application yourself by checking out the code and then run it with Expo client, for example.
+This application will not be released in Apple Store because it is too expensive. In addition, due to [limitations made by Apple](https://blog.expo.io/upcoming-limitations-to-ios-expo-client-8076d01aee1a), you can not use Expo app release with iOS. So sorry, no easy way to run this application in iOS, thanks to Apple. If you want to use this application with iOS, you have to build the application yourself by checking out the code and then run it with Expo client, for example.
 
 ## Documentation
 
