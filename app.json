@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Panttipullo",
-    "description": "Tarkista juomapakkauksen pantillisuus",
+    "description": "React Native application for Android to scan barcode from Finnish beverage package to check if you get deposit or not",
     "slug": "Panttipullo",
     "privacy": "public",
     "sdkVersion": "30.0.0",
@@ -27,6 +27,7 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "fi.mvestola.panttipullo",
       "supportsTablet": true
     },
     "android": {
