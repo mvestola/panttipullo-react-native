@@ -1,17 +1,6 @@
 # Panttipullo
 
-## Description
-
-Scan barcode from Finnish beverage package to check if you get deposit or not. 
-Did you know that not all beverage packages sold in Finland have the deposit mark. 
-For example, many wine bottles are lacking the deposit mark but you might still get deposit 
-for those bottles also. With the application, you can easily scan barcode from e.g. 
-wine bottle or soft drink can to check if you get deposit or not in Finland.
-
-Application fetches deposit information from [Palpa website](https://extra.palpa.fi/pantillisuus). 
-This application is a private project, it is not developed by Palpa.
-
-## Description (Finnish)
+## Sovelluksen kuvaus (in Finnish)
 
 Skannaa viivakoodi juomapakkauksesta ja tarkista saako siitä panttia. Tiesitkö, 
 että kaikissa Suomessa myytävissä pantillisissa juomapakkauksissa ei ole Palpan panttimerkintää. 
@@ -21,6 +10,17 @@ ja tarkistamaan saako siitä panttia.
 
 Sovellus hakee tiedot [Palpan sivuilta](https://extra.palpa.fi/pantillisuus). 
 Sovellus on yksityinen projekti, ei siis Palpan kehittämä.
+
+## Application description
+
+Scan barcode from Finnish beverage package to check if you get deposit or not. 
+Did you know that not all beverage packages sold in Finland have the deposit mark. 
+For example, many wine bottles are lacking the deposit mark but you might still get deposit 
+for those bottles also. With the application, you can easily scan barcode from e.g. 
+wine bottle or soft drink can to check if you get deposit or not in Finland.
+
+Application fetches deposit information from [Palpa website](https://extra.palpa.fi/pantillisuus). 
+This application is a private project, it is not developed by Palpa.
 
 ## Screenshots
 
@@ -43,7 +43,9 @@ from [the application website in Google Play Store](https://play.google.com/stor
 
 <a style="display: block;" href='https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo'><img height="100" alt="Get it on Google Play" src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
-App will not be in Apple Store. For iOS, use [Expo app release](https://expo.io/@mvestola/Panttipullo), but note that it is not tested with iOS.
+In addition to Google Play store release, you can use [Expo app release](https://expo.io/@mvestola/Panttipullo) with Android but Play Store version is preferred.
+
+This application will not be released in Apple Store. In addition, due to [limitations made by Apple](https://blog.expo.io/upcoming-limitations-to-ios-expo-client-8076d01aee1a), you can not use Expo app release with iOS. If you want to use this with iOS, you have manually install the `*.ipa` release to iOS device. Also note that this is not in any way tested in iOS.
 
 ## Documentation
 
