@@ -45,7 +45,7 @@ After that, choose "run on emulator" from browser
 ## Production release checklist
 
 Before release
-* Update `version` and `android.versionCode` in `app.js`
+* Update `version` and `android.versionCode` in `app.json`
 * Make sure to have version number also in `production-live-settings.json`
 * Update release notes
 * Tag the code: `git tag 1.0.1 && git push --tags`

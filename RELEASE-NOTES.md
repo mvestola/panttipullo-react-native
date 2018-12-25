@@ -1,3 +1,7 @@
+## 1.0.2 (2018-12-25)
+
+* Update libraries to latest ones
+
 ## 1.0.1 (2018-10-09)
 
 * Refactored user interface
