@@ -6,5 +6,9 @@
   "1.0.1": {
     "disabled": false,
     "notification": null
+  },
+  "1.0.2": {
+    "disabled": false,
+    "notification": null
   }
 }
