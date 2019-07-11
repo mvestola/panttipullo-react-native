@@ -1,6 +1,8 @@
 import React from "react"
-import {Body, Icon, Left, List, ListItem, Picker, Right, Switch, Text,} from "native-base"
-import {observer} from "mobx-react"
+import {
+ Body, Icon, Left, List, ListItem, Picker, Right, Switch, Text,
+} from "native-base"
+import { observer } from "mobx-react"
 import AppSettingsDomainStore from "../state/SettingsDomainStore"
 import AppSettingsActions from "../actions/AppSettingsActions"
 
@@ -11,19 +13,21 @@ const SettingsView = observer(() => (
         </ListItem>
         <ListItem icon>
             <Left>
-                <Icon active name="sign-text" type="MaterialCommunityIcons"/>
+                <Icon active name="sign-text" type="MaterialCommunityIcons" />
             </Left>
             <Body>
             <Text>Näytä mainoksia</Text>
             </Body>
             <Right>
-                <Switch value={AppSettingsDomainStore.showAds}
-                        onValueChange={val => AppSettingsActions.saveShowAds(val)}/>
+                <Switch
+                    value={AppSettingsDomainStore.showAds}
+                    onValueChange={val => AppSettingsActions.saveShowAds(val)}
+                />
             </Right>
         </ListItem>
         <ListItem icon>
             <Left>
-                <Icon active name="language" type="FontAwesome"/>
+                <Icon active name="language" type="FontAwesome" />
             </Left>
             <Body>
             <Picker
@@ -31,7 +35,7 @@ const SettingsView = observer(() => (
                 selectedValue={AppSettingsDomainStore.language}
                 onValueChange={val => AppSettingsActions.saveLanguage(val)}
             >
-                <Picker.Item label="Kieli: Suomi" value="fi"/>
+                <Picker.Item label="Kieli: Suomi" value="fi" />
             </Picker>
             </Body>
         </ListItem>

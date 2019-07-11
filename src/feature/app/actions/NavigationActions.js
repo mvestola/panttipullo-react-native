@@ -1,19 +1,17 @@
-import {action} from "mobx"
+import { action } from "mobx"
+import { BackHandler } from "react-native"
 import ProductDepositDomainStore from "../../productDeposit/state/ProductDepositDomainStore"
 import AppUiState from "../state/AppUiState"
-import {BackHandler} from "react-native"
 import Analytics from "../../common/util/Analytics"
 
 class NavigationActions {
-
     constructor() {
         BackHandler.addEventListener("hardwareBackPress", () => {
             if (AppUiState.isOtherThanMainView) {
                 this.showMainPage()
                 return true
-            } else {
-                return false
             }
+            return false
         })
     }
 

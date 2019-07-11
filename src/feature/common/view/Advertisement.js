@@ -1,7 +1,7 @@
 import React from "react"
-import AppSettingsDomainStore from "../../settings/state/SettingsDomainStore"
-import {observer} from "mobx-react"
+import { observer } from "mobx-react"
 import { AdMobBanner } from "expo-ads-admob"
+import AppSettingsDomainStore from "../../settings/state/SettingsDomainStore"
 
 const Advertisement = observer(() => {
     if (AppSettingsDomainStore.showAds) {
@@ -18,9 +18,8 @@ const Advertisement = observer(() => {
                 testDeviceID="EMULATOR"
             />
         )
-    } else {
-        return null
     }
+    return null
 })
 
 export default Advertisement

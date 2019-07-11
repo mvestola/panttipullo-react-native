@@ -1,11 +1,13 @@
-import {computed, observable} from "mobx"
+import { computed, observable } from "mobx"
 import ProductDepositDomainStore from "../../productDeposit/state/ProductDepositDomainStore"
-import {LOADED, LOADING,} from "../../common/constants/domainStoreStatusConstants"
+import { LOADED, LOADING } from "../../common/constants/domainStoreStatusConstants"
 import AppSettingsDomainStore from "../../settings/state/SettingsDomainStore"
 
 class AppUiState {
     @observable showInfo
+
     @observable showSettings
+
     @observable showHelp
 
     reset() {
@@ -39,19 +41,18 @@ class AppUiState {
     @computed get subtitleText() {
         if (this.showSettings) {
             return "Asetukset"
-        } else if (this.showInfo) {
+        } if (this.showInfo) {
             return "Tietoa ohjelmasta"
-        } else if (this.showHelp) {
+        } if (this.showHelp) {
             return "Ohjeet"
-        } else if (this.showBarcodeScanner) {
+        } if (this.showBarcodeScanner) {
             return "Viivakoodin skannaus"
-        } else if (this.showProductDepositResult) {
+        } if (this.showProductDepositResult) {
             return "Skannauksen tulos"
-        } else if (this.showLoadingSpinner) {
+        } if (this.showLoadingSpinner) {
             return "Haetaan tietoja..."
-        } else {
-            return "Etusivu"
         }
+            return "Etusivu"
     }
 }
 

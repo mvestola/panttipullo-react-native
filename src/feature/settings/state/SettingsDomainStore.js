@@ -1,24 +1,33 @@
-import {action, configure, observable, runInAction, toJS, when} from "mobx"
-import {AsyncStorage, ToastAndroid} from "react-native"
+import {
+ action, configure, observable, runInAction, toJS, when,
+} from "mobx"
+import { AsyncStorage, ToastAndroid } from "react-native"
 import Constants from "expo-constants"
 import * as Font from "expo-font"
-import {ERROR, LOADED, LOADING} from "../../common/constants/domainStoreStatusConstants"
+import { ERROR, LOADED, LOADING } from "../../common/constants/domainStoreStatusConstants"
 import AppSettingsApi from "../api/SettingsApi"
 import NotificationBuilder from "../../common/util/NotificationBuilder"
 import Analytics from "../../common/util/Analytics"
 
 configure({
-    enforceActions: "always"
+    enforceActions: "always",
 })
 
 class SettingsDomainStore {
     @observable isBarcodeScanDisabled = true
+
     @observable notification = null
+
     @observable notificationsDismissed = null
+
     @observable status = LOADING
+
     @observable fontsAreLoaded = false
+
     @observable showAds = false
+
     @observable language = "fi"
+
     @observable settingsAreLoaded = false
 
     constructor() {
@@ -35,7 +44,7 @@ class SettingsDomainStore {
             () => {
                 Analytics.logEvent("Showing notification from developer")
                 NotificationBuilder.showNotification("Viesti kehittäjältä", this.notification.message, () => this._onNotificationDismissed(this.notification.id))
-            }
+            },
         )
     }
 

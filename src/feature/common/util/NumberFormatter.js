@@ -1,16 +1,15 @@
 import numeral from "numeral"
 
 class NumberFormatter {
-
     constructor() {
         numeral.register("locale", "fi", {
             delimiters: {
                 thousands: " ",
-                decimal: ","
+                decimal: ",",
             },
             currency: {
-                symbol: "€"
-            }
+                symbol: "€",
+            },
         })
 
         numeral.locale("fi")

@@ -1,4 +1,4 @@
-import * as Amplitude from "expo-analytics-amplitude";
+import * as Amplitude from "expo-analytics-amplitude"
 
 class Analytics {
     constructor() {

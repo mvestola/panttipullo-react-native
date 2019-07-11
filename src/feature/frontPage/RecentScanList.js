@@ -1,10 +1,10 @@
 import React from "react"
-import {Col, Grid, Text,} from "native-base"
-import {observer} from "mobx-react"
-import {toJS} from "mobx"
-import ProductDepositDomainStore from "../productDeposit/state/ProductDepositDomainStore"
-import {FlatList, StyleSheet} from "react-native"
+import { Col, Grid, Text } from "native-base"
+import { observer } from "mobx-react"
+import { toJS } from "mobx"
+import { FlatList, StyleSheet } from "react-native"
 import moment from "moment"
+import ProductDepositDomainStore from "../productDeposit/state/ProductDepositDomainStore"
 
 const RecentScanList = observer(() => {
     const lastScanResultsSorted = toJS(ProductDepositDomainStore.lastScanResultsSorted)
@@ -25,15 +25,17 @@ const RecentScanList = observer(() => {
                         </Col>
                     </Grid>
                 )}
-                renderItem={({item}) => (
+                renderItem={({ item }) => (
                     <Grid style={styles.listItem}>
                         <Col size={colValues.deposit}>
                             {
-                                item.deposit ?
-                                    <Text style={[styles.listItemText, styles.listItemHighlight, {color: "green"}]}>
+                                item.deposit
+                                    ? (
+<Text style={[styles.listItemText, styles.listItemHighlight, { color: "green" }]}>
                                         {item.deposit}
-                                    </Text> :
-                                    <Text style={[styles.listItemText, styles.listItemHighlight]}>0 €</Text>
+</Text>
+)
+                                    : <Text style={[styles.listItemText, styles.listItemHighlight]}>0 €</Text>
                             }
                         </Col>
                         <Col size={colValues.date}>
@@ -48,21 +50,23 @@ const RecentScanList = observer(() => {
                                 </Text>
                             )}
                             <Text style={[styles.listItemText, styles.listItemNotImportant]}>{item.productType}</Text>
-                            <Text style={[styles.listItemText, styles.listItemNotImportant]}>EAN: {item.ean}</Text>
+                            <Text style={[styles.listItemText, styles.listItemNotImportant]}>
+EAN:
+{item.ean}
+                            </Text>
                         </Col>
                     </Grid>
                 )}
             />
         )
-    } else {
-        return <Text style={[styles.listItemText, styles.noRecentScans]}>Ei tallennettuja skannauksia</Text>
     }
+        return <Text style={[styles.listItemText, styles.noRecentScans]}>Ei tallennettuja skannauksia</Text>
 })
 
 const colValues = {
     deposit: 15,
     date: 25,
-    desc: 60
+    desc: 60,
 }
 
 const styles = StyleSheet.create({

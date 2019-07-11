@@ -1,6 +1,6 @@
-import {action} from "mobx"
+import { action } from "mobx"
+import { Alert } from "react-native"
 import AppSettingsDomainStore from "../state/SettingsDomainStore"
-import {Alert} from "react-native"
 import Analytics from "../../common/util/Analytics"
 
 class AppSettingsActions {
@@ -19,10 +19,10 @@ class AppSettingsActions {
                 "Vahvista muutos",
                 "Mainoksia näyttämällä tuet ohjelman kehitystä. Haluatko varmasti poistaa mainokset?",
                 [
-                    {text: "Peruuta", style: "cancel", onPress: () => this._doSaveShowAds(true)},
-                    {text: "OK", onPress: () => this._doSaveShowAds(false)},
+                    { text: "Peruuta", style: "cancel", onPress: () => this._doSaveShowAds(true) },
+                    { text: "OK", onPress: () => this._doSaveShowAds(false) },
                 ],
-                {cancelable: false},
+                { cancelable: false },
             )
         } else {
             this._doSaveShowAds(showAds)
