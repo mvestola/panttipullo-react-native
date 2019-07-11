@@ -1,6 +1,6 @@
 import React from "react"
 import {StyleSheet} from "react-native"
-import {BarCodeScanner} from "expo"
+import { BarCodeScanner } from "expo-barcode-scanner"
 import ScanActions from "../../productDeposit/actions/ProductDepositActions"
 
 const handleBarCodeScanned = ({data}) => {

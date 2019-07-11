@@ -1,6 +1,7 @@
 import {action, configure, observable, runInAction, toJS, when} from "mobx"
 import {AsyncStorage, ToastAndroid} from "react-native"
-import {Constants} from "expo"
+import Constants from "expo-constants"
+import * as Font from "expo-font"
 import {ERROR, LOADED, LOADING} from "../../common/constants/domainStoreStatusConstants"
 import AppSettingsApi from "../api/SettingsApi"
 import NotificationBuilder from "../../common/util/NotificationBuilder"
@@ -39,9 +40,9 @@ class SettingsDomainStore {
     }
 
     _loadCustomFonts() {
-        Expo.Font.loadAsync({
-            Roboto: require("native-base/Fonts/Roboto.ttf"),
-            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+        Font.loadAsync({
+            Roboto: require("../../../../node_modules/native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("../../../../node_modules/native-base/Fonts/Roboto_medium.ttf"),
         }).then(this.onFontsLoaded)
     }
 

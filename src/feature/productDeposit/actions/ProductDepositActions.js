@@ -1,5 +1,5 @@
 import {action} from "mobx"
-import {Permissions} from "expo"
+import * as Permissions from "expo-permissions"
 import {Alert} from "react-native"
 import ProductDepositDomainStore from "../state/ProductDepositDomainStore"
 import Analytics from "../../common/util/Analytics"

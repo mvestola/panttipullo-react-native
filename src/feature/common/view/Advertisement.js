@@ -1,7 +1,7 @@
 import React from "react"
 import AppSettingsDomainStore from "../../settings/state/SettingsDomainStore"
 import {observer} from "mobx-react"
-import {AdMobBanner} from "expo"
+import { AdMobBanner } from "expo-ads-admob"
 
 const Advertisement = observer(() => {
     if (AppSettingsDomainStore.showAds) {
