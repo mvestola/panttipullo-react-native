@@ -43,7 +43,11 @@ class SettingsDomainStore {
                 && !this.notificationsDismissed.includes(this.notification.id),
             () => {
                 Analytics.logEvent("Showing notification from developer")
-                NotificationBuilder.showNotification("Viesti kehittäjältä", this.notification.message, () => this._onNotificationDismissed(this.notification.id))
+                NotificationBuilder.showNotification(
+                    "Viesti kehittäjältä",
+                    this.notification.message,
+                    () => this._onNotificationDismissed(this.notification.id)
+                )
             },
         )
     }

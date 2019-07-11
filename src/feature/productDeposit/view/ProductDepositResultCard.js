@@ -1,14 +1,18 @@
 import React from "react"
-import {StyleSheet} from "react-native"
-import {Body, Card, CardItem, Icon, Text, View,} from "native-base"
+import { StyleSheet } from "react-native"
+import {
+ Body, Card, CardItem, Icon, Text, View,
+} from "native-base"
 import ScanBarcodeButton from "../../common/view/ScanBarcodeButton"
 
-const ProductDepositCard = ({title, titleStyle, iconStyle, iconName, iconType, children}) => (
+const ProductDepositCard = ({
+ title, titleStyle, iconStyle, iconName, iconType, children,
+}) => (
     <Card>
         <CardItem header>
             <View style={styles.iconWithText}>
-                <Icon name={iconName} type={iconType} style={iconStyle}/>
-                <Text style={titleStyle}> {title}</Text>
+                <Icon name={iconName} type={iconType} style={iconStyle} />
+                <Text style={titleStyle}>{` ${title}`}</Text>
             </View>
         </CardItem>
         <CardItem>
@@ -18,7 +22,7 @@ const ProductDepositCard = ({title, titleStyle, iconStyle, iconName, iconType, c
         </CardItem>
         <CardItem>
             <Body>
-            <ScanBarcodeButton/>
+            <ScanBarcodeButton />
             </Body>
         </CardItem>
     </Card>
@@ -29,7 +33,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         alignItems: "center",
-    }
+    },
 })
 
 export default ProductDepositCard

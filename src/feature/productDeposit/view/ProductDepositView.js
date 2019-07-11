@@ -1,11 +1,11 @@
 import React from "react"
 import _ from "lodash"
-import {StyleSheet} from "react-native"
-import {Text,} from "native-base"
+import { StyleSheet } from "react-native"
+import { Text } from "native-base"
 import ProductDepositDomainStore from "../state/ProductDepositDomainStore"
 import ProductDepositCard from "./ProductDepositResultCard"
 
-const ProductDepositView = ({depositResponse}) => {
+const ProductDepositView = ({ depositResponse }) => {
     if (!_.isNil(depositResponse.deposit)) {
         return (
             <ProductDepositCard
@@ -16,23 +16,23 @@ const ProductDepositView = ({depositResponse}) => {
                 iconType="MaterialCommunityIcons"
             >
                 <Text style={styles.depositValue}>
-                    Pantin määrä: {depositResponse.deposit}
+                    {`Pantin määrä: ${depositResponse.deposit}`}
                 </Text>
                 <Text style={styles.depositExtraInfo}>
-                    EAN: {depositResponse.ean}
+                    {`EAN: ${depositResponse.ean}`}
                 </Text>
                 <Text style={styles.depositExtraInfo}>
-                    Nimi: {depositResponse.productName}
+                    {`Nimi: ${depositResponse.productName}`}
                 </Text>
                 <Text style={styles.depositExtraInfo}>
-                    Tyyppi: {depositResponse.productType}
+                    {`Tyyppi: ${depositResponse.productType}`}
                 </Text>
                 <Text style={[styles.depositExtraInfo, styles.depositExtraDesc]}>
-                    Palpan kuvaus: &quot;{depositResponse.message}&quot;
+                    {`Palpan kuvaus: "${depositResponse.message}"`}
                 </Text>
             </ProductDepositCard>
         )
-    } else {
+    }
         return (
             <ProductDepositCard
                 title="Tästä ei ehkä saa panttia"
@@ -42,14 +42,13 @@ const ProductDepositView = ({depositResponse}) => {
                 iconType="MaterialCommunityIcons"
             >
                 <Text style={styles.depositExtraInfo}>
-                    Viivakoodi: {ProductDepositDomainStore.barcode}
+                    {`Viivakoodi: ${ProductDepositDomainStore.barcode}`}
                 </Text>
                 <Text style={[styles.depositExtraInfo, styles.depositExtraDesc]}>
-                    Palpan kuvaus: &quot;{depositResponse.message}&quot;
+                    {`Palpan kuvaus: "${depositResponse.message}"`}
                 </Text>
             </ProductDepositCard>
         )
-    }
 }
 
 const styles = StyleSheet.create({
@@ -74,12 +73,12 @@ const styles = StyleSheet.create({
     },
     iconHasDeposit: {
         fontSize: 26,
-        color: "green"
+        color: "green",
     },
     iconHasNoDeposit: {
         fontSize: 26,
-        color: "red"
-    }
+        color: "red",
+    },
 })
 
 export default ProductDepositView

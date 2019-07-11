@@ -1,23 +1,35 @@
-import {action, computed, observable, runInAction, toJS,} from "mobx"
-import {AsyncStorage} from "react-native"
+import {
+action, computed, observable, runInAction, toJS,
+} from "mobx"
+import { AsyncStorage } from "react-native"
 import _ from "lodash"
 import moment from "moment"
-import {ERROR, INITIALIZED, LOADED, LOADING,} from "../../common/constants/domainStoreStatusConstants"
+import {
+ ERROR, INITIALIZED, LOADED, LOADING,
+} from "../../common/constants/domainStoreStatusConstants"
 import ProductDepositApi from "../api/ProductDepositApi"
 import NotificationBuilder from "../../common/util/NotificationBuilder"
 import Analytics from "../../common/util/Analytics"
 
 class ProductDepositDomainStore {
     @observable barcode = null
+
     @observable barcodeScanIsInProgress = false
+
     @observable hasCameraPermission = false
+
     @observable status = INITIALIZED
+
     @observable depositResponse = null
 
     @observable totalValuesAreLoaded = false
+
     @observable totalScanCount = 0
+
     @observable totalScanHavingDeposit = 0
+
     @observable totalDepositAmount = 0.0
+
     @observable lastScanResults = []
 
     constructor() {

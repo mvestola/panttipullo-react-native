@@ -1,6 +1,6 @@
-import {action} from "mobx"
+import { action } from "mobx"
 import * as Permissions from "expo-permissions"
-import {Alert} from "react-native"
+import { Alert } from "react-native"
 import ProductDepositDomainStore from "../state/ProductDepositDomainStore"
 import Analytics from "../../common/util/Analytics"
 
@@ -9,7 +9,7 @@ class ProductDepositActions {
     async scanBarcode() {
         Analytics.logEvent("Barcode scan started")
         ProductDepositDomainStore.barcodeScanIsInProgress = true
-        const {status} = await Permissions.askAsync(Permissions.CAMERA)
+        const { status } = await Permissions.askAsync(Permissions.CAMERA)
         if (status === "granted") {
             this.userGrantedCameraPermission()
         } else {
@@ -37,10 +37,10 @@ class ProductDepositActions {
             "Vahvista poisto",
             "Haluatko varmasti nollata tilastot",
             [
-                {text: "Peruuta", style: "cancel"},
-                {text: "OK", onPress: () => this._doClearStats()},
+                { text: "Peruuta", style: "cancel" },
+                { text: "OK", onPress: () => this._doClearStats() },
             ],
-            {cancelable: false},
+            { cancelable: false },
         )
     }
 
@@ -59,10 +59,10 @@ class ProductDepositActions {
             "Vahvista poisto",
             "Haluatko varmasti poistaa viimeisimmät skannaukset",
             [
-                {text: "Peruuta", style: "cancel"},
-                {text: "OK", onPress: () => this._doClearRecentScans()},
+                { text: "Peruuta", style: "cancel" },
+                { text: "OK", onPress: () => this._doClearRecentScans() },
             ],
-            {cancelable: false},
+            { cancelable: false },
         )
     }
 
