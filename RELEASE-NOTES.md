@@ -1,3 +1,7 @@
+## 1.0.3 (2019-07-11)
+
+* Update libraries to latest ones
+
 ## 1.0.2 (2018-12-25)
 
 * Update libraries to latest ones
