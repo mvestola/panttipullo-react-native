@@ -14,7 +14,7 @@ const HelpView = () => (
         <CardItem>
             <Body>
             <Text>
-                Skannaa viivakoodi pullosta tai tölkistä "Skannaa uusi viivakoodi" -painikkeella
+                Skannaa viivakoodi pullosta tai tölkistä &quot;Skannaa uusi viivakoodi&quot; -painikkeella
                 ja saat tietää saako juomapakkauksesta pantin. Klikkaa vain painiketta ja kohdista
                 kameran kuva viivakoodiin. Kamera tunnistaa viivakoodin automaattisesti yleensä
                 parissa sekunnissa.

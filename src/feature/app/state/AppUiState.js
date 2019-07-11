@@ -35,7 +35,8 @@ class AppUiState {
     }
 
     @computed get isOtherThanMainView() {
-        return this.showHelp || this.showInfo || this.showSettings || this.showBarcodeScanner || this.showProductDepositResult
+        return this.showHelp || this.showInfo || this.showSettings
+            || this.showBarcodeScanner || this.showProductDepositResult
     }
 
     @computed get subtitleText() {
