@@ -53,4 +53,4 @@ Before release
 
 To release:
 1. Publish to expo from browser console
-1. Make Android release if other than plain JS changes:  `expo build:android`
+1. Make Android release if other than plain JS changes:  `expo build:android -t app-bundle`

@@ -14,5 +14,9 @@
   "1.0.3": {
     "disabled": false,
     "notification": null
+  },
+  "1.0.4": {
+    "disabled": false,
+    "notification": null
   }
 }

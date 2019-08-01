@@ -1,3 +1,8 @@
+## 1.0.4 (2019-08-01)
+
+* Update libraries to latest ones
+* 64-bit compliant
+
 ## 1.0.3 (2019-07-11)
 
 * Update libraries to latest ones
