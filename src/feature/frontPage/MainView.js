@@ -13,7 +13,7 @@ const MainView = observer(() => (
             <View style={MainStyles.sectionHeader}>
                 <Text style={MainStyles.sectionHeaderText}>PANTIN TARKISTUS</Text>
             </View>
-            <View style={{ padding: 20 }}>
+            <View style={{ padding: 20, flex: 1, flexDirection: "row", alignItems: "center" }}>
                 <ScanBarcodeButton disabled={AppSettingsDomainStore.isBarcodeScanDisabled} />
             </View>
             <TotalsView />
