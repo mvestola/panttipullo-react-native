@@ -9,16 +9,19 @@ import RecentScansView from "./RecentScansView"
 import MainStyles from "./MainStyles"
 
 const MainView = observer(() => (
-        <ScrollView>
-            <View style={MainStyles.sectionHeader}>
-                <Text style={MainStyles.sectionHeaderText}>PANTIN TARKISTUS</Text>
-            </View>
-            <View style={{ padding: 20, flex: 1, flexDirection: "row", alignItems: "center" }}>
-                <ScanBarcodeButton disabled={AppSettingsDomainStore.isBarcodeScanDisabled} />
-            </View>
-            <TotalsView />
-            <RecentScansView />
-        </ScrollView>
-    ))
+    <ScrollView>
+        <View style={MainStyles.sectionHeader}>
+            <Text style={MainStyles.sectionHeaderText}>PANTIN TARKISTUS</Text>
+        </View>
+        <View style={{
+            padding: 20, flex: 1, flexDirection: "row", alignItems: "center",
+        }}
+        >
+            <ScanBarcodeButton disabled={AppSettingsDomainStore.isBarcodeScanDisabled} />
+        </View>
+        <TotalsView />
+        <RecentScansView />
+    </ScrollView>
+))
 
 export default MainView

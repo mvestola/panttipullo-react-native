@@ -7,9 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "lint-fix": "esw src/** --fix",
-    "lint": "esw src/**",
-    "lint-watch": "esw -w --changed src/**"
+    "eslint-fix": "esw src/** --fix",
+    "eslint": "esw src/**",
+    "eslint-watch": "esw -w --changed src/**"
   },
   "dependencies": {
     "@expo/vector-icons": "10.0.5",

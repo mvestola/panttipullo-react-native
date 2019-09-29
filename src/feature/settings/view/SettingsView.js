@@ -21,7 +21,7 @@ const SettingsView = observer(() => (
             <Right>
                 <Switch
                     value={AppSettingsDomainStore.showAds}
-                    onValueChange={val => AppSettingsActions.saveShowAds(val)}
+                    onValueChange={(val) => AppSettingsActions.saveShowAds(val)}
                 />
             </Right>
         </ListItem>
@@ -33,7 +33,7 @@ const SettingsView = observer(() => (
             <Picker
                 mode="dropdown"
                 selectedValue={AppSettingsDomainStore.language}
-                onValueChange={val => AppSettingsActions.saveLanguage(val)}
+                onValueChange={(val) => AppSettingsActions.saveLanguage(val)}
             >
                 <Picker.Item label="Kieli: Suomi" value="fi" />
             </Picker>

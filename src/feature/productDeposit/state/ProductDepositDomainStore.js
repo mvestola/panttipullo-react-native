@@ -54,8 +54,8 @@ class ProductDepositDomainStore {
     fetchProductDepositInformation() {
         this.status = LOADING
         ProductDepositApi.fetchCookieAndCsrfToken()
-            .then(response => response.text())
-            .then(htmlResponse => this.fetchProductDepositWithCsrfToken(htmlResponse))
+            .then((response) => response.text())
+            .then((htmlResponse) => this.fetchProductDepositWithCsrfToken(htmlResponse))
             .catch(this.onServerErrorResponse)
     }
 
@@ -72,8 +72,8 @@ class ProductDepositDomainStore {
             const csrfTokenHeader = csrfHeaderRegExpMatch[1]
             const csrfToken = csrfValueRegExpMatch[1]
             ProductDepositApi.fetchProductDepositInformation(this.barcode, csrfTokenHeader, csrfToken)
-                .then(response => response.json())
-                .then(response => this.onServerSuccessResponse(response))
+                .then((response) => response.json())
+                .then((response) => this.onServerSuccessResponse(response))
                 .catch(this.onServerErrorResponse)
         } else {
             this.reset()

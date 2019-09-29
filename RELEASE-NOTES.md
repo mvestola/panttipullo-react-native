@@ -1,3 +1,7 @@
+## 1.0.5 (TODO)
+
+* Update libraries to latest ones
+
 ## 1.0.4 (2019-08-01)
 
 * Update libraries to latest ones

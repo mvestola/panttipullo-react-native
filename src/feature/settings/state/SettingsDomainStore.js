@@ -33,8 +33,8 @@ class SettingsDomainStore {
     constructor() {
         this._loadCustomFonts()
         AppSettingsApi.fetchProductionLiveSettings()
-            .then(response => response.json())
-            .then(jsonResponse => this.onServerSuccessResponse(jsonResponse))
+            .then((response) => response.json())
+            .then((jsonResponse) => this.onServerSuccessResponse(jsonResponse))
             .catch(this.onServerErrorResponse)
         this._loadSettingsData()
         when(
