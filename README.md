@@ -48,9 +48,9 @@ EAN-13, EAN-8, UPC-A or UPC-E, thus application is limited to scan only these ty
 ## Download
 
 **Main target platform is Android**. The latest stable version of this application can be downloaded to an Android phone
-from [the application website in Google Play Store](https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo).
+from [the application website in Google Play Store](https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo&hl=fi).
 
-<a style="display: block;" href='https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo'><img height="100" alt="Get it on Google Play" src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+<a style="display: block;" href='https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo&hl=fi'><img height="100" alt="Get it on Google Play" src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
 In addition to Google Play store release, you can use [Expo app release](https://expo.io/@mvestola/Panttipullo) with Android but Play Store version is preferred.
 
