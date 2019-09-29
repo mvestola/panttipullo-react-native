@@ -1,4 +1,4 @@
-## 1.0.5 (TODO)
+## 1.0.5 (2019-09-29)
 
 * Improve barcode scan by reading only barcode types: EAN-13, EAN-8, UPC-A or UPC-E
 * Update libraries to latest ones
