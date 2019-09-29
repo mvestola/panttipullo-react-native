@@ -11,6 +11,12 @@ const BarcodeScanner = () => (
     <BarCodeScanner
         onBarCodeScanned={handleBarCodeScanned}
         style={styles.scanner}
+        barCodeTypes={[
+            BarCodeScanner.Constants.BarCodeType.ean13,
+            BarCodeScanner.Constants.BarCodeType.ean8,
+            BarCodeScanner.Constants.BarCodeType.upc_a,
+            BarCodeScanner.Constants.BarCodeType.upc_e,
+        ]}
     />
 )
 
