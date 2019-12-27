@@ -4,7 +4,7 @@
     "description": "React Native application for Android to scan barcode from Finnish beverage package to check if you get deposit or not",
     "slug": "Panttipullo",
     "privacy": "public",
-    "sdkVersion": "35.0.0",
+    "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
       "android"
