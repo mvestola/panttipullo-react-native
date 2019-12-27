@@ -30,6 +30,19 @@ Better to run in real phone because barcode scanning is easier. To run in emulat
 
 After that, choose "run on emulator" from browser
 
+## Upgrading
+
+Upgrade expo and other packages:
+```
+npm i -g expo-cli
+expo upgrade
+git commit
+npm i -g npm-check-updates && ncu -u
+# Check that expo/react packages were not upgraded too much
+rm -rf node_modules && rm package-lock.json
+npm install
+```
+
 ## Documentation for external libraries used
 
 * Expo: https://docs.expo.io/versions/latest/react-native/
