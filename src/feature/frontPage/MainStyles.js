@@ -4,6 +4,7 @@ export default StyleSheet.create({
     sectionHeader: {
         backgroundColor: "#009A49",
         padding: 10,
+        height: 40,
     },
     sectionHeaderText: {
         color: "white",

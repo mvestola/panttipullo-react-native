@@ -26,6 +26,13 @@ class NavigationActions {
     }
 
     @action
+    showRecentScans() {
+        this._resetNavigation()
+        AppUiState.showRecentScans = true
+        Analytics.logEvent("Recent scans page shown")
+    }
+
+    @action
     showInfo() {
         this._resetNavigation()
         AppUiState.showInfo = true

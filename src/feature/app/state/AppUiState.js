@@ -10,10 +10,13 @@ class AppUiState {
 
     @observable showHelp
 
+    @observable showRecentScans
+
     reset() {
         this.showInfo = false
         this.showSettings = false
         this.showHelp = false
+        this.showRecentScans = false
     }
 
     @computed get showBarcodeScanner() {
@@ -35,7 +38,7 @@ class AppUiState {
     }
 
     @computed get isOtherThanMainView() {
-        return this.showHelp || this.showInfo || this.showSettings
+        return this.showHelp || this.showInfo || this.showSettings || this.showRecentScans
             || this.showBarcodeScanner || this.showProductDepositResult
     }
 
@@ -46,6 +49,8 @@ class AppUiState {
             return "Tietoa ohjelmasta"
         } if (this.showHelp) {
             return "Ohjeet"
+        } if (this.showRecentScans) {
+            return "Skannaukset"
         } if (this.showBarcodeScanner) {
             return "Viivakoodin skannaus"
         } if (this.showProductDepositResult) {

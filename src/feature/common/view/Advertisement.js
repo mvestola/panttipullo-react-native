@@ -1,7 +1,9 @@
 import React from "react"
 import { observer } from "mobx-react"
-import { AdMobBanner } from "expo-ads-admob"
+import { AdMobBanner, setTestDeviceIDAsync } from "expo-ads-admob"
 import AppSettingsDomainStore from "../../settings/state/SettingsDomainStore"
+
+setTestDeviceIDAsync("EMULATOR")
 
 const Advertisement = observer(() => {
     if (AppSettingsDomainStore.showAds) {
@@ -15,7 +17,6 @@ const Advertisement = observer(() => {
                 }}
                 bannerSize="smartBannerPortrait"
                 adUnitID="ca-app-pub-0260854390576047/9007788100"
-                testDeviceID="EMULATOR"
             />
         )
     }

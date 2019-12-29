@@ -1,6 +1,6 @@
 import React from "react"
 import {observer} from "mobx-react"
-import {Container} from "native-base"
+import {View} from "native-base"
 import AppContentView from "./src/feature/app/view/AppContentView"
 import AppHeaderView from "./src/feature/app/view/AppHeaderView"
 import AppUiState from "./src/feature/app/state/AppUiState"
@@ -11,10 +11,10 @@ const App = observer(() => {
         return <AppInitializingView/>
     }
     return (
-        <Container>
+        <View style={{flex: 1}}>
             <AppHeaderView/>
             <AppContentView/>
-        </Container>
+        </View>
     )
 })
 
