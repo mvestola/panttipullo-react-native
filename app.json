@@ -46,7 +46,13 @@
     },
     "githubUrl": "https://github.com/mvestola/panttipullo-react-native",
     "packagerOpts": {
-      "sourceExts": ["js", "json", "ts", "tsx", "jsx"]
+      "sourceExts": [
+        "js",
+        "json",
+        "ts",
+        "tsx",
+        "jsx"
+      ]
     }
   }
 }
