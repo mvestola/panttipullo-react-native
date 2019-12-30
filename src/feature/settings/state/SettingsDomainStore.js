@@ -1,6 +1,7 @@
 import {
   action, configure, observable, runInAction, toJS, when,
 } from "mobx"
+import _ from "lodash"
 import { AsyncStorage, ToastAndroid } from "react-native"
 import * as Localization from "expo-localization"
 import i18n from "i18n-js"
@@ -18,9 +19,15 @@ configure({
   enforceActions: "always",
 })
 
+const defaultLocale = "en"
+const userLocaleLong = Localization.locale
+const userLocaleShort = _.isNil(userLocaleLong) ? defaultLocale : userLocaleLong.slice(0, 2)
+const supportedUserLocale = ["fi", "en", "sv"].includes(userLocaleShort) ? userLocaleShort : defaultLocale
+
+i18n.defaultLocale = defaultLocale
 i18n.fallbacks = true
 i18n.translations = { fi, en, sv }
-i18n.locale = Localization.locale
+i18n.locale = supportedUserLocale
 
 class Store {
     @observable isBarcodeScanDisabled = true
@@ -35,7 +42,7 @@ class Store {
 
     @observable showAds = false
 
-    @observable language = "fi" // TODO: get from locale?
+    @observable language = supportedUserLocale
 
     @observable settingsAreLoaded = false
 
