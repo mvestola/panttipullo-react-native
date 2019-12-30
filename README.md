@@ -2,7 +2,7 @@
 
 ## Sovelluksen kuvaus (in Finnish)
 
-<img src="assets/icon.png" width="150" alt="Logo" align="right" />
+<img src="play_store/logo.png" width="150" alt="Logo" align="right" />
 
 Skannaa viivakoodi juomapakkauksesta ja tarkista saako siitä panttia. Tiesitkö, 
 että kaikissa Suomessa myytävissä pantillisissa juomapakkauksissa ei ole Palpan panttimerkintää. 
