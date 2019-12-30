@@ -1,12 +1,12 @@
 import React from "react"
 import { observer } from "mobx-react"
 import { AdMobBanner, setTestDeviceIDAsync } from "expo-ads-admob"
-import AppSettingsDomainStore from "../../settings/state/SettingsDomainStore"
+import {SettingsDomainStore} from "../../settings/state/SettingsDomainStore"
 
 setTestDeviceIDAsync("EMULATOR")
 
 export const Advertisement = observer(() => {
-    if (AppSettingsDomainStore.showAds) {
+    if (SettingsDomainStore.showAds) {
         return (
             <AdMobBanner
                 style={{

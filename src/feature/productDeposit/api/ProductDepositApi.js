@@ -1,4 +1,4 @@
-class ProductDepositApi {
+class Api {
     url = "https://extra.palpa.fi/pantillisuus/"
 
     fetchCookieAndCsrfToken() {
@@ -33,4 +33,4 @@ class ProductDepositApi {
     }
 }
 
-export default new ProductDepositApi()
+export const ProductDepositApi = new Api()

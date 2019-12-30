@@ -9,11 +9,11 @@ import moment from "moment"
 import {
  ERROR, INITIALIZED, LOADED, LOADING,
 } from "../../common/constants/domainStoreStatusConstants"
-import ProductDepositApi from "../api/ProductDepositApi"
-import NotificationBuilder from "../../common/util/NotificationBuilder"
-import Analytics from "../../common/util/Analytics"
+import {ProductDepositApi} from "../api/ProductDepositApi"
+import {logEvent} from "../../common/util/Analytics"
+import { showNotification} from "../../common/util/NotificationBuilder"
 
-class ProductDepositDomainStore {
+class Store {
     @observable barcode = null
 
     @observable barcodeScanIsInProgress = false
@@ -80,10 +80,10 @@ class ProductDepositDomainStore {
                 .catch(this.onServerErrorResponse)
         } else {
             this.reset()
-            Analytics.logEvent("Unable to parse CSRF token from page")
+            logEvent("Unable to parse CSRF token from page")
             console.log("Unable to parse CSRF token from page.")
             this.status = ERROR
-            NotificationBuilder.showNotification(i18n.t("error"), i18n.t("parsingErrorPalpa"))
+            showNotification(i18n.t("error"), i18n.t("parsingErrorPalpa"))
         }
     }
 
@@ -94,7 +94,7 @@ class ProductDepositDomainStore {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
 
         if (_.isNil(payload)) {
-            Analytics.logEvent("Got empty payload response from PALPA")
+            logEvent("Got empty payload response from PALPA")
             this.depositResponse = {}
             if (!_.isNil(response.message)) {
                 this.depositResponse.message = response.message
@@ -106,7 +106,7 @@ class ProductDepositDomainStore {
             })
             this.totalScanCount++
         } else {
-            Analytics.logEvent("Got OK response from PALPA")
+            logEvent("Got OK response from PALPA")
             this.depositResponse = {
                 message: payload.message,
                 ean: payload.ean,
@@ -133,11 +133,11 @@ class ProductDepositDomainStore {
 
     @action.bound
     onServerErrorResponse(error) {
-        Analytics.logEvent("Got server error from Palpa")
+        logEvent("Got server error from Palpa")
         this.reset()
         console.log(error)
         this.status = ERROR
-        NotificationBuilder.showNotification(i18n.t("connectionError"), i18n.t("loadErrorPalpa"))
+        showNotification(i18n.t("connectionError"), i18n.t("loadErrorPalpa"))
     }
 
     persistTotalsData = async () => {
@@ -182,4 +182,4 @@ class ProductDepositDomainStore {
     }
 }
 
-export default new ProductDepositDomainStore()
+export const ProductDepositDomainStore = new Store()

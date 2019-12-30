@@ -1,24 +1,24 @@
 import i18n from "i18n-js"
 import { action } from "mobx"
 import { Alert } from "react-native"
-import AppSettingsDomainStore from "../state/SettingsDomainStore"
-import Analytics from "../../common/util/Analytics"
+import {SettingsDomainStore} from "../state/SettingsDomainStore"
+import {logEvent} from "../../common/util/Analytics"
 
-class AppSettingsActions {
+class Actions {
     @action
     saveLanguage(language) {
-        if (language !== AppSettingsDomainStore.language) {
-            AppSettingsDomainStore.language = language
+        if (language !== SettingsDomainStore.language) {
+            SettingsDomainStore.language = language
             i18n.locale = language
-            AppSettingsDomainStore.persistSettingsData()
-            Analytics.logEvent("Language setting changed")
+            SettingsDomainStore.persistSettingsData()
+            logEvent("Language setting changed")
         }
     }
 
     @action
     saveShowAds(showAds) {
-        if (showAds !== AppSettingsDomainStore.showAds) {
-            AppSettingsDomainStore.showAds = showAds
+        if (showAds !== SettingsDomainStore.showAds) {
+            SettingsDomainStore.showAds = showAds
             if (!showAds) {
                 Alert.alert(
                     i18n.t("confirmChange"),
@@ -38,13 +38,13 @@ class AppSettingsActions {
     @action.bound
     _doSaveShowAds(showAds) {
         if (showAds) {
-            Analytics.logEvent("Show ad setting changed: do show ads")
+            logEvent("Show ad setting changed: do show ads")
         } else {
-            Analytics.logEvent("Show ad setting changed: do not show ads")
+            logEvent("Show ad setting changed: do not show ads")
         }
-        AppSettingsDomainStore.showAds = showAds
-        AppSettingsDomainStore.persistSettingsData()
+        SettingsDomainStore.showAds = showAds
+        SettingsDomainStore.persistSettingsData()
     }
 }
 
-export default new AppSettingsActions()
+export const AppSettingsActions = new Actions()

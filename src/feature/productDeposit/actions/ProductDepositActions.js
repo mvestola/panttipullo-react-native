@@ -2,19 +2,19 @@ import i18n from "i18n-js"
 import { action } from "mobx"
 import * as Permissions from "expo-permissions"
 import { Alert } from "react-native"
-import ProductDepositDomainStore from "../state/ProductDepositDomainStore"
-import Analytics from "../../common/util/Analytics"
+import {ProductDepositDomainStore} from "../state/ProductDepositDomainStore"
+import {logEvent} from "../../common/util/Analytics"
 
-class ProductDepositActions {
+class Actions {
     @action.bound
     async scanBarcode() {
-        Analytics.logEvent("Barcode scan started")
+        logEvent("Barcode scan started")
         ProductDepositDomainStore.barcodeScanIsInProgress = true
         const { status } = await Permissions.askAsync(Permissions.CAMERA)
         if (status === "granted") {
             this.userGrantedCameraPermission()
         } else {
-            Analytics.logEvent("Camera permission not granted")
+            logEvent("Camera permission not granted")
             console.log("camera permission not granted!")
         }
     }
@@ -26,7 +26,7 @@ class ProductDepositActions {
 
     @action
     barcodeScanComplete(barcode) {
-        Analytics.logEvent("Barcode scan complete")
+        logEvent("Barcode scan complete")
         ProductDepositDomainStore.barcodeScanIsInProgress = false
         ProductDepositDomainStore.hasCameraPermission = false
         ProductDepositDomainStore.barcode = barcode
@@ -52,7 +52,7 @@ class ProductDepositActions {
         ProductDepositDomainStore.totalScanHavingDeposit = 0
         ProductDepositDomainStore.totalDepositAmount = 0.0
         ProductDepositDomainStore.persistTotalsData()
-        Analytics.logEvent("Stats cleared")
+        logEvent("Stats cleared")
     }
 
     @action
@@ -72,8 +72,8 @@ class ProductDepositActions {
     _doClearRecentScans() {
         ProductDepositDomainStore.lastScanResults = []
         ProductDepositDomainStore.persistTotalsData()
-        Analytics.logEvent("Recent scan cleared")
+        logEvent("Recent scan cleared")
     }
 }
 
-export default new ProductDepositActions()
+export const ProductDepositActions = new Actions()

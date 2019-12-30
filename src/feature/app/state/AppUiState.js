@@ -1,10 +1,10 @@
 import i18n from "i18n-js"
 import { computed, observable } from "mobx"
-import ProductDepositDomainStore from "../../productDeposit/state/ProductDepositDomainStore"
+import {ProductDepositDomainStore} from "../../productDeposit/state/ProductDepositDomainStore"
 import { LOADED, LOADING } from "../../common/constants/domainStoreStatusConstants"
-import AppSettingsDomainStore from "../../settings/state/SettingsDomainStore"
+import {SettingsDomainStore} from "../../settings/state/SettingsDomainStore"
 
-class AppUiState {
+class State {
     @observable showInfo
 
     @observable showSettings
@@ -31,11 +31,11 @@ class AppUiState {
     @computed get showLoadingSpinner() {
         return ProductDepositDomainStore.status === LOADING
             || !ProductDepositDomainStore.totalValuesAreLoaded
-            || !AppSettingsDomainStore.settingsAreLoaded
+            || !SettingsDomainStore.settingsAreLoaded
     }
 
     @computed get showAppIsInitialising() {
-        return AppSettingsDomainStore.status === LOADING || !AppSettingsDomainStore.fontsAreLoaded
+        return SettingsDomainStore.status === LOADING || !SettingsDomainStore.fontsAreLoaded
     }
 
     @computed get isOtherThanMainView() {
@@ -63,4 +63,4 @@ class AppUiState {
     }
 }
 
-export default new AppUiState()
+export const AppUiState = new State()

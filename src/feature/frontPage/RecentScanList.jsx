@@ -5,7 +5,7 @@ import { observer } from "mobx-react"
 import { toJS } from "mobx"
 import { FlatList, StyleSheet } from "react-native"
 import moment from "moment"
-import ProductDepositDomainStore from "../productDeposit/state/ProductDepositDomainStore"
+import {ProductDepositDomainStore} from "../productDeposit/state/ProductDepositDomainStore"
 
 export const RecentScanList = observer(() => {
     const lastScanResultsSorted = toJS(ProductDepositDomainStore.lastScanResultsSorted)

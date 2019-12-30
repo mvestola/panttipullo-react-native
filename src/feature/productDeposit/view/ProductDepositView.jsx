@@ -3,7 +3,7 @@ import React from "react"
 import _ from "lodash"
 import { StyleSheet } from "react-native"
 import { Text } from "native-base"
-import ProductDepositDomainStore from "../state/ProductDepositDomainStore"
+import {ProductDepositDomainStore} from "../state/ProductDepositDomainStore"
 import {ProductDepositCard} from "./ProductDepositResultCard"
 
 export const ProductDepositView = ({ depositResponse }) => {

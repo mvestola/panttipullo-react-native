@@ -7,11 +7,11 @@ import i18n from "i18n-js"
 import Constants from "expo-constants"
 import * as Font from "expo-font"
 import { ERROR, LOADED, LOADING } from "../../common/constants/domainStoreStatusConstants"
-import AppSettingsApi from "../api/SettingsApi"
-import NotificationBuilder from "../../common/util/NotificationBuilder"
-import Analytics from "../../common/util/Analytics"
+import {SettingsApi} from "../api/SettingsApi"
 import { fi } from "../../common/i18n/fi"
 import { en } from "../../common/i18n/en"
+import {logEvent} from "../../common/util/Analytics"
+import {showNotification} from "../../common/util/NotificationBuilder"
 
 configure({
     enforceActions: "always",
@@ -21,7 +21,7 @@ i18n.fallbacks = true;
 i18n.translations = { fi, en }
 i18n.locale = Localization.locale
 
-class SettingsDomainStore {
+class Store {
     @observable isBarcodeScanDisabled = true
 
     @observable notification = null
@@ -40,7 +40,7 @@ class SettingsDomainStore {
 
     constructor() {
         this._loadCustomFonts()
-        AppSettingsApi.fetchProductionLiveSettings()
+        SettingsApi.fetchProductionLiveSettings()
             .then((response) => response.json())
             .then((jsonResponse) => this.onServerSuccessResponse(jsonResponse))
             .catch(this.onServerErrorResponse)
@@ -50,8 +50,8 @@ class SettingsDomainStore {
                 && this.notificationsDismissed !== null
                 && !this.notificationsDismissed.includes(this.notification.id),
             () => {
-                Analytics.logEvent("Showing notification from developer")
-                NotificationBuilder.showNotification(
+                logEvent("Showing notification from developer")
+                showNotification(
                     i18n.t("messageFromDeveloper"),
                     this.notification.message,
                     () => this._onNotificationDismissed(this.notification.id),
@@ -94,7 +94,7 @@ class SettingsDomainStore {
         this.isBarcodeScanDisabled = false
         this.notification = null
         this.status = ERROR
-        Analytics.logEvent("Fetching application settings failed")
+        logEvent("Fetching application settings failed")
     }
 
     persistSettingsData = async () => {
@@ -153,4 +153,4 @@ class SettingsDomainStore {
     }
 }
 
-export default new SettingsDomainStore()
+export const SettingsDomainStore = new Store()

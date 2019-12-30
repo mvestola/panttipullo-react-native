@@ -3,8 +3,8 @@ import {
  Body, Button, Header, Icon, Left, Right, Subtitle, Title,
 } from "native-base"
 import { observer } from "mobx-react"
-import NavigationActions from "../actions/NavigationActions"
-import AppUiState from "../state/AppUiState"
+import {NavigationActions} from "../actions/NavigationActions"
+import {AppUiState} from "../state/AppUiState"
 
 export const AppHeaderView = observer(() => (
     <Header

@@ -1,4 +1,4 @@
-class SettingsApi {
+class Api {
     url = "https://raw.githubusercontent.com/mvestola/panttipullo-react-native/master/production-live-settings.json"
 
     fetchProductionLiveSettings() {
@@ -12,4 +12,4 @@ class SettingsApi {
     }
 }
 
-export default new SettingsApi()
+export const SettingsApi = new Api()

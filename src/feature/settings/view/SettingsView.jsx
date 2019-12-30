@@ -4,8 +4,8 @@ import {
  Body, Icon, Left, List, ListItem, Picker, Right, Switch, Text,
 } from "native-base"
 import { observer } from "mobx-react"
-import AppSettingsDomainStore from "../state/SettingsDomainStore"
-import AppSettingsActions from "../actions/AppSettingsActions"
+import {SettingsDomainStore} from "../state/SettingsDomainStore"
+import {AppSettingsActions} from "../actions/AppSettingsActions"
 
 export const SettingsView = observer(() => (
     <List>
@@ -21,7 +21,7 @@ export const SettingsView = observer(() => (
             </Body>
             <Right>
                 <Switch
-                    value={AppSettingsDomainStore.showAds}
+                    value={SettingsDomainStore.showAds}
                     onValueChange={(val) => AppSettingsActions.saveShowAds(val)}
                 />
             </Right>
@@ -33,7 +33,7 @@ export const SettingsView = observer(() => (
             <Body>
             <Picker
                 mode="dropdown"
-                selectedValue={AppSettingsDomainStore.language}
+                selectedValue={SettingsDomainStore.language}
                 onValueChange={(val) => AppSettingsActions.saveLanguage(val)}
             >
                 <Picker.Item label={`${i18n.t("language")}: Suomi`} value="fi" />

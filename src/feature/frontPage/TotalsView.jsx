@@ -3,11 +3,11 @@ import React from "react"
 import { observer } from "mobx-react"
 import { StyleSheet } from "react-native"
 import { Text, View } from "native-base"
-import NumberFormatter from "../common/util/NumberFormatter"
-import ProductDepositDomainStore from "../productDeposit/state/ProductDepositDomainStore"
-import ProductDepositActions from "../productDeposit/actions/ProductDepositActions"
+import {ProductDepositDomainStore} from "../productDeposit/state/ProductDepositDomainStore"
+import {ProductDepositActions} from "../productDeposit/actions/ProductDepositActions"
 import {MainStyles} from "./MainStyles"
 import {MainViewHeader} from "./MainViewHeader"
+import {formatCurrency, formatPieces} from "../common/util/NumberFormatter"
 
 const TotalsRow = ({ value, description }) => (
     <View style={styles.totals}>
@@ -24,19 +24,19 @@ export const TotalsView = observer(() => (
             <View style={MainStyles.sectionContent} key="content">
                 <View style={styles.totalsContainer}>
                     <TotalsRow
-                        value={NumberFormatter.formatPieces(ProductDepositDomainStore.totalScanCount)}
+                        value={formatPieces(ProductDepositDomainStore.totalScanCount)}
                         description={i18n.t("totalsScan")}
                     />
                     <TotalsRow
-                        value={NumberFormatter.formatPieces(ProductDepositDomainStore.totalScanHavingDeposit)}
+                        value={formatPieces(ProductDepositDomainStore.totalScanHavingDeposit)}
                         description={i18n.t("totalsWithDeposit")}
                     />
                     <TotalsRow
-                        value={NumberFormatter.formatPieces(ProductDepositDomainStore.totalScanCountNoDeposit)}
+                        value={formatPieces(ProductDepositDomainStore.totalScanCountNoDeposit)}
                         description={i18n.t("totalsWithoutDeposit")}
                     />
                     <TotalsRow
-                        value={NumberFormatter.formatCurrency(ProductDepositDomainStore.totalDepositAmount)}
+                        value={formatCurrency(ProductDepositDomainStore.totalDepositAmount)}
                         description={i18n.t("totalsDeposits")}
                     />
                 </View>

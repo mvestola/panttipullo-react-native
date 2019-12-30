@@ -1,7 +1,7 @@
 import React from "react"
 import i18n from "i18n-js"
 import { observer } from "mobx-react"
-import ProductDepositActions from "../productDeposit/actions/ProductDepositActions"
+import {ProductDepositActions} from "../productDeposit/actions/ProductDepositActions"
 import {RecentScanList} from "./RecentScanList"
 import {MainViewHeader} from "./MainViewHeader"
 

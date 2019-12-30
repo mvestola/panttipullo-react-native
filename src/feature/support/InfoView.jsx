@@ -6,12 +6,12 @@ import {
 import { observer } from "mobx-react"
 import Hyperlink from "react-native-hyperlink"
 import { StyleSheet } from "react-native"
-import AppSettingsDomainStore from "../settings/state/SettingsDomainStore"
+import {SettingsDomainStore} from "../settings/state/SettingsDomainStore"
 
 export const InfoView = observer(() => (
     <Card>
         <CardItem header>
-            <Text>{`Panttipullo v${AppSettingsDomainStore.getAppVersion()}`}</Text>
+            <Text>{`Panttipullo v${SettingsDomainStore.getAppVersion()}`}</Text>
         </CardItem>
         <CardItem>
             <Body>

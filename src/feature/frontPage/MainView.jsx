@@ -6,7 +6,7 @@ import { ScrollView } from "react-native"
 import {ScanBarcodeButton} from "../common/view/ScanBarcodeButton"
 import {TotalsView} from "./TotalsView"
 import {MainStyles} from "./MainStyles"
-import NavigationActions from "../app/actions/NavigationActions"
+import {NavigationActions} from "../app/actions/NavigationActions"
 
 export const MainView = observer(() => (
     <ScrollView>
