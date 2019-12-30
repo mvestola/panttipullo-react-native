@@ -1,4 +1,5 @@
 import i18n from "i18n-js"
+import * as Haptics from 'expo-haptics'
 import {
 action, computed, observable, runInAction, toJS,
 } from "mobx"
@@ -40,6 +41,7 @@ class ProductDepositDomainStore {
     reset() {
         this.barcode = null
         this.barcodeScanIsInProgress = false
+        this.hasCameraPermission = false
         this.status = INITIALIZED
         this.depositResponse = null
     }
@@ -89,6 +91,7 @@ class ProductDepositDomainStore {
     onServerSuccessResponse(response) {
         this.status = LOADED
         const payload = response.payLoad
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
 
         if (_.isNil(payload)) {
             Analytics.logEvent("Got empty payload response from PALPA")

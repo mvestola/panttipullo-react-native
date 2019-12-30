@@ -28,6 +28,7 @@ class ProductDepositActions {
     barcodeScanComplete(barcode) {
         Analytics.logEvent("Barcode scan complete")
         ProductDepositDomainStore.barcodeScanIsInProgress = false
+        ProductDepositDomainStore.hasCameraPermission = false
         ProductDepositDomainStore.barcode = barcode
         ProductDepositDomainStore.fetchProductDepositInformation()
     }

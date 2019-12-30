@@ -8,6 +8,7 @@ import ScanBarcodeButton from "../common/view/ScanBarcodeButton"
 import TotalsView from "./TotalsView"
 import MainStyles from "./MainStyles"
 import NavigationActions from "../app/actions/NavigationActions"
+import ProductDepositDomainStore from "../productDeposit/state/ProductDepositDomainStore"
 
 const MainView = observer(() => (
     <ScrollView>
@@ -18,7 +19,7 @@ const MainView = observer(() => (
             padding: 20, flex: 1, flexDirection: "row", alignItems: "center",
         }}
         >
-            <ScanBarcodeButton disabled={AppSettingsDomainStore.isBarcodeScanDisabled} />
+            <ScanBarcodeButton />
         </View>
         <TotalsView />
         <View style={{
