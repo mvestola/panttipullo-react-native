@@ -1,15 +1,21 @@
 import i18n from "i18n-js"
 import React from "react"
 import _ from "lodash"
-import { StyleSheet } from "react-native"
+import { ScrollView, StyleSheet } from "react-native"
 import { Text } from "native-base"
 import { ProductDepositDomainStore } from "../state/ProductDepositDomainStore"
-import { ProductDepositCard } from "./ProductDepositResultCard"
+import { ProductDepositResultCard } from "./ProductDepositResultCard"
 
-export const ProductDepositView = ({ depositResponse }) => {
+export const ProductDepositView = ({ depositResponse }) => (
+  <ScrollView>
+    <ProductDepositCard depositResponse={depositResponse} />
+  </ScrollView>
+)
+
+const ProductDepositCard = ({ depositResponse }) => {
   if (!_.isNil(depositResponse.deposit)) {
     return (
-      <ProductDepositCard
+      <ProductDepositResultCard
         title={i18n.t("thisHasDeposit")}
         titleStyle={styles.hasDepositTitle}
         iconStyle={styles.iconHasDeposit}
@@ -31,11 +37,11 @@ export const ProductDepositView = ({ depositResponse }) => {
         <Text style={[styles.depositExtraInfo, styles.depositExtraDesc]}>
           {`${i18n.t("palpaDescription")}: "${depositResponse.message}"`}
         </Text>
-      </ProductDepositCard>
+      </ProductDepositResultCard>
     )
   }
   return (
-    <ProductDepositCard
+    <ProductDepositResultCard
       title={i18n.t("thisHasNoDeposit")}
       titleStyle={styles.noDepositTitle}
       iconStyle={styles.iconHasNoDeposit}
@@ -48,7 +54,7 @@ export const ProductDepositView = ({ depositResponse }) => {
       <Text style={[styles.depositExtraInfo, styles.depositExtraDesc]}>
         {`${i18n.t("palpaDescription")}: "${depositResponse.message}"`}
       </Text>
-    </ProductDepositCard>
+    </ProductDepositResultCard>
   )
 }
 

@@ -5,7 +5,7 @@ import {
 } from "native-base"
 import { ScanBarcodeButton } from "../../common/view/ScanBarcodeButton"
 
-export const ProductDepositCard = ({
+export const ProductDepositResultCard = ({
   title, titleStyle, iconStyle, iconName, iconType, children,
 }) => (
   <Card>
