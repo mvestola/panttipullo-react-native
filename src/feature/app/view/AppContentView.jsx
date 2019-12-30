@@ -6,14 +6,14 @@ import { observer } from "mobx-react"
 import { StyleSheet } from "react-native"
 import ProductDepositDomainStore from "../../productDeposit/state/ProductDepositDomainStore"
 import AppUiState from "../state/AppUiState"
-import ProductDepositView from "../../productDeposit/view/ProductDepositView"
-import BarcodeScanner from "../../scanner/view/BarcodeScanner"
-import HelpView from "../../support/HelpView"
-import SettingsView from "../../settings/view/SettingsView"
-import InfoView from "../../support/InfoView"
-import Advertisement from "../../common/view/Advertisement"
-import MainView from "../../frontPage/MainView"
-import RecentScansView from "../../frontPage/RecentScansView"
+import {ProductDepositView} from "../../productDeposit/view/ProductDepositView"
+import {BarcodeScanner} from "../../scanner/view/BarcodeScanner"
+import {HelpView} from "../../support/HelpView"
+import {SettingsView} from "../../settings/view/SettingsView"
+import {InfoView} from "../../support/InfoView"
+import {Advertisement} from "../../common/view/Advertisement"
+import {MainView} from "../../frontPage/MainView"
+import {RecentScansView} from "../../frontPage/RecentScansView"
 
 const getContent = () => {
     if (AppUiState.showLoadingSpinner) {
@@ -34,7 +34,7 @@ const getContent = () => {
         return <MainView />
 }
 
-const AppContentView = observer(() => (
+export const AppContentView = observer(() => (
     <View style={styles.container}>
         <Advertisement />
         <Grid style={{ alignItems: "flex-start", justifyContent: "center" }}>
@@ -53,5 +53,3 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
 })
-
-export default AppContentView

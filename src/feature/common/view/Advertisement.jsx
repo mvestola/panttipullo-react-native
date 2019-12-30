@@ -5,7 +5,7 @@ import AppSettingsDomainStore from "../../settings/state/SettingsDomainStore"
 
 setTestDeviceIDAsync("EMULATOR")
 
-const Advertisement = observer(() => {
+export const Advertisement = observer(() => {
     if (AppSettingsDomainStore.showAds) {
         return (
             <AdMobBanner
@@ -22,5 +22,3 @@ const Advertisement = observer(() => {
     }
     return null
 })
-
-export default Advertisement

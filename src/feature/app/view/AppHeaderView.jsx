@@ -6,7 +6,7 @@ import { observer } from "mobx-react"
 import NavigationActions from "../actions/NavigationActions"
 import AppUiState from "../state/AppUiState"
 
-const AppHeaderView = observer(() => (
+export const AppHeaderView = observer(() => (
     <Header
         style={{
             backgroundColor: "#009A49",
@@ -38,5 +38,3 @@ const AppHeaderView = observer(() => (
         </Right>
     </Header>
 ))
-
-export default AppHeaderView

@@ -4,9 +4,9 @@ import _ from "lodash"
 import { StyleSheet } from "react-native"
 import { Text } from "native-base"
 import ProductDepositDomainStore from "../state/ProductDepositDomainStore"
-import ProductDepositCard from "./ProductDepositResultCard"
+import {ProductDepositCard} from "./ProductDepositResultCard"
 
-const ProductDepositView = ({ depositResponse }) => {
+export const ProductDepositView = ({ depositResponse }) => {
     if (!_.isNil(depositResponse.deposit)) {
         return (
             <ProductDepositCard
@@ -81,5 +81,3 @@ const styles = StyleSheet.create({
         color: "red",
     },
 })
-
-export default ProductDepositView

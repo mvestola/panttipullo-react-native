@@ -8,7 +8,7 @@ import Hyperlink from "react-native-hyperlink"
 import { StyleSheet } from "react-native"
 import AppSettingsDomainStore from "../settings/state/SettingsDomainStore"
 
-const InfoView = observer(() => (
+export const InfoView = observer(() => (
     <Card>
         <CardItem header>
             <Text>{`Panttipullo v${AppSettingsDomainStore.getAppVersion()}`}</Text>
@@ -57,5 +57,3 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
 })
-
-export default InfoView

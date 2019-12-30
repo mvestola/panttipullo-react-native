@@ -1,9 +1,9 @@
 import { Button, Icon, View } from "native-base"
 import React from "react"
 import { Text } from "react-native"
-import MainStyles from "./MainStyles"
+import {MainStyles} from "./MainStyles"
 
-const MainViewHeader = ({ title, onClear }) => (
+export const MainViewHeader = ({ title, onClear }) => (
     <View style={MainStyles.sectionHeader}>
         <View style={MainStyles.sectionHeaderWithClearButton}>
             <Text style={MainStyles.sectionHeaderText}>{title}</Text>
@@ -17,5 +17,3 @@ const MainViewHeader = ({ title, onClear }) => (
         </View>
     </View>
 )
-
-export default MainViewHeader

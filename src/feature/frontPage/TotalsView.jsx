@@ -6,8 +6,8 @@ import { Text, View } from "native-base"
 import NumberFormatter from "../common/util/NumberFormatter"
 import ProductDepositDomainStore from "../productDeposit/state/ProductDepositDomainStore"
 import ProductDepositActions from "../productDeposit/actions/ProductDepositActions"
-import MainStyles from "./MainStyles"
-import MainViewHeader from "./MainViewHeader"
+import {MainStyles} from "./MainStyles"
+import {MainViewHeader} from "./MainViewHeader"
 
 const TotalsRow = ({ value, description }) => (
     <View style={styles.totals}>
@@ -18,7 +18,7 @@ const TotalsRow = ({ value, description }) => (
     </View>
 )
 
-const TotalsView = observer(() => (
+export const TotalsView = observer(() => (
         [
             <MainViewHeader title={i18n.t("stats")} onClear={() => ProductDepositActions.clearStats()} key="header" />,
             <View style={MainStyles.sectionContent} key="content">
@@ -67,5 +67,3 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     },
 })
-
-export default TotalsView

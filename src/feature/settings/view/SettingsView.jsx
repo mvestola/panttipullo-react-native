@@ -7,7 +7,7 @@ import { observer } from "mobx-react"
 import AppSettingsDomainStore from "../state/SettingsDomainStore"
 import AppSettingsActions from "../actions/AppSettingsActions"
 
-const SettingsView = observer(() => (
+export const SettingsView = observer(() => (
     <List>
         <ListItem itemDivider>
             <Text>{i18n.t("generalSettings")}</Text>
@@ -43,5 +43,3 @@ const SettingsView = observer(() => (
         </ListItem>
     </List>
 ))
-
-export default SettingsView

@@ -7,7 +7,7 @@ const handleBarCodeScanned = ({ data }) => {
     ScanActions.barcodeScanComplete(data)
 }
 
-const BarcodeScanner = () => (
+export const BarcodeScanner = () => (
     <BarCodeScanner
         onBarCodeScanned={handleBarCodeScanned}
         style={styles.scanner}
@@ -25,5 +25,3 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 })
-
-export default BarcodeScanner

@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
 
-export default StyleSheet.create({
+export const MainStyles = StyleSheet.create({
     sectionHeader: {
         backgroundColor: "#009A49",
         padding: 10,

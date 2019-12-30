@@ -5,7 +5,7 @@ import {
 import { observer } from "mobx-react"
 import { StyleSheet } from "react-native"
 
-const AppInitializingView = observer(() => (
+export const AppInitializingView = observer(() => (
     <Container>
         <Content contentContainerStyle={styles.container} style={{ padding: 10 }}>
             <Grid style={{ alignItems: "center", justifyContent: "center" }}>
@@ -25,4 +25,3 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
 })
-export default AppInitializingView

@@ -7,7 +7,7 @@ import { FlatList, StyleSheet } from "react-native"
 import moment from "moment"
 import ProductDepositDomainStore from "../productDeposit/state/ProductDepositDomainStore"
 
-const RecentScanList = observer(() => {
+export const RecentScanList = observer(() => {
     const lastScanResultsSorted = toJS(ProductDepositDomainStore.lastScanResultsSorted)
     if (lastScanResultsSorted.length > 0) {
         return (
@@ -101,5 +101,3 @@ const styles = StyleSheet.create({
         padding: 10,
     },
 })
-
-export default RecentScanList

@@ -7,7 +7,7 @@ import ProductDepositDomainStore from "../../productDeposit/state/ProductDeposit
 import AppSettingsDomainStore from "../../settings/state/SettingsDomainStore"
 import {observer} from "mobx-react"
 
-const ScanBarcodeButton = observer(() => (
+export const ScanBarcodeButton = observer(() => (
     <Button
         iconLeft
         disabled={AppSettingsDomainStore.isBarcodeScanDisabled}
@@ -20,5 +20,3 @@ const ScanBarcodeButton = observer(() => (
         <Text>{i18n.t("scanNewBarCode")}</Text>
     </Button>
 ))
-
-export default ScanBarcodeButton

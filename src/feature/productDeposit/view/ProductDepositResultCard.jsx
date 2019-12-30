@@ -3,9 +3,9 @@ import { StyleSheet } from "react-native"
 import {
  Body, Card, CardItem, Icon, Text, View,
 } from "native-base"
-import ScanBarcodeButton from "../../common/view/ScanBarcodeButton"
+import {ScanBarcodeButton} from "../../common/view/ScanBarcodeButton"
 
-const ProductDepositCard = ({
+export const ProductDepositCard = ({
  title, titleStyle, iconStyle, iconName, iconType, children,
 }) => (
     <Card>
@@ -35,5 +35,3 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
 })
-
-export default ProductDepositCard

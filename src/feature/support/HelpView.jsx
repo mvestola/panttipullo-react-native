@@ -4,7 +4,7 @@ import {
  Body, Card, CardItem, Icon, Text, View,
 } from "native-base"
 
-const HelpView = () => (
+export const HelpView = () => (
     <Card style={{ marginBottom: 20 }}>
         <CardItem header>
             <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
@@ -19,5 +19,3 @@ const HelpView = () => (
         </CardItem>
     </Card>
 )
-
-export default HelpView
