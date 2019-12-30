@@ -37,15 +37,11 @@ EAN-13, EAN-8, UPC-A or UPC-E, thus application is limited to scan only these ty
 
 ### Main views
 
-<kbd>
-<img src="play_store/screenshots/en/01_main_screen.png" width="250" alt="Main screen of the application"/> <img src="play_store/screenshots/en/02_recent_scans.png" width="250" alt="Recent scans list"/> <img src="play_store/screenshots/en/03_scanning.png" width="250" alt="Scanning barcode from a plastic bottle"/> <img src="play_store/screenshots/en/04_scan_result_has_deposit.png" width="250" alt="When a plastic bottle has deposit"/> <img src="play_store/screenshots/en/05_scan_result_no_deposit.png" width="250" alt="When a plastic bottle has no deposit"/> 
-</kbd>
+<kbd><img src="play_store/screenshots/en/01_main_screen.png" width="250" alt="Main screen of the application"/></kbd> <kbd><img src="play_store/screenshots/en/02_recent_scans.png" width="250" alt="Recent scans list"/></kbd> <kbd><img src="play_store/screenshots/en/03_scanning.png" width="250" alt="Scanning barcode from a plastic bottle"/></kbd> <kbd><img src="play_store/screenshots/en/04_scan_result_has_deposit.png" width="250" alt="When a plastic bottle has deposit"/></kbd> <kbd><img src="play_store/screenshots/en/05_scan_result_no_deposit.png" width="250" alt="When a plastic bottle has no deposit"/></kbd>
   
 ### Support views
 
-<kbd>
-<img src="play_store/screenshots/en/06_settings.png" width="250" alt="Settings"/> <img src="play_store/screenshots/en/07_info.png" width="250" alt="Application info"/> <img src="play_store/screenshots/en/08_help.png" width="250" alt="Application help"/>
-</kbd>
+<kbd><img src="play_store/screenshots/en/06_settings.png" width="250" outline=1 alt="Settings"/></kbd> <kbd><img src="play_store/screenshots/en/07_info.png" width="250" border=1 alt="Application info"/></kbd> <kbd><img src="play_store/screenshots/en/08_help.png" width="250" border=1 alt="Application help"/></kbd>
 
 ## Download
 
