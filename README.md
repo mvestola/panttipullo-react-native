@@ -41,7 +41,7 @@ EAN-13, EAN-8, UPC-A or UPC-E, thus application is limited to scan only these ty
   
 ### Support views
 
-<kbd><img src="play_store/screenshots/en/06_settings.png" width="250" outline=1 alt="Settings"/></kbd> <kbd><img src="play_store/screenshots/en/07_info.png" width="250" border=1 alt="Application info"/></kbd> <kbd><img src="play_store/screenshots/en/08_help.png" width="250" border=1 alt="Application help"/></kbd>
+<kbd><img src="play_store/screenshots/en/06_settings.png" width="250" alt="Settings"/></kbd> <kbd><img src="play_store/screenshots/en/07_info.png" width="250" alt="Application info"/></kbd> <kbd><img src="play_store/screenshots/en/08_help.png" width="250" alt="Application help"/></kbd>
 
 ## Download
 
