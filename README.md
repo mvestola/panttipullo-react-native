@@ -2,6 +2,8 @@
 
 ## Sovelluksen kuvaus (in Finnish)
 
+<img src="assets/icon.png" width="150" alt="Logo" align="right" />
+
 Skannaa viivakoodi juomapakkauksesta ja tarkista saako siitä panttia. Tiesitkö, 
 että kaikissa Suomessa myytävissä pantillisissa juomapakkauksissa ei ole Palpan panttimerkintää. 
 Esim. monista viinipulloista puuttuu panttimerkintä, mutta niistä saattaa silti saada pantin. 
