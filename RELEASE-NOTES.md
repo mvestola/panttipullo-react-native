@@ -1,3 +1,11 @@
+## 1.0.6 (2019-12-31)
+
+* Translate application to English and Swedish
+* Improve feedback for buttons
+* Improve landscape layout
+* Move recent scans list to own view
+* Update libraries to latest ones
+
 ## 1.0.5 (2019-09-29)
 
 * Improve barcode scan by reading only barcode types: EAN-13, EAN-8, UPC-A or UPC-E
