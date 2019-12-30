@@ -38,6 +38,7 @@ export const SettingsView = observer(() => (
         >
           <Picker.Item label={`${i18n.t("language")}: Suomi`} value="fi" />
           <Picker.Item label={`${i18n.t("language")}: English`} value="en" />
+          <Picker.Item label={`${i18n.t("language")}: Svenska`} value="sv" />
         </Picker>
       </Body>
     </ListItem>

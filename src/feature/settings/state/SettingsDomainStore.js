@@ -10,6 +10,7 @@ import { ERROR, LOADED, LOADING } from "../../common/constants/domainStoreStatus
 import { SettingsApi } from "../api/SettingsApi"
 import { fi } from "../../common/i18n/fi"
 import { en } from "../../common/i18n/en"
+import { sv } from "../../common/i18n/sv"
 import { logEvent } from "../../common/util/Analytics"
 import { showNotification } from "../../common/util/NotificationBuilder"
 
@@ -18,7 +19,7 @@ configure({
 })
 
 i18n.fallbacks = true
-i18n.translations = { fi, en }
+i18n.translations = { fi, en, sv }
 i18n.locale = Localization.locale
 
 class Store {
