@@ -12,7 +12,7 @@ export const ScanBarcodeButton = observer(() => (
     iconLeft
     disabled={SettingsDomainStore.isBarcodeScanDisabled}
     onPress={() => ProductDepositActions.scanBarcode()}
-    style={{ backgroundColor: "#000000" }}
+    style={{ backgroundColor: "#000000", height: 80 }}
   >
     {ProductDepositDomainStore.barcodeScanIsInProgress
       ? <ActivityIndicator size="small" color="#ffffff" style={{ marginLeft: 20 }} />
