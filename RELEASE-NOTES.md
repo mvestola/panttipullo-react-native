@@ -1,4 +1,4 @@
-## 1.0.6 (2019-12-31)
+## 1.0.6 (2019-12-30)
 
 * Translate application to English and Swedish
 * Improve feedback for buttons
