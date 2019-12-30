@@ -44,6 +44,9 @@
         "googleMobileAdsAppId": "ca-app-pub-0260854390576047~9146307330"
       }
     },
-    "githubUrl": "https://github.com/mvestola/panttipullo-react-native"
+    "githubUrl": "https://github.com/mvestola/panttipullo-react-native",
+    "packagerOpts": {
+      "sourceExts": ["js", "json", "ts", "tsx", "jsx"]
+    }
   }
 }
