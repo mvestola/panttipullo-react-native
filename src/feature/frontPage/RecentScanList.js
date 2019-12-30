@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import React from "react"
 import { Col, Grid, Text } from "native-base"
 import { observer } from "mobx-react"
@@ -15,13 +16,13 @@ const RecentScanList = observer(() => {
                 ListHeaderComponent={(
                     <Grid style={styles.listHeaderContainer}>
                         <Col size={colValues.deposit}>
-                            <Text style={styles.listHeader}>Pantti</Text>
+                            <Text style={styles.listHeader}>{i18n.t("deposit")}</Text>
                         </Col>
                         <Col size={colValues.date}>
-                            <Text style={styles.listHeader}>Aika</Text>
+                            <Text style={styles.listHeader}>{i18n.t("time")}</Text>
                         </Col>
                         <Col size={colValues.desc}>
-                            <Text style={styles.listHeader}>Kuvaus</Text>
+                            <Text style={styles.listHeader}>{i18n.t("description")}</Text>
                         </Col>
                     </Grid>
                 )}
@@ -51,8 +52,7 @@ const RecentScanList = observer(() => {
                             )}
                             <Text style={[styles.listItemText, styles.listItemNotImportant]}>{item.productType}</Text>
                             <Text style={[styles.listItemText, styles.listItemNotImportant]}>
-EAN:
-{item.ean}
+                                {i18n.t("ean")}: {item.ean}
                             </Text>
                         </Col>
                     </Grid>
@@ -60,7 +60,7 @@ EAN:
             />
         )
     }
-        return <Text style={[styles.listItemText, styles.noRecentScans]}>Ei tallennettuja skannauksia</Text>
+        return <Text style={[styles.listItemText, styles.noRecentScans]}>{i18n.t("noRecentScans")}</Text>
 })
 
 const colValues = {

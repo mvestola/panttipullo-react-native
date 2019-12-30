@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import React from "react"
 import {
  Body, Card, CardItem, Icon, Text, View,
@@ -8,17 +9,12 @@ const HelpView = () => (
         <CardItem header>
             <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
                 <Icon name="help-circle" type="MaterialCommunityIcons" style={{ fontSize: 26, color: "blue" }} />
-                <Text> Ohjelman käyttöohje</Text>
+                <Text>{` ${i18n.t("appInstructionsTitle")}`}</Text>
             </View>
         </CardItem>
         <CardItem>
             <Body>
-            <Text>
-                Skannaa viivakoodi pullosta tai tölkistä &quot;Skannaa uusi viivakoodi&quot; -painikkeella
-                ja saat tietää saako juomapakkauksesta pantin. Klikkaa vain painiketta ja kohdista
-                kameran kuva viivakoodiin. Kamera tunnistaa viivakoodin automaattisesti yleensä
-                parissa sekunnissa.
-            </Text>
+            <Text>{i18n.t("appInstructions")}</Text>
             </Body>
         </CardItem>
     </Card>

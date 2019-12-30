@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import { Alert } from "react-native"
 
 class NotificationBuilder {
@@ -7,7 +8,7 @@ class NotificationBuilder {
             title,
             text,
             [
-                { text: "Sulje", style: "cancel", onPress: () => onClose() },
+                { text: i18n.t("close"), style: "cancel", onPress: () => onClose() },
             ],
             { cancelable: false },
         )

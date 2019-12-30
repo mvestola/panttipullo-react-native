@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import { computed, observable } from "mobx"
 import ProductDepositDomainStore from "../../productDeposit/state/ProductDepositDomainStore"
 import { LOADED, LOADING } from "../../common/constants/domainStoreStatusConstants"
@@ -44,21 +45,21 @@ class AppUiState {
 
     @computed get subtitleText() {
         if (this.showSettings) {
-            return "Asetukset"
+            return i18n.t("settings")
         } if (this.showInfo) {
-            return "Tietoa ohjelmasta"
+            return i18n.t("info")
         } if (this.showHelp) {
-            return "Ohjeet"
+            return i18n.t("help")
         } if (this.showRecentScans) {
-            return "Skannaukset"
+            return i18n.t("recentScans")
         } if (this.showBarcodeScanner) {
-            return "Viivakoodin skannaus"
+            return i18n.t("barcodeScan")
         } if (this.showProductDepositResult) {
-            return "Skannauksen tulos"
+            return i18n.t("barcodeScanResult")
         } if (this.showLoadingSpinner) {
-            return "Haetaan tietoja..."
+            return i18n.t("fetching")
         }
-            return "Etusivu"
+            return i18n.t("frontPage")
     }
 }
 

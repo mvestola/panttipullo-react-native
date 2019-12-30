@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import React from "react"
 import {
  Body, Icon, Left, List, ListItem, Picker, Right, Switch, Text,
@@ -9,14 +10,14 @@ import AppSettingsActions from "../actions/AppSettingsActions"
 const SettingsView = observer(() => (
     <List>
         <ListItem itemDivider>
-            <Text>Yleiset asetukset</Text>
+            <Text>{i18n.t("generalSettings")}</Text>
         </ListItem>
         <ListItem icon>
             <Left>
                 <Icon active name="sign-text" type="MaterialCommunityIcons" />
             </Left>
             <Body>
-            <Text>Näytä mainoksia</Text>
+            <Text>{i18n.t("showAds")}</Text>
             </Body>
             <Right>
                 <Switch
@@ -35,7 +36,8 @@ const SettingsView = observer(() => (
                 selectedValue={AppSettingsDomainStore.language}
                 onValueChange={(val) => AppSettingsActions.saveLanguage(val)}
             >
-                <Picker.Item label="Kieli: Suomi" value="fi" />
+                <Picker.Item label={`${i18n.t("language")}: Suomi`} value="fi" />
+                <Picker.Item label={`${i18n.t("language")}: English`} value="en" />
             </Picker>
             </Body>
         </ListItem>

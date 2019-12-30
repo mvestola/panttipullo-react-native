@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import {
 action, computed, observable, runInAction, toJS,
 } from "mobx"
@@ -80,7 +81,7 @@ class ProductDepositDomainStore {
             Analytics.logEvent("Unable to parse CSRF token from page")
             console.log("Unable to parse CSRF token from page.")
             this.status = ERROR
-            NotificationBuilder.showNotification("Virhe", "Virhe parsittaessa tietoja Palpalta. Yritä uudestaan.")
+            NotificationBuilder.showNotification(i18n.t("error"), i18n.t("parsingErrorPalpa"))
         }
     }
 
@@ -133,7 +134,7 @@ class ProductDepositDomainStore {
         this.reset()
         console.log(error)
         this.status = ERROR
-        NotificationBuilder.showNotification("Yhteysvirhe", "Virhe ladattaessa tietoja Palpalta. Yritä uudestaan.")
+        NotificationBuilder.showNotification(i18n.t("connectionError"), i18n.t("loadErrorPalpa"))
     }
 
     persistTotalsData = async () => {

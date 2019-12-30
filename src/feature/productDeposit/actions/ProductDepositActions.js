@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import { action } from "mobx"
 import * as Permissions from "expo-permissions"
 import { Alert } from "react-native"
@@ -34,11 +35,11 @@ class ProductDepositActions {
     @action
     clearStats() {
         Alert.alert(
-            "Vahvista poisto",
-            "Haluatko varmasti nollata tilastot",
+            i18n.t("confirmDelete"),
+            i18n.t("confirmStatsEmpty"),
             [
-                { text: "Peruuta", style: "cancel" },
-                { text: "OK", onPress: () => this._doClearStats() },
+                { text: i18n.t("cancel"), style: "cancel" },
+                { text: i18n.t("ok"), onPress: () => this._doClearStats() },
             ],
             { cancelable: false },
         )
@@ -56,11 +57,11 @@ class ProductDepositActions {
     @action
     clearRecentScans() {
         Alert.alert(
-            "Vahvista poisto",
-            "Haluatko varmasti poistaa viimeisimmät skannaukset",
+            i18n.t("confirmDelete"),
+            i18n.t("confirmRecentScansEmpty"),
             [
-                { text: "Peruuta", style: "cancel" },
-                { text: "OK", onPress: () => this._doClearRecentScans() },
+                { text: i18n.t("cancel"), style: "cancel" },
+                { text: i18n.t("ok"), onPress: () => this._doClearRecentScans() },
             ],
             { cancelable: false },
         )

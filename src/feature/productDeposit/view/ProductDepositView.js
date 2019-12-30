@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import React from "react"
 import _ from "lodash"
 import { StyleSheet } from "react-native"
@@ -9,43 +10,43 @@ const ProductDepositView = ({ depositResponse }) => {
     if (!_.isNil(depositResponse.deposit)) {
         return (
             <ProductDepositCard
-                title="Tästä saa pantin!"
+                title={i18n.t("thisHasDeposit")}
                 titleStyle={styles.hasDepositTitle}
                 iconStyle={styles.iconHasDeposit}
                 iconName="check-circle"
                 iconType="MaterialCommunityIcons"
             >
                 <Text style={styles.depositValue}>
-                    {`Pantin määrä: ${depositResponse.deposit}`}
+                    {`${i18n.t("depositAmount")}: ${depositResponse.deposit}`}
                 </Text>
                 <Text style={styles.depositExtraInfo}>
-                    {`EAN: ${depositResponse.ean}`}
+                    {`${i18n.t("ean")}: ${depositResponse.ean}`}
                 </Text>
                 <Text style={styles.depositExtraInfo}>
-                    {`Nimi: ${depositResponse.productName}`}
+                    {`${i18n.t("productName")}: ${depositResponse.productName}`}
                 </Text>
                 <Text style={styles.depositExtraInfo}>
-                    {`Tyyppi: ${depositResponse.productType}`}
+                    {`${i18n.t("productType")}: ${depositResponse.productType}`}
                 </Text>
                 <Text style={[styles.depositExtraInfo, styles.depositExtraDesc]}>
-                    {`Palpan kuvaus: "${depositResponse.message}"`}
+                    {`${i18n.t("palpaDescription")}: "${depositResponse.message}"`}
                 </Text>
             </ProductDepositCard>
         )
     }
         return (
             <ProductDepositCard
-                title="Tästä ei ehkä saa panttia"
+                title={i18n.t("thisHasNoDeposit")}
                 titleStyle={styles.noDepositTitle}
                 iconStyle={styles.iconHasNoDeposit}
                 iconName="alert-circle"
                 iconType="MaterialCommunityIcons"
             >
                 <Text style={styles.depositExtraInfo}>
-                    {`Viivakoodi: ${ProductDepositDomainStore.barcode}`}
+                    {`${i18n.t("barcode")}: ${ProductDepositDomainStore.barcode}`}
                 </Text>
                 <Text style={[styles.depositExtraInfo, styles.depositExtraDesc]}>
-                    {`Palpan kuvaus: "${depositResponse.message}"`}
+                    {`${i18n.t("palpaDescription")}: "${depositResponse.message}"`}
                 </Text>
             </ProductDepositCard>
         )

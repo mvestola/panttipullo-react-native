@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import React from "react"
 import { observer } from "mobx-react"
 import { StyleSheet } from "react-native"
@@ -19,24 +20,24 @@ const TotalsRow = ({ value, description }) => (
 
 const TotalsView = observer(() => (
         [
-            <MainViewHeader title="TILASTOSI" onClear={() => ProductDepositActions.clearStats()} key="header" />,
+            <MainViewHeader title={i18n.t("stats")} onClear={() => ProductDepositActions.clearStats()} key="header" />,
             <View style={MainStyles.sectionContent} key="content">
                 <View style={styles.totalsContainer}>
                     <TotalsRow
                         value={NumberFormatter.formatPieces(ProductDepositDomainStore.totalScanCount)}
-                        description="skannattu yhteensä"
+                        description={i18n.t("totalsScan")}
                     />
                     <TotalsRow
                         value={NumberFormatter.formatPieces(ProductDepositDomainStore.totalScanHavingDeposit)}
-                        description="pantillisia yhteensä"
+                        description={i18n.t("totalsWithDeposit")}
                     />
                     <TotalsRow
                         value={NumberFormatter.formatPieces(ProductDepositDomainStore.totalScanCountNoDeposit)}
-                        description="pantittomia yhteensä"
+                        description={i18n.t("totalsWithoutDeposit")}
                     />
                     <TotalsRow
                         value={NumberFormatter.formatCurrency(ProductDepositDomainStore.totalDepositAmount)}
-                        description="pantit yhteensä"
+                        description={i18n.t("totalsDeposits")}
                     />
                 </View>
             </View>,

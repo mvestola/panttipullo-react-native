@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import React from "react"
 import {
  Body, Card, CardItem, Text,
@@ -15,12 +16,7 @@ const InfoView = observer(() => (
         <CardItem>
             <Body>
             <Hyperlink linkDefault linkStyle={styles.hyperlink}>
-                <Text>
-                    Skannaa viivakoodi juomapakkauksesta ja katso saako siitä panttia.
-                    Ohjelma hakee tiedot Palpan sivuilta: https://extra.palpa.fi/pantillisuus.
-                    Ohjelma on yksityinen projekti, ei siis Palpan kehittämä.
-                    Ohjelmaan liittyvissä asioissa, ota yhteyttä kehittäjään, ei Palpaan.
-                </Text>
+                <Text>{i18n.t("appDescription")}</Text>
             </Hyperlink>
             </Body>
         </CardItem>
@@ -29,7 +25,7 @@ const InfoView = observer(() => (
             <Hyperlink
                 linkDefault
                 linkStyle={[styles.hyperlink, styles.appLink]}
-                linkText="Ohjelman kotisivulle"
+                linkText={i18n.t("appHomepage")}
             >
                 <Text style={styles.appLink}>
                     https://mvestola.github.io/panttipullo-react-native/
@@ -42,7 +38,7 @@ const InfoView = observer(() => (
             <Hyperlink
                 linkDefault
                 linkStyle={[styles.hyperlink, styles.appLink]}
-                linkText="Tietosuojakäytäntö (englanniksi)"
+                linkText={i18n.t("privacyPolicy")}
             >
                 <Text style={styles.appLink}>
                     https://mvestola.github.io/panttipullo-react-native/privacy-policy.html

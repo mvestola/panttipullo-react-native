@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import numeral from "numeral"
 
 class NumberFormatter {
@@ -20,7 +21,7 @@ class NumberFormatter {
     }
 
     formatPieces(numberValue) {
-        return `${numberValue} kpl`
+        return `${numberValue} ${i18n.t("pcs")}`
     }
 }
 

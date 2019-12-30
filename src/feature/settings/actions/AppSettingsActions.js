@@ -1,3 +1,4 @@
+import i18n from "i18n-js"
 import { action } from "mobx"
 import { Alert } from "react-native"
 import AppSettingsDomainStore from "../state/SettingsDomainStore"
@@ -8,6 +9,7 @@ class AppSettingsActions {
     saveLanguage(language) {
         if (language !== AppSettingsDomainStore.language) {
             AppSettingsDomainStore.language = language
+            i18n.locale = language
             AppSettingsDomainStore.persistSettingsData()
             Analytics.logEvent("Language setting changed")
         }
@@ -19,11 +21,11 @@ class AppSettingsActions {
             AppSettingsDomainStore.showAds = showAds
             if (!showAds) {
                 Alert.alert(
-                    "Vahvista muutos",
-                    "Mainoksia näyttämällä tuet ohjelman kehitystä. Haluatko varmasti poistaa mainokset?",
+                    i18n.t("confirmChange"),
+                    i18n.t("confirmAdRemoval"),
                     [
-                        { text: "Peruuta", style: "cancel", onPress: () => this._doSaveShowAds(true) },
-                        { text: "OK", onPress: () => this._doSaveShowAds(false) },
+                        { text: i18n.t("cancel"), style: "cancel", onPress: () => this._doSaveShowAds(true) },
+                        { text: i18n.t("ok"), onPress: () => this._doSaveShowAds(false) },
                     ],
                     { cancelable: false },
                 )

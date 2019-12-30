@@ -2,16 +2,24 @@ import {
  action, configure, observable, runInAction, toJS, when,
 } from "mobx"
 import { AsyncStorage, ToastAndroid } from "react-native"
+import * as Localization from 'expo-localization'
+import i18n from "i18n-js"
 import Constants from "expo-constants"
 import * as Font from "expo-font"
 import { ERROR, LOADED, LOADING } from "../../common/constants/domainStoreStatusConstants"
 import AppSettingsApi from "../api/SettingsApi"
 import NotificationBuilder from "../../common/util/NotificationBuilder"
 import Analytics from "../../common/util/Analytics"
+import { fi } from "../../common/i18n/fi"
+import { en } from "../../common/i18n/en"
 
 configure({
     enforceActions: "always",
 })
+
+i18n.fallbacks = true;
+i18n.translations = { fi, en }
+i18n.locale = Localization.locale
 
 class SettingsDomainStore {
     @observable isBarcodeScanDisabled = true
@@ -26,7 +34,7 @@ class SettingsDomainStore {
 
     @observable showAds = false
 
-    @observable language = "fi"
+    @observable language = "fi" // TODO: get from locale?
 
     @observable settingsAreLoaded = false
 
@@ -44,7 +52,7 @@ class SettingsDomainStore {
             () => {
                 Analytics.logEvent("Showing notification from developer")
                 NotificationBuilder.showNotification(
-                    "Viesti kehittäjältä",
+                    i18n.t("messageFromDeveloper"),
                     this.notification.message,
                     () => this._onNotificationDismissed(this.notification.id),
                 )
@@ -93,7 +101,7 @@ class SettingsDomainStore {
         try {
             await AsyncStorage.setItem("showAds", toJS(this.showAds).toString())
             await AsyncStorage.setItem("language", toJS(this.language))
-            ToastAndroid.show("Asetukset tallennettu!", ToastAndroid.SHORT)
+            ToastAndroid.show(i18n.t("settingsSaved"), ToastAndroid.SHORT)
         } catch (error) {
             console.log("error saving persist data", error)
         }
@@ -127,6 +135,7 @@ class SettingsDomainStore {
                 }
                 if (language !== null) {
                     this.language = language
+                    i18n.locale = language
                 }
                 if (notificationsShown !== null) {
                     this.notificationsDismissed = JSON.parse(notificationsShown)

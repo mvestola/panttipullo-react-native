@@ -5,6 +5,7 @@ import AppContentView from "./src/feature/app/view/AppContentView"
 import AppHeaderView from "./src/feature/app/view/AppHeaderView"
 import AppUiState from "./src/feature/app/state/AppUiState"
 import AppInitializingView from "./src/feature/app/view/AppInitializingView"
+import AppSettingsDomainStore from "./src/feature/settings/state/SettingsDomainStore"
 
 const App = observer(() => {
     if (AppUiState.showAppIsInitialising) {
@@ -13,7 +14,7 @@ const App = observer(() => {
     return (
         <View style={{flex: 1}}>
             <AppHeaderView/>
-            <AppContentView/>
+            <AppContentView key={`language-${AppSettingsDomainStore.language}`} />
         </View>
     )
 })
