@@ -11,14 +11,21 @@ Install following software for development:
 * [NVM](https://github.com/creationix/nvm)
 * [Expo client and Expo App](https://docs.expo.io/versions/latest/introduction/installation)
 
-## Setup
+## Initial setup
 
 
 ```
 git clone git@github.com:mvestola/panttipullo-react-native.git
 npm install
+```
+
+## Development
+
+```
+npm run eslint
 npm start
 ```
+
 ## Run in Android emulator
 
 Better to run in real phone because barcode scanning is easier. To run in emulator:

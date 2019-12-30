@@ -9,7 +9,7 @@
       "ios",
       "android"
     ],
-    "version": "1.0.5",
+    "version": "1.0.6",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -35,7 +35,7 @@
     },
     "android": {
       "package": "fi.mvestola.panttipullo",
-      "versionCode": 6,
+      "versionCode": 7,
       "playStoreUrl": "https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo",
       "permissions": [
         "CAMERA"

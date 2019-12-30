@@ -22,5 +22,9 @@
   "1.0.5": {
     "disabled": false,
     "notification": null
+  },
+  "1.0.6": {
+    "disabled": false,
+    "notification": null
   }
 }
