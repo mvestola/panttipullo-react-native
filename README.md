@@ -33,6 +33,13 @@ As defined by [Palpa beverage package design instructions](https://www.palpa.fi/
 all beverage packages in Finland should have barcode one of these types: 
 EAN-13, EAN-8, UPC-A or UPC-E, thus application is limited to scan only these types of barcodes.
 
+## Supported languages
+
+You can use the application in following languages:
+* Finnish
+* English
+* Swedish
+
 ## Screenshots
 
 ### Main views
