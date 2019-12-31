@@ -61,5 +61,5 @@ This application will not be released in Apple Store because it is too expensive
 ### Logo
 
 Logo uses creative common licenced images from the [Noun project](https://thenounproject.com):
-* beer bottle by Nikita Kozin from the Noun Project
-* scan barcode by sandra from the Noun Project
+* bottle image by Nikita Kozin from the Noun Project
+* barcode scan image by sandra from the Noun Project
