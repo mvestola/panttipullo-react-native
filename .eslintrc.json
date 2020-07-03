@@ -13,7 +13,7 @@
     "import/prefer-default-export": ["off"],
     "no-console": ["off"],
     "semi": ["error", "never"],
-    "max-len": ["error", { "code": 120 }]
+    "max-len": ["error", { "code": 160 }]
   },
   "globals": {
     "Expo": false,

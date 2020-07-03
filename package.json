@@ -7,9 +7,9 @@
     "publish": "expo publish",
     "build-android": "expo build:android -t app-bundle",
     "eject": "expo eject",
-    "eslint:fix": "esw --ext js,jsx src/** App.jsx --fix",
-    "eslint": "esw --ext js,jsx src/** App.jsx ",
-    "eslint:watch": "esw -w --changed --ext js,jsx src/** App.jsx"
+    "eslint:fix": "esw --ext js,jsx src/** App.jsx app.config.js --fix",
+    "eslint": "esw --ext js,jsx src/** App.jsx app.config.js",
+    "eslint:watch": "esw -w --changed --ext js,jsx src/** App.jsx app.config.js"
   },
   "dependencies": {
     "@expo/vector-icons": "^10.2.0",

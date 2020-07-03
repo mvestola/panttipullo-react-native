@@ -7,71 +7,71 @@ const androidVersionCode = 9
 const googleMobileAdsAppId = "ca-app-pub-0260854390576047~9146307330"
 
 export default {
-  "expo": {
-    "name": projectName,
-    "description": "React Native application for Android to scan barcode from Finnish beverage package to check if you get deposit or not",
-    "slug": projectName,
-    "privacy": "public",
-    "platforms": [
+  expo: {
+    name: projectName,
+    description: "React Native application for Android to scan barcode from Finnish beverage package to check if you get deposit or not",
+    slug: projectName,
+    privacy: "public",
+    platforms: [
       "ios",
-      "android"
+      "android",
     ],
-    "version": versionNumber,
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+    version: versionNumber,
+    icon: "./assets/icon.png",
+    splash: {
+      image: "./assets/splash.png",
+      resizeMode: "contain",
+      backgroundColor: "#ffffff",
     },
-    "androidStatusBar": {
-      "barStyle": "light-content",
-      "backgroundColor": "#004521"
+    androidStatusBar: {
+      barStyle: "light-content",
+      backgroundColor: "#004521",
     },
-    "updates": {
-      "fallbackToCacheTimeout": 0
+    updates: {
+      fallbackToCacheTimeout: 0,
     },
-    "assetBundlePatterns": [
-      "**/*"
+    assetBundlePatterns: [
+      "**/*",
     ],
-    "ios": {
-      "bundleIdentifier": packageName,
-      "supportsTablet": true,
-      "config": {
-        "googleMobileAdsAppId": googleMobileAdsAppId
-      }
+    ios: {
+      bundleIdentifier: packageName,
+      supportsTablet: true,
+      config: {
+        googleMobileAdsAppId,
+      },
     },
-    "android": {
-      "package": packageName,
-      "versionCode": androidVersionCode,
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo",
-      "permissions": [
-        "CAMERA"
+    android: {
+      package: packageName,
+      versionCode: androidVersionCode,
+      playStoreUrl: "https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo",
+      permissions: [
+        "CAMERA",
       ],
-      "config": {
-        "googleMobileAdsAppId": googleMobileAdsAppId
-      }
+      config: {
+        googleMobileAdsAppId,
+      },
     },
-    "githubUrl": "https://github.com/mvestola/panttipullo-react-native",
-    "packagerOpts": {
-      "sourceExts": [
+    githubUrl: "https://github.com/mvestola/panttipullo-react-native",
+    packagerOpts: {
+      sourceExts: [
         "js",
         "json",
         "ts",
         "tsx",
-        "jsx"
-      ]
+        "jsx",
+      ],
     },
-    "hooks": {
-      "postPublish": [
+    hooks: {
+      postPublish: [
         {
-          "file": "sentry-expo/upload-sourcemaps",
-          "config": {
-            "organization": process.env.SENTRY_ORG,
-            "project": process.env.SENTRY_PROJECT,
-            "authToken": process.env.SENTRY_AUTH_TOKEN
-          }
-        }
-      ]
-    }
-  }
+          file: "sentry-expo/upload-sourcemaps",
+          config: {
+            organization: process.env.SENTRY_ORG,
+            project: process.env.SENTRY_PROJECT,
+            authToken: process.env.SENTRY_AUTH_TOKEN,
+          },
+        },
+      ],
+    },
+  },
 }
