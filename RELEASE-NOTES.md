@@ -1,3 +1,7 @@
+## 1.0.7 (2020-07-03)
+
+* Update libraries to fix app crashes
+
 ## 1.0.6 (2019-12-30)
 
 * Translate application to English and Swedish

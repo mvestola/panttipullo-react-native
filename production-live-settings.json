@@ -26,5 +26,9 @@
   "1.0.6": {
     "disabled": false,
     "notification": null
+  },
+  "1.0.7": {
+    "disabled": false,
+    "notification": null
   }
 }
