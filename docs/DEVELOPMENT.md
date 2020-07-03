@@ -17,7 +17,10 @@ Install following software for development:
 ```
 git clone git@github.com:mvestola/panttipullo-react-native.git
 npm install
+cp setEnv.example.sh setEnv.sh
 ```
+
+Provide proper Sentry details in `setEnv.sh` file for JS error reporting.
 
 ## Development
 
@@ -73,4 +76,4 @@ Before release
 
 To release:
 1. Publish to expo from browser console
-1. Make Android release if other than plain JS changes:  `expo build:android -t app-bundle`
+1. Make Android release if other than plain JS changes:  `npm run build-android`

@@ -3,9 +3,8 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "start": "./setEnv.sh && expo start",
+    "build-android": "./setEnv.sh && expo build:android -t app-bundle",
     "eject": "expo eject",
     "eslint:fix": "esw --ext js,jsx src/** App.jsx --fix",
     "eslint": "esw --ext js,jsx src/** App.jsx ",
@@ -19,8 +18,8 @@
     "expo-barcode-scanner": "~8.2.1",
     "expo-constants": "~9.1.1",
     "expo-font": "~8.2.1",
-    "expo-localization": "~8.2.1",
     "expo-haptics": "~8.2.1",
+    "expo-localization": "~8.2.1",
     "expo-permissions": "~9.0.1",
     "i18n-js": "3.7.1",
     "lodash": "4.17.15",
@@ -31,7 +30,8 @@
     "numeral": "2.0.6",
     "react": "16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.0.tar.gz",
-    "react-native-hyperlink": "0.0.19"
+    "react-native-hyperlink": "0.0.19",
+    "sentry-expo": "^2.1.2"
   },
   "devDependencies": {
     "@babel/core": "7.10.4",

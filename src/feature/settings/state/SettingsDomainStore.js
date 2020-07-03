@@ -3,6 +3,7 @@ import {
 } from "mobx"
 import "mobx-react/batchingForReactNative"
 import _ from "lodash"
+import * as Sentry from "sentry-expo"
 import { AsyncStorage, ToastAndroid } from "react-native"
 import * as Localization from "expo-localization"
 import i18n from "i18n-js"
@@ -15,6 +16,12 @@ import { en } from "../../common/i18n/en"
 import { sv } from "../../common/i18n/sv"
 import { logEvent } from "../../common/util/Analytics"
 import { showNotification } from "../../common/util/NotificationBuilder"
+
+Sentry.init({
+    dsn: "https://fb5a5a2b538946c6ac701e90c04b3f1d@o415627.ingest.sentry.io/5306971",
+    enableInExpoDevelopment: true,
+    debug: true,
+});
 
 configure({
   enforceActions: "always",

@@ -52,6 +52,13 @@
         "tsx",
         "jsx"
       ]
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps"
+        }
+      ]
     }
   }
 }
