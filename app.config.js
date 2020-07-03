@@ -1,14 +1,22 @@
-{
+import "dotenv/config"
+
+const projectName = "Panttipullo"
+const packageName = "fi.mvestola.panttipullo"
+const versionNumber = "1.0.8"
+const androidVersionCode = 9
+const googleMobileAdsAppId = "ca-app-pub-0260854390576047~9146307330"
+
+export default {
   "expo": {
-    "name": "Panttipullo",
+    "name": projectName,
     "description": "React Native application for Android to scan barcode from Finnish beverage package to check if you get deposit or not",
-    "slug": "Panttipullo",
+    "slug": projectName,
     "privacy": "public",
     "platforms": [
       "ios",
       "android"
     ],
-    "version": "1.0.8",
+    "version": versionNumber,
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -26,21 +34,21 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "fi.mvestola.panttipullo",
+      "bundleIdentifier": packageName,
       "supportsTablet": true,
       "config": {
-        "googleMobileAdsAppId": "ca-app-pub-0260854390576047~9146307330"
+        "googleMobileAdsAppId": googleMobileAdsAppId
       }
     },
     "android": {
-      "package": "fi.mvestola.panttipullo",
-      "versionCode": 9,
+      "package": packageName,
+      "versionCode": androidVersionCode,
       "playStoreUrl": "https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo",
       "permissions": [
         "CAMERA"
       ],
       "config": {
-        "googleMobileAdsAppId": "ca-app-pub-0260854390576047~9146307330"
+        "googleMobileAdsAppId": googleMobileAdsAppId
       }
     },
     "githubUrl": "https://github.com/mvestola/panttipullo-react-native",
@@ -56,7 +64,12 @@
     "hooks": {
       "postPublish": [
         {
-          "file": "sentry-expo/upload-sourcemaps"
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": process.env.SENTRY_ORG,
+            "project": process.env.SENTRY_PROJECT,
+            "authToken": process.env.SENTRY_AUTH_TOKEN
+          }
         }
       ]
     }
