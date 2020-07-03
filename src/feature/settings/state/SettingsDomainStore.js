@@ -1,6 +1,7 @@
 import {
   action, configure, observable, runInAction, toJS, when,
 } from "mobx"
+import "mobx-react-lite/batchingForReactNative"
 import _ from "lodash"
 import { AsyncStorage, ToastAndroid } from "react-native"
 import * as Localization from "expo-localization"
