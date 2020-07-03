@@ -1,3 +1,7 @@
+## 1.0.8 (2020-07-03)
+
+* Add Sentry crash reporting platform 
+
 ## 1.0.7 (2020-07-03)
 
 * Update libraries to fix app crashes
