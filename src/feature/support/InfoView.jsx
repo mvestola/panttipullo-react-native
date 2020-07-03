@@ -29,7 +29,7 @@ export const InfoView = observer(() => (
             linkText={i18n.t("appHomepage")}
           >
             <Text style={styles.appLink}>
-                        https://mvestola.github.io/panttipullo-react-native/
+              https://mvestola.github.io/panttipullo-react-native/
             </Text>
           </Hyperlink>
         </Body>
@@ -42,7 +42,7 @@ export const InfoView = observer(() => (
             linkText={i18n.t("privacyPolicy")}
           >
             <Text style={styles.appLink}>
-                        https://mvestola.github.io/panttipullo-react-native/privacy-policy.html
+              https://mvestola.github.io/panttipullo-react-native/privacy-policy.html
             </Text>
           </Hyperlink>
         </Body>

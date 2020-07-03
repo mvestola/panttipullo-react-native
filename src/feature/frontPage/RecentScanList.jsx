@@ -53,7 +53,7 @@ export const RecentScanList = observer(() => {
               <Text style={[styles.listItemText, styles.listItemNotImportant]}>{item.productType}</Text>
               <Text style={[styles.listItemText, styles.listItemNotImportant]}>
                 {i18n.t("ean")}
-:
+                :
                 {item.ean}
               </Text>
             </Col>
