@@ -18,10 +18,10 @@ import { logEvent } from "../../common/util/Analytics"
 import { showNotification } from "../../common/util/NotificationBuilder"
 
 Sentry.init({
-    dsn: "https://fb5a5a2b538946c6ac701e90c04b3f1d@o415627.ingest.sentry.io/5306971",
-    enableInExpoDevelopment: true,
-    debug: true,
-});
+  dsn: "https://fb5a5a2b538946c6ac701e90c04b3f1d@o415627.ingest.sentry.io/5306971",
+  enableInExpoDevelopment: true,
+  debug: true,
+})
 
 configure({
   enforceActions: "always",
