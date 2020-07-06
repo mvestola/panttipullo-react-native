@@ -91,10 +91,10 @@ class Store {
     onServerSuccessResponse(response) {
       this.status = LOADED
       const payload = response.payLoad
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
 
       if (_.isNil(payload)) {
         logEvent("Got empty payload response from PALPA")
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning)
         this.depositResponse = {}
         if (!_.isNil(response.message)) {
           this.depositResponse.message = response.message
@@ -124,8 +124,11 @@ class Store {
         })
         this.totalScanCount++
         if (payload.deposit !== null) {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
           this.totalScanHavingDeposit++
           this.totalDepositAmount += Number(payload.deposit.replace(/,/g, ".").replace(/[^0-9.-]+/g, ""))
+        } else {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning)
         }
       }
       this.persistTotalsData()

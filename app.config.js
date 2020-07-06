@@ -46,6 +46,7 @@ export default {
       playStoreUrl: "https://play.google.com/store/apps/details?id=fi.mvestola.panttipullo",
       permissions: [
         "CAMERA",
+        "VIBRATE",
       ],
       config: {
         googleMobileAdsAppId,
