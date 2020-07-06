@@ -61,6 +61,11 @@ npm install
 * "Easy" grid: https://github.com/GeekyAnts/react-native-easy-grid
 * Hyperlinks: https://github.com/obipawan/react-native-hyperlink
 
+## Third party services used
+
+* Amplitude for analytics: https://amplitude.com/
+* Sentry for error reporting: https://sentry.io/
+
 ## Other useful links
 
 * Cheat sheet: https://github.com/vhpoet/react-native-styling-cheat-sheet
@@ -68,7 +73,7 @@ npm install
 ## Production release checklist
 
 Before release
-* Update `version` and `android.versionCode` in `app.json`
+* Update `versionNumber` and `androidVersionCode` in `app.config.js`
 * Make sure to have version number also in `production-live-settings.json`
 * Update release notes
 * Tag the code: `git tag 1.0.1 && git push --tags`
