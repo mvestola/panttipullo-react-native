@@ -1,3 +1,7 @@
+## 1.0.9 (2020-07-06)
+
+* Improve vibrate feedback on scan result
+
 ## 1.0.8 (2020-07-03)
 
 * Add Sentry crash reporting platform 
