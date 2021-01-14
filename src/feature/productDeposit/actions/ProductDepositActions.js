@@ -1,11 +1,15 @@
 import i18n from "i18n-js"
-import { action } from "mobx"
+import { action, makeObservable } from "mobx"
 import * as Permissions from "expo-permissions"
 import { Alert } from "react-native"
 import { ProductDepositDomainStore } from "../state/ProductDepositDomainStore"
 import { logEvent } from "../../common/util/Analytics"
 
 class Actions {
+  constructor() {
+    makeObservable(this)
+  }
+
   @action.bound
   async scanBarcode() {
     logEvent("Barcode scan started")

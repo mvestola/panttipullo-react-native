@@ -1,10 +1,14 @@
 import i18n from "i18n-js"
-import { action } from "mobx"
+import { action, makeObservable } from "mobx"
 import { Alert } from "react-native"
 import { SettingsDomainStore } from "../state/SettingsDomainStore"
 import { logEvent } from "../../common/util/Analytics"
 
 class Actions {
+  constructor() {
+    makeObservable(this)
+  }
+
   @action
   saveLanguage(language) {
     if (language !== SettingsDomainStore.language) {

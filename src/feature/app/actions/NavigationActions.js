@@ -1,4 +1,4 @@
-import { action } from "mobx"
+import { action, makeObservable } from "mobx"
 import { BackHandler } from "react-native"
 import { ProductDepositDomainStore } from "../../productDeposit/state/ProductDepositDomainStore"
 import { AppUiState } from "../state/AppUiState"
@@ -6,6 +6,7 @@ import { logEvent } from "../../common/util/Analytics"
 
 class Actions {
   constructor() {
+    makeObservable(this)
     BackHandler.addEventListener("hardwareBackPress", () => {
       if (AppUiState.isOtherThanMainView) {
         this.showMainPage()
