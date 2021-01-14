@@ -1,5 +1,5 @@
 import i18n from "i18n-js"
-import { computed, observable } from "mobx"
+import {computed, makeObservable, observable} from "mobx"
 import { ProductDepositDomainStore } from "../../productDeposit/state/ProductDepositDomainStore"
 import { LOADED, LOADING } from "../../common/constants/domainStoreStatusConstants"
 import { SettingsDomainStore } from "../../settings/state/SettingsDomainStore"
@@ -12,6 +12,10 @@ class State {
     @observable showHelp
 
     @observable showRecentScans
+
+    constructor() {
+        makeObservable(this)
+    }
 
     reset() {
       this.showInfo = false

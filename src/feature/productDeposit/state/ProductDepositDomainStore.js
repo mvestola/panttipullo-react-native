@@ -1,7 +1,7 @@
 import i18n from "i18n-js"
 import * as Haptics from "expo-haptics"
 import {
-  action, computed, observable, runInAction, toJS,
+  action, computed, observable, runInAction, toJS, makeObservable
 } from "mobx"
 import { AsyncStorage } from "react-native"
 import _ from "lodash"
@@ -35,7 +35,8 @@ class Store {
     @observable lastScanResults = []
 
     constructor() {
-      this._loadTotalsData()
+        makeObservable(this)
+        this._loadTotalsData()
     }
 
     reset() {

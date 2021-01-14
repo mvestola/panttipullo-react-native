@@ -1,5 +1,5 @@
 import {
-  action, configure, observable, runInAction, toJS, when,
+    action, configure, makeObservable, observable, runInAction, toJS, when, makeObservable
 } from "mobx"
 import "mobx-react/batchingForReactNative"
 import _ from "lodash"
@@ -55,6 +55,7 @@ class Store {
     @observable settingsAreLoaded = false
 
     constructor() {
+      makeObservable(this)
       this._loadCustomFonts()
       SettingsApi.fetchProductionLiveSettings()
         .then((response) => response.json())
