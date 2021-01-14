@@ -1,5 +1,5 @@
 import {
-    action, configure, makeObservable, observable, runInAction, toJS, when
+  action, configure, makeObservable, observable, runInAction, toJS, when,
 } from "mobx"
 import _ from "lodash"
 import * as Sentry from "sentry-expo"
