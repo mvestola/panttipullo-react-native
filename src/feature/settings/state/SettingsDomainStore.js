@@ -1,7 +1,6 @@
 import {
-    action, configure, makeObservable, observable, runInAction, toJS, when, makeObservable
+    action, configure, makeObservable, observable, runInAction, toJS, when
 } from "mobx"
-import "mobx-react/batchingForReactNative"
 import _ from "lodash"
 import * as Sentry from "sentry-expo"
 import { AsyncStorage, ToastAndroid } from "react-native"
