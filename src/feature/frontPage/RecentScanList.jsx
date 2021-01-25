@@ -67,8 +67,8 @@ export const RecentScanList = observer(() => {
 
 const colValues = {
   deposit: 15,
-  date: 25,
-  desc: 60,
+  date: 30,
+  desc: 55,
 }
 
 const styles = StyleSheet.create({

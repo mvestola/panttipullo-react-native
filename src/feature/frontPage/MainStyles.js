@@ -4,7 +4,7 @@ export const MainStyles = StyleSheet.create({
   sectionHeader: {
     backgroundColor: "#009A49",
     padding: 10,
-    height: 40,
+    height: 48,
   },
   sectionHeaderText: {
     color: "white",
