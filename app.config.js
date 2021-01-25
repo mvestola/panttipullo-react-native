@@ -2,8 +2,8 @@ import "dotenv/config"
 
 const projectName = "Panttipullo"
 const packageName = "fi.mvestola.panttipullo"
-const versionNumber = "1.0.9"
-const androidVersionCode = 10
+const versionNumber = "1.1.0"
+const androidVersionCode = 11
 const googleMobileAdsAppId = "ca-app-pub-0260854390576047~9146307330"
 
 export default {
